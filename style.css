@@ -1543,3 +1543,235 @@ footer {
     text-align: center;
     margin-top: 50px;
 }
+
+/* レスポンシブデザイン */
+/* デスクトップ（大画面）*/
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+/* タブレット（中画面）*/
+@media (max-width: 1199px) and (min-width: 768px) {
+    .container {
+        max-width: 960px;
+    }
+    
+    .hero-actions .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .gallery-grid,
+    .videos-grid,
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .feature-content {
+        flex-direction: column !important;
+    }
+    
+    .feature-image,
+    .feature-description {
+        width: 100%;
+        padding: 20px;
+    }
+    
+    .contact-container {
+        flex-direction: column;
+    }
+    
+    .contact-info,
+    .contact-form {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    
+    .hero-info-bar {
+        flex-wrap: wrap;
+    }
+    
+    .info-item {
+        width: 50%;
+        margin-bottom: 15px;
+    }
+    
+    .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* スマートフォン（小画面）*/
+@media (max-width: 767px) {
+    .container {
+        width: 95%;
+        padding: 40px 0;
+    }
+    
+    /* ヘッダーとナビゲーション */
+    header {
+        padding: 15px 20px;
+    }
+    
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+    
+    nav {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 80%;
+        height: calc(100vh - 70px);
+        background-color: var(--secondary-color);
+        transition: left 0.3s ease;
+        z-index: 1000;
+        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    nav.active {
+        left: 0;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    nav ul li {
+        margin: 15px 0;
+    }
+    
+    .menu-toggle {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+    
+    /* ヒーローセクション */
+    .hero {
+        height: 100vh;
+    }
+    
+    .slide-content h2 {
+        font-size: 2.5rem;
+    }
+    
+    .slide-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    .slide-content .subtitle,
+    .slide-content .specs {
+        font-size: 0.9rem;
+    }
+    
+    .hero-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-actions .btn {
+        margin: 10px 0;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .hero-info-bar {
+        flex-direction: column;
+        padding: 15px;
+    }
+    
+    .info-item {
+        width: 100%;
+        margin-bottom: 15px;
+        padding: 10px;
+    }
+    
+    /* セクションタイトル */
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    
+    /* グリッドレイアウト */
+    .gallery-grid,
+    .videos-grid,
+    .services-grid,
+    .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    /* 特徴セクション */
+    .feature-content {
+        flex-direction: column !important;
+    }
+    
+    .feature-image,
+    .feature-description {
+        width: 100%;
+        padding: 15px;
+    }
+    
+    /* お問い合わせ */
+    .contact-container {
+        flex-direction: column;
+    }
+    
+    .contact-info,
+    .contact-form {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    
+    /* フッター */
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-links,
+    .footer-social,
+    .footer-contact {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    /* 動画ポップアップ */
+    .popup-video {
+        width: 90%;
+        height: auto;
+    }
+    
+    /* スライドショーコントロール */
+    .slideshow-controls {
+        bottom: 20px;
+    }
+    
+    .prev-slide, .next-slide {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    /* アバウトセクション */
+    .about-content {
+        flex-direction: column;
+    }
+    
+    .about-image,
+    .about-text {
+        width: 100%;
+    }
+    
+    .about-image {
+        margin-bottom: 30px;
+    }
+}

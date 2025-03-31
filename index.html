@@ -3,15 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>スタジオQ - 写真とクリエイティブのための空間</title>
+    <meta name="description" content="スタジオQは最新の4K映像制作設備と高品質グリーンスクリーンを備えたプロフェッショナルなバーチャルスタジオです。天井高5M、広大なスペース、防音設備を完備。">
+    <meta name="keywords" content="スタジオQ,バーチャルスタジオ,グリーンスクリーン,4K映像制作,ライブ配信,撮影スタジオ,東京">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="スタジオQ">
+    <meta property="og:title" content="スタジオQ - プロフェッショナルバーチャルスタジオ">
+    <meta property="og:description" content="最新の4K映像制作設備と高品質グリーンスクリーンを備えたプロフェッショナルなバーチャルスタジオ。天井高5M、広大なスペース、防音設備を完備。">
+    <meta property="og:image" content="images/studioq_logo_white.png">
+    <meta property="og:url" content="https://studioq.co.jp">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://studioq.co.jp">
+    <title>スタジオQ - プロフェッショナルバーチャルスタジオ</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- ページの読み込み速度向上のためにFontAwesomeをプリロード -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style">
+    <!-- 構造化データ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "スタジオQ",
+      "image": "images/studioq_logo_white.png",
+      "description": "最新の4K映像制作設備と高品質グリーンスクリーンを備えたプロフェッショナルなバーチャルスタジオ",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "東京",
+        "addressCountry": "JP"
+      },
+      "telephone": "+81-03-XXXX-XXXX",
+      "priceRange": "¥¥¥",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "09:00",
+        "closes": "22:00"
+      },
+      "sameAs": [
+        "https://www.facebook.com/studioq",
+        "https://www.instagram.com/studioq_official/",
+        "https://twitter.com/studioq_jp"
+      ]
+    }
+    </script>
 </head>
 <body>
     <!-- ヘッダーとナビゲーション -->
     <header>
         <div class="logo">
-            <h1>スタジオQ</h1>
+            <a href="#home"><img src="images/studioq_logo_white.png" alt="スタジオQ" class="logo-image"></a>
         </div>
         <nav>
             <ul>
@@ -19,7 +68,7 @@
                 <li><a href="#about">スタジオについて</a></li>
                 <li><a href="#gallery">ギャラリー</a></li>
                 <li><a href="#contact">お問い合わせ</a></li>
-                <li><a href="blog.html">ブログ</a></li>
+                <li><a href="blog/index.html">ブログ</a></li>
             </ul>
         </nav>
         <div class="menu-toggle">
@@ -30,13 +79,11 @@
     <!-- ヒーローセクション -->
     <section id="hero" class="hero">
         <div class="slideshow-container">
-            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=2000&q=80')">
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=2000&q=80')" data-src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=2000&q=80">
                 <div class="slide-overlay from-green-900/50 via-green-600/30 to-black/90">
-                    <div class="hero-logo">
-                        <span class="logo-icon"><i class="fas fa-camera"></i> STUDIO Q</span>
-                    </div>
+
                     <div class="slide-content">
-                        <h2>STUDIO Q</h2>
+                        <img src="images/studioq_logo_white.png" alt="スタジオQ - プロフェッショナルバーチャルスタジオ" class="hero-content-logo" loading="eager">
                         <h3>PROFESSIONAL VIRTUAL STUDIO</h3>
                         <p class="subtitle">最新の4K映像制作設備と高品質グリーンスクリーン</p>
                         <p class="specs">天井高5M × 広大なスペース × 防音設備</p>
@@ -47,13 +94,11 @@
                     </div>
                 </div>
             </div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1598387993441-a364f854c3e1?auto=format&fit=crop&w=2000&q=80')">
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1598387993441-a364f854c3e1?auto=format&fit=crop&w=2000&q=80')" data-src="https://images.unsplash.com/photo-1598387993441-a364f854c3e1?auto=format&fit=crop&w=2000&q=80">
                 <div class="slide-overlay from-blue-900/50 via-purple-600/30 to-black/90">
-                    <div class="hero-logo">
-                        <span class="logo-icon"><i class="fas fa-camera"></i> STUDIO Q</span>
-                    </div>
+
                     <div class="slide-content">
-                        <h2>STUDIO Q</h2>
+                        <img src="images/studioq_logo_white.png" alt="スタジオQ - プロフェッショナルバーチャルスタジオ" class="hero-content-logo" loading="eager">
                         <h3>MULTI-CAMERA SYSTEM</h3>
                         <p class="subtitle">4台のSONY業務用4Kカメラによるマルチアングル撮影</p>
                         <p class="specs">SONY FX6 × マルチカメラ撮影 × リアルタイム編集</p>
@@ -64,13 +109,11 @@
                     </div>
                 </div>
             </div>
-            <div class="slide" style="background-image: url('images/slide05.jpg')">
+            <div class="slide" style="background-image: url('images/slide05.jpg')" data-src="images/slide05.jpg">
                 <div class="slide-overlay from-purple-900/50 via-pink-600/30 to-black/90">
-                    <div class="hero-logo">
-                        <span class="logo-icon"><i class="fas fa-camera"></i> STUDIO Q</span>
-                    </div>
+
                     <div class="slide-content">
-                        <h2>STUDIO Q</h2>
+                        <img src="images/studioq_logo_white.png" alt="スタジオQ - プロフェッショナルバーチャルスタジオ" class="hero-content-logo" loading="eager">
                         <h3>RGB LIGHTING CONTROL</h3>
                         <p class="subtitle">プロ仕様RGB LED照明による高度な演出</p>
                         <p class="specs">調光機能 × カラーミキシング × DMXコントロール</p>
@@ -81,16 +124,34 @@
                     </div>
                 </div>
             </div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?auto=format&fit=crop&w=2000&q=80')">
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?auto=format&fit=crop&w=2000&q=80')" data-src="https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?auto=format&fit=crop&w=2000&q=80">
                 <div class="slide-overlay from-amber-900/50 via-yellow-600/30 to-black/90">
-                    <div class="hero-logo">
-                        <span class="logo-icon"><i class="fas fa-camera"></i> STUDIO Q</span>
-                    </div>
+
                     <div class="slide-content">
-                        <h2>STUDIO Q</h2>
+                        <img src="images/studioq_logo_white.png" alt="スタジオQ - プロフェッショナルバーチャルスタジオ" class="hero-content-logo" loading="eager">
                         <h3>Live Streaming STUDIO</h3>
                         <p class="subtitle">プロフェッショナルな音楽配信環境</p>
                         <p class="specs">NEUMANN U87 × SSL CONSOLE × YAMAHA C7</p>
+                        <div class="hero-actions">
+                            <a href="#contact" class="btn btn-primary">スタジオツアー予約</a>
+                            <a href="#pricing" class="btn btn-secondary">料金プラン</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide video-slide">
+                <video class="slide-video" autoplay loop muted preload="auto">
+                    <source src="movie/greem1-2.mp4" type="video/mp4">
+                    <source src="movie/greem1-2.webm" type="video/webm">
+                    動画をサポートしていないブラウザです
+                </video>
+                <div class="slide-overlay from-teal-900/50 via-teal-600/30 to-black/90">
+
+                    <div class="slide-content">
+                        <img src="images/studioq_logo_white.png" alt="スタジオQ - プロフェッショナルバーチャルスタジオ" class="hero-content-logo" loading="eager">
+                        <h3>GREEN SCREEN STUDIO</h3>
+                        <p class="subtitle">高品質グリーンスクリーンによるVFX撮影</p>
+                        <p class="specs">クロマキー合成 × バーチャル背景 × 特殊効果</p>
                         <div class="hero-actions">
                             <a href="#contact" class="btn btn-primary">スタジオツアー予約</a>
                             <a href="#pricing" class="btn btn-secondary">料金プラン</a>
@@ -139,25 +200,44 @@
     <section id="about" class="about">
         <div class="container">
             <h2 class="section-title">スタジオQの特徴</h2>
-            <p class="section-subtitle">完全防音を完備し、同録が可能な最新設備を備えたバーチャルスタジオ</p>
-            
+            <div class="breadcrumbs" aria-label="パンくずリスト">
+                <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+                    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="#home"><span itemprop="name">ホーム</span></a>
+                        <meta itemprop="position" content="1" />
+                    </li>
+                    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <span itemprop="name">スタジオQの特徴</span>
+                        <meta itemprop="position" content="2" />
+                    </li>
+                </ol>
+            </div>
+            <p class="section-subtitle">完全防音を完備し、同録が可能な最新設備を備えたバーチャルスタジオ<br>撮影用途に合わせて背景を変更できます</p>
             <div class="about-content">
                 <div class="about-image">
                     <div class="about-slideshow">
                         <div class="about-slide active">
-                            <img src="images/slide1.jpg" alt="スタジオセットアップ 1">
+                            <img src="images/slide1.jpg" alt="スタジオQ - 最新の4K映像制作設備" loading="lazy" width="800" height="600">
                         </div>
                         <div class="about-slide">
-                            <img src="images/slide2.jpg" alt="スタジオセットアップ 2">
+                            <img src="images/slide2.jpg" alt="スタジオQ - 高品質グリーンスクリーン設備" loading="lazy" width="800" height="600">
                         </div>
                         <div class="about-slide">
-                            <img src="images/slide3.jpg" alt="スタジオセットアップ 3">
+                            <img src="images/slide3.jpg" alt="スタジオQ - プロフェッショナルな音楽配信環境" loading="lazy" width="800" height="600">
                         </div>
                     </div>
                 </div>
                 <div class="about-text">
+                    <h3>クリエイターのための理想的な空間</h3>
                     <p>最新の撮影機材と編集環境を備えた、クリエイターのための理想的な空間です。</p>
                     <p>プロフェッショナルな作品制作から趣味の撮影まで、あらゆるニーズに対応します。</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> 4K映像制作設備</li>
+                        <li><i class="fas fa-check"></i> 高品質グリーンスクリーン</li>
+                        <li><i class="fas fa-check"></i> 完全防音設備</li>
+                        <li><i class="fas fa-check"></i> プロ仕様RGB LED照明</li>
+                        <li><i class="fas fa-check"></i> マルチカメラシステム</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -166,12 +246,13 @@
     <!-- スタジオQ紹介動画 -->
     <section id="intro-video" class="intro-video">
         <div class="container">
-            <h2 class="section-title" style="color: #33CC33;">スタジオQのご紹介</h2>
-            <p class="section-subtitle" style="color: #33CC33;">最新の技術と創造性で、あなたのビジョンを現実に</p>
-            
             <div class="studio-intro-container">
                 <div class="video-wrapper">
-                    <div class="video-thumbnail" data-video-url="https://studioq.co.jp/wp-content/uploads/2023/10/info_studioq.mp4">
+                    <div class="video-thumbnail" data-video-url="https://studioq.co.jp/wp-content/uploads/2023/10/info_studioq.mp4" aria-label="スタジオQ紹介動画">
+                        <div class="video-text-overlay">
+                            <h2 class="section-title intro-title">スタジオQのご紹介</h2>
+                            <p class="section-subtitle intro-subtitle">最新の技術と創造性で、あなたのビジョンを現実に</p>
+                        </div>
                         <img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6" alt="スタジオQの設備">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
@@ -475,7 +556,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <h2>スタジオQ</h2>
+                    <img src="images/studioq_logo_white.png" alt="スタジオQ" class="footer-logo-image">
                     <p>クリエイティブな表現のための最高の環境</p>
                 </div>
                 <div class="footer-links">

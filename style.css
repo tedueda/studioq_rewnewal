@@ -234,9 +234,16 @@ header {
     transition: var(--transition);
 }
 
-.logo h1 {
-    font-size: 1.8rem;
-    color: var(--primary-color);
+.logo-image {
+    height: 40px;
+    width: auto;
+    display: block;
+    filter: drop-shadow(0 0 5px rgba(57, 255, 20, 0.5));
+    transition: transform 0.3s ease;
+}
+
+.logo-image:hover {
+    transform: scale(1.05);
 }
 
 nav ul {
@@ -290,6 +297,20 @@ nav ul li a:hover::after {
     overflow: hidden;
 }
 
+.hero-logo {
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 3;
+}
+
+.hero-logo-image {
+    height: 60px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+    filter: drop-shadow(0 0 8px rgba(57, 255, 20, 0.7));
+}
+
 .slideshow-container {
     position: absolute;
     top: 0;
@@ -312,6 +333,28 @@ nav ul li a:hover::after {
     z-index: 1;
 }
 
+.video-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.slide-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+    object-fit: cover;
+    z-index: 1;
+}
+
 .slide-overlay {
     position: absolute;
     top: 0;
@@ -327,6 +370,7 @@ nav ul li a:hover::after {
 
 .slide-overlay.green-gradient {
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.65), rgba(20, 184, 166, 0.55), rgba(0, 0, 0, 0.75));
+    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     box-shadow: inset 0 0 120px rgba(20, 184, 166, 0.25);
     border-bottom: 1px solid rgba(20, 184, 166, 0.15);
@@ -334,6 +378,7 @@ nav ul li a:hover::after {
 
 .slide-overlay.blue-gradient {
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.65), rgba(99, 102, 241, 0.55), rgba(0, 0, 0, 0.75));
+    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     box-shadow: inset 0 0 120px rgba(99, 102, 241, 0.25);
     border-bottom: 1px solid rgba(99, 102, 241, 0.15);
@@ -341,6 +386,7 @@ nav ul li a:hover::after {
 
 .slide-overlay.purple-gradient {
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.65), rgba(236, 72, 153, 0.55), rgba(0, 0, 0, 0.75));
+    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     box-shadow: inset 0 0 120px rgba(236, 72, 153, 0.25);
     border-bottom: 1px solid rgba(236, 72, 153, 0.15);
@@ -348,6 +394,7 @@ nav ul li a:hover::after {
 
 .slide-overlay.amber-gradient {
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.65), rgba(245, 158, 11, 0.55), rgba(0, 0, 0, 0.75));
+    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     box-shadow: inset 0 0 120px rgba(245, 158, 11, 0.25);
     border-bottom: 1px solid rgba(245, 158, 11, 0.15);
@@ -421,6 +468,7 @@ nav ul li a:hover::after {
     display: flex;
     justify-content: space-around;
     background-color: rgba(0, 0, 0, 0.8);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     padding: 15px 0;
     z-index: 10;
@@ -681,6 +729,43 @@ nav ul li a:hover::after {
     overflow: hidden;
     cursor: pointer;
     transition: transform 0.3s ease;
+}
+
+.video-text-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
+    text-align: center;
+    padding: 20px;
+}
+
+.video-text-overlay .section-title {
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(51, 204, 51, 0.8);
+}
+
+.video-text-overlay .section-subtitle {
+    max-width: 80%;
+    margin: 0 auto;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+}
+
+.intro-title {
+    color: #33CC33;
+    font-size: 2.2rem;
+}
+
+.intro-subtitle {
+    color: #33CC33;
+    font-size: 1.2rem;
 }
 
 .video-thumbnail img {
@@ -1542,4 +1627,132 @@ footer {
 .blog-more {
     text-align: center;
     margin-top: 50px;
+}
+
+/* レスポンシブ対応 */
+@media screen and (max-width: 1200px) {
+    .container {
+        width: 95%;
+    }
+    
+    .slide-content h2 {
+        font-size: 2.5rem;
+    }
+    
+    .slide-content h3 {
+        font-size: 1.8rem;
+    }
+    
+    .slide-content .subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .slide-content .specs {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .hero {
+        height: 80vh;
+    }
+    
+    .slide-content h2 {
+        font-size: 2rem;
+    }
+    
+    .slide-content h3 {
+        font-size: 1.5rem;
+    }
+    
+    .slide-content .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .slide-content .specs {
+        font-size: 0.9rem;
+    }
+    
+    .hero-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .video-slide .slide-video {
+        height: 100%;
+        width: auto;
+        min-width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero {
+        height: 70vh;
+    }
+    
+    .slide-content h2 {
+        font-size: 1.8rem;
+    }
+    
+    .slide-content h3 {
+        font-size: 1.3rem;
+    }
+    
+    .slide-content .subtitle {
+        font-size: 1rem;
+    }
+    
+    .slide-content .specs {
+        font-size: 0.8rem;
+    }
+    
+    .hero-info-bar {
+        flex-wrap: wrap;
+    }
+    
+    .info-item {
+        flex: 1 0 50%;
+        padding: 10px;
+    }
+    
+    .video-slide .slide-video {
+        height: 100%;
+        object-position: center;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .hero {
+        height: 60vh;
+    }
+    
+    .slide-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .slide-content h3 {
+        font-size: 1.1rem;
+    }
+    
+    .slide-content .subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .slide-content .specs {
+        font-size: 0.7rem;
+    }
+    
+    .hero-logo .logo-icon {
+        font-size: 1rem;
+    }
+    
+    .info-item {
+        flex: 1 0 100%;
+    }
+    
+    .video-slide .slide-video {
+        height: 100%;
+        min-width: 150%;
+        object-position: center;
+    }
 }

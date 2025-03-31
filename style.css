@@ -311,6 +311,14 @@ nav ul li a:hover::after {
     filter: drop-shadow(0 0 8px rgba(57, 255, 20, 0.7));
 }
 
+.hero-content-logo {
+    height: 80px;
+    width: auto;
+    display: block;
+    margin: 0 auto 15px;
+    filter: drop-shadow(0 0 10px rgba(57, 255, 20, 0.8));
+}
+
 .slideshow-container {
     position: absolute;
     top: 0;
@@ -1253,9 +1261,12 @@ footer {
     margin-bottom: 40px;
 }
 
-.footer-logo h2 {
-    color: var(--primary-color);
+.footer-logo-image {
+    height: 50px;
+    width: auto;
+    display: block;
     margin-bottom: 15px;
+    filter: drop-shadow(0 0 5px rgba(57, 255, 20, 0.5));
 }
 
 .footer-links h3,

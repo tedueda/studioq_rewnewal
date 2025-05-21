@@ -128,8 +128,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // 紹介動画セクションの動画サムネイル
     if (videoThumbnail) {
         videoThumbnail.addEventListener('click', () => {
-            // 実際の動画URLを設定
-            const videoUrl = "https://studioq.co.jp/wp-content/uploads/2023/10/info_studioq.mp4";
+            // data-video-url属性から動画URLを取得
+            const videoUrl = videoThumbnail.getAttribute('data-video-url');
             
             createVideoPopup(videoUrl);
         });
@@ -161,12 +161,68 @@ document.addEventListener('DOMContentLoaded', () => {
         const overlay = document.createElement('div');
         overlay.className = 'video-popup-overlay';
         
-        // 動画要素を作成
-        const videoElement = document.createElement('video');
-        videoElement.setAttribute('src', videoUrl);
-        videoElement.setAttribute('controls', 'true');
-        videoElement.setAttribute('autoplay', 'true');
-        videoElement.className = 'popup-video';
+        let videoElement;
+        
+        // YouTubeリンクかどうかを確認
+        if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be')) {
+            // YouTubeの埋め込みリンクに変換
+            let youtubeEmbedUrl = videoUrl;
+            let videoId = '';
+            
+            // 通常のYouTubeリンクを埋め込み用に変換
+            if (videoUrl.includes('youtube.com/watch')) {
+                try {
+                    const urlObj = new URL(videoUrl);
+                    videoId = urlObj.searchParams.get('v');
+                } catch (e) {
+                    // URLパースエラーの場合のフォールバック
+                    const match = videoUrl.match(/[?&]v=([^&]+)/);
+                    videoId = match ? match[1] : '';
+                }
+            } else if (videoUrl.includes('youtu.be')) {
+                // 短縮URLの場合
+                videoId = videoUrl.split('/').pop().split('?')[0];
+            }
+            
+            // 有効なビデオIDがある場合は埋め込みURLを生成
+            if (videoId) {
+                youtubeEmbedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+                
+                // iframeを作成
+                videoElement = document.createElement('iframe');
+                videoElement.setAttribute('src', youtubeEmbedUrl);
+                videoElement.setAttribute('width', '100%');
+                videoElement.setAttribute('height', '100%');
+                videoElement.setAttribute('frameborder', '0');
+                videoElement.setAttribute('allowfullscreen', 'true');
+                videoElement.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+                videoElement.className = 'popup-video youtube-video';
+                
+                // スタイルを直接設定して大きく表示
+                videoElement.style.width = '90vw';
+                videoElement.style.height = '80vh';
+                videoElement.style.minHeight = '600px';
+                videoElement.style.maxWidth = '1600px';
+            } else {
+                // ビデオIDが取得できない場合はエラーメッセージを表示
+                videoElement = document.createElement('div');
+                videoElement.textContent = '動画を読み込めませんでした。';
+                videoElement.className = 'popup-video-error';
+            }
+        } else {
+            // 日本語ファイル名の場合のフォールバック処理
+            if (videoUrl.includes('スタジオQ')) {
+                // 日本語ファイル名がある場合は代替ファイルを使用
+                videoUrl = 'movie/PR_NA_BGM.mp4';
+            }
+            
+            // 通常の動画ファイルの場合
+            videoElement = document.createElement('video');
+            videoElement.setAttribute('src', videoUrl);
+            videoElement.setAttribute('controls', 'true');
+            videoElement.setAttribute('autoplay', 'true');
+            videoElement.className = 'popup-video';
+        }
         
         // 閉じるボタンを作成
         const closeButton = document.createElement('button');

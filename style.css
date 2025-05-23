@@ -1299,7 +1299,139 @@ iframe.popup-video {
     transform: translateX(5px);
 }
 
+/* 料金表ページのスタイル */
+.fee-section {
+    padding: 100px 0 60px;
+    background-color: var(--section-bg);
+}
+
+.fee-section .section-title {
+    margin-top: 20px;
+    padding-top: 30px;
+    position: relative;
+}
+
+.fee-description {
+    margin-bottom: 30px;
+    line-height: 1.8;
+}
+
+.fee-plan {
+    margin-bottom: 40px;
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.fee-plan-title {
+    background-color: #f39c12;
+    color: #000;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.fee-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.fee-row {
+    display: flex;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.fee-row:last-child {
+    border-bottom: none;
+}
+
+.fee-header {
+    background-color: rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+}
+
+.fee-cell {
+    padding: 15px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.fee-amount {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.fee-note {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.service-info, .fee-notice, .use-cases {
+    margin-bottom: 30px;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: var(--border-radius);
+}
+
+.service-info h3, .fee-notice h3, .use-cases h3 {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.update-date {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: right;
+    margin-top: 10px;
+}
+
+.use-cases ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.use-cases ul li {
+    position: relative;
+    padding: 5px 0;
+    padding-left: 20px;
+}
+
+.use-cases ul li:before {
+    content: '\2022';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+
 @media screen and (max-width: 768px) {
+    .fee-row {
+        flex-direction: column;
+    }
+    
+    .fee-cell {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
     .feature-content {
         flex-direction: column !important;
     }

@@ -1,33 +1,20 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "*.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "*.js",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "*.css",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "images/**",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "movie/**",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "blog/**",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/index.html" }
-  ]
+  "name": "studioq-website",
+  "version": "1.0.0",
+  "description": "StudioQ Website",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tedueda/studioq_rewnewal.git"
+  },
+  "author": "StudioQ",
+  "staticFiles": {
+    "staticPath": ".",
+    "excludePatterns": [".git/**", "node_modules/**"]
+  },
+  "bolt": {
+    "framework": "static",
+    "buildCommand": "",
+    "outputDirectory": "/"
+  }
 }

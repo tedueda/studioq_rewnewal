@@ -3,4 +3,12 @@
 # The ID of the project (different from project name) on the provider's system. This is populated as a way to update existing deployments.
 project_id: 9d2eb3f6-a228-4f44-932f-d15ea26209a4
 # The framework of the web application (examples: nextjs, react, vue, etc.)
-framework: hugo
+framework: static
+# The subdomain or project name used in the URL
+subdomain: studioq-website
+# The root directory of the project
+root_directory: /
+# Build command (leave empty for static sites)
+build_command: ""
+# Output directory (usually "public", "dist", "build", etc.)
+output_directory: "/"

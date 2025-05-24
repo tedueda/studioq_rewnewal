@@ -15,7 +15,16 @@ Bolt.newでデプロイする場合は、以下の手順に従ってください
 
 1. Bolt.newにログインします
 2. 「新しいプロジェクト」を選択
-3. このGitHubリポジトリをインポート
-4. デプロイボタンをクリック
+3. このGitHubリポジトリ（https://github.com/tedueda/studioq_rewnewal.git）をインポート
+4. フレームワークとして「Static Site」を選択
+5. デプロイボタンをクリック
 
-Bolt.newは`bolt.json`の設定に基づいて自動的にサイトをデプロイします。
+Bolt.newは`windsurf_deployment.yaml`の設定に基づいて自動的にサイトをデプロイします。この設定ファイルには以下の内容が含まれています：
+
+- フレームワーク: static（静的サイト）
+- サブドメイン: studioq-website
+- ルートディレクトリ: /
+- ビルドコマンド: なし（静的サイトのため）
+- 出力ディレクトリ: /
+
+デプロイに問題がある場合は、`windsurf_deployment.yaml`の設定を確認してください。

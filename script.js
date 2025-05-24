@@ -92,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 動画スライドがアクティブになったときの処理
     function handleVideoSlideActive() {
+        console.log('動画スライドがアクティブになりました');
         // スライドショーを一時停止
         const wasRunning = isSlideShowRunning;
         stopSlideshow();
@@ -101,28 +102,74 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // 動画を最初から再生
         if (heroVideo) {
+            console.log('動画再生を開始します');
             heroVideo.currentTime = 0;
-            heroVideo.play();
-            isVideoPlaying = true;
             
-            // 8秒後に動画を一時停止
-            videoTimer = setTimeout(() => {
-                if (isVideoSlideActive()) {
-                    heroVideo.pause();
-                    isVideoPlaying = false;
+            // 動画の読み込みを確認
+            const playPromise = heroVideo.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    // 再生成功
+                    isVideoPlaying = true;
+                    console.log('動画再生開始: 8秒後に停止します');
                     
-                    // 2秒間待機してからスライドショーの最初に戻る
+                    // 8秒後に動画を一時停止
+                    videoTimer = setTimeout(() => {
+                        if (isVideoSlideActive()) {
+                            console.log('8秒経過: 動画を一時停止します');
+                            heroVideo.pause();
+                            isVideoPlaying = false;
+                            
+                            // 2秒間待機してからスライドショーの最初に戻る
+                            console.log('2秒後に最初のスライドに戻ります');
+                            pauseTimer = setTimeout(() => {
+                                console.log('2秒経過: 最初のスライドに移動します');
+                                // 最初のスライドに移動
+                                goToSlide(0);
+                                
+                                // スライドショーを再開
+                                if (wasRunning) {
+                                    console.log('スライドショーを再開します');
+                                    startSlideshow();
+                                }
+                            }, 2000);
+                        }
+                    }, 8000);
+                }).catch(error => {
+                    // 再生失敗
+                    console.error('動画再生エラー:', error);
+                    // エラー時は2秒後に次のスライドへ
                     pauseTimer = setTimeout(() => {
-                        // 最初のスライドに移動
                         goToSlide(0);
-                        
-                        // スライドショーを再開
                         if (wasRunning) {
                             startSlideshow();
                         }
                     }, 2000);
-                }
-            }, 8000);
+                });
+            } else {
+                // Promiseをサポートしていないブラウザの場合
+                isVideoPlaying = true;
+                
+                // 8秒後に動画を一時停止
+                videoTimer = setTimeout(() => {
+                    if (isVideoSlideActive()) {
+                        heroVideo.pause();
+                        isVideoPlaying = false;
+                        
+                        // 2秒間待機してからスライドショーの最初に戻る
+                        pauseTimer = setTimeout(() => {
+                            // 最初のスライドに移動
+                            goToSlide(0);
+                            
+                            // スライドショーを再開
+                            if (wasRunning) {
+                                startSlideshow();
+                            }
+                        }, 2000);
+                    }
+                }, 8000);
+            }
         }
     }
     

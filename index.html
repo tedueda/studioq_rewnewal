@@ -65,7 +65,7 @@
         <nav>
             <ul>
                 <li><a href="#home">ホーム</a></li>
-                <li><a href="#about">スタジオについて</a></li>
+                <li><a href="#features">スタジオについて</a></li>
                 <li><a href="#gallery">ギャラリー</a></li>
                 <li><a href="#contact">お問い合わせ</a></li>
                 <li><a href="blog/index.html">ブログ</a></li>
@@ -129,7 +129,6 @@
 
                     <div class="slide-content">
                         <img src="images/studioq_logo_white.png" alt="スタジオQ - プロフェッショナルバーチャルスタジオ" class="hero-content-logo" loading="eager">
-                        <h3>Live Streaming STUDIO</h3>
                         <p class="subtitle">プロフェッショナルな音楽配信環境</p>
                     
                         <div class="hero-actions">
@@ -140,7 +139,7 @@
                 </div>
             </div>
             <div class="slide video-slide">
-                <video class="slide-video" autoplay loop muted preload="auto">
+                <video id="heroVideo" class="slide-video" autoplay muted preload="auto">
                     <source src="movie/greem1-2.mp4" type="video/mp4">
                     <source src="movie/greem1-2.webm" type="video/webm">
                     動画をサポートしていないブラウザです
@@ -149,7 +148,6 @@
 
                     <div class="slide-content">
                         <img src="images/studioq_logo_white.png" alt="スタジオQ - プロフェッショナルバーチャルスタジオ" class="hero-content-logo" loading="eager">
-                        <h3>GREEN SCREEN STUDIO</h3>
                         <p class="subtitle">高品質グリーンスクリーンによるVFX撮影</p>
                         <p class="specs">クロマキー合成 × バーチャル背景 × 特殊効果</p>
                         <div class="hero-actions">
@@ -256,8 +254,7 @@
     <!-- ギャラリー -->
     <section id="gallery" class="gallery">
         <div class="container">
-            <h2 class="section-title">これまでの作品と実績</h2>
-            <p class="section-subtitle">スタジオQで生まれた素晴らしい作品の数々</p>
+            <h2 class="section-title">スタジオでの活動内容</h2>
             
             <table style="width: 100%; max-width: 900px; margin: 40px auto 0; border-spacing: 20px; border-collapse: separate;">
                 <tr>
@@ -307,8 +304,11 @@
                     </td>
                     <td style="width: 50%; vertical-align: top;">
                         <div class="gallery-item video-gallery-item">
-                            <div class="gallery-video-thumbnail" data-video-url="https://test.studioq.co.jp/wp-content/uploads/2025/05/ai_master.mp4">
-                                <img src="images/school.jpg" alt="学校イベント">
+                            <div class="gallery-video-thumbnail" data-video-url="http://pr.studioq.co.jp/wp-content/uploads/2024/12/スクール01.mp4">
+                                <video poster="images/school.jpg" preload="none" muted playsinline>
+                                    <source src="http://pr.studioq.co.jp/wp-content/uploads/2024/12/スクール01.mp4?t=20250524" type="video/mp4">
+                                    動画をサポートしていないブラウザです
+                                </video>
                                 <div class="play-button">
                                     <i class="fas fa-play"></i>
                                 </div>
@@ -514,7 +514,7 @@
                     <h3>リンク</h3>
                     <ul>
                         <li><a href="#home">ホーム</a></li>
-                        <li><a href="#about">スタジオについて</a></li>
+                        <li><a href="#features">スタジオについて</a></li>
                         <li><a href="#gallery">ギャラリー</a></li>
                         <li><a href="#contact">お問い合わせ</a></li>
                     </ul>

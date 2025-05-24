@@ -14,55 +14,156 @@ window.addEventListener('scroll', () => {
 
 // ヒーローセクションのスライドショー機能
 document.addEventListener('DOMContentLoaded', () => {
+    // グローバル変数と要素の取得
     const slides = document.querySelectorAll('.slide');
     const prevButton = document.querySelector('.prev-slide');
     const nextButton = document.querySelector('.next-slide');
+    const videoSlide = document.querySelector('.video-slide');
+    const heroVideo = document.getElementById('heroVideo');
+    
+    // 状態管理用の変数
     let currentSlide = 0;
-    let slideInterval;
-
-    // 自動スライドショーの開始
+    let slideInterval = null;
+    let videoTimer = null;
+    let pauseTimer = null;
+    let isSlideShowRunning = false;
+    let isVideoPlaying = false;
+    
+    // スライドショーを開始する関数
     function startSlideshow() {
+        if (slideInterval) {
+            clearInterval(slideInterval);
+        }
+        
+        isSlideShowRunning = true;
+        
         slideInterval = setInterval(() => {
-            nextSlide();
-        }, 5000); // 5秒ごとに次のスライドへ
+            // 動画スライドがアクティブな場合はスキップ
+            if (isVideoSlideActive()) {
+                return;
+            }
+            goToNextSlide();
+        }, 5000);
+        
+        console.log('スライドショー開始');
     }
-
-    // 自動スライドショーの停止
+    
+    // スライドショーを停止する関数
     function stopSlideshow() {
-        clearInterval(slideInterval);
+        if (slideInterval) {
+            clearInterval(slideInterval);
+            slideInterval = null;
+        }
+        isSlideShowRunning = false;
+        console.log('スライドショー停止');
     }
-
-    // 次のスライドへ
-    function nextSlide() {
-        slides[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + 1) % slides.length;
+    
+    // 動画スライドがアクティブかどうか確認する関数
+    function isVideoSlideActive() {
+        return videoSlide && videoSlide.classList.contains('active');
+    }
+    
+    // 指定したスライドに移動する関数
+    function goToSlide(index) {
+        // 全てのスライドからactiveクラスを削除
+        slides.forEach(slide => slide.classList.remove('active'));
+        
+        // 指定されたスライドをアクティブに
+        currentSlide = index;
         slides[currentSlide].classList.add('active');
+        
+        // 動画スライドがアクティブになった場合の処理
+        if (isVideoSlideActive()) {
+            handleVideoSlideActive();
+        }
     }
-
-    // 前のスライドへ
-    function prevSlide() {
-        slides[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        slides[currentSlide].classList.add('active');
+    
+    // 次のスライドに移動する関数
+    function goToNextSlide() {
+        const nextIndex = (currentSlide + 1) % slides.length;
+        goToSlide(nextIndex);
     }
-
-    // イベントリスナーの設定
+    
+    // 前のスライドに移動する関数
+    function goToPrevSlide() {
+        const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+        goToSlide(prevIndex);
+    }
+    
+    // 動画スライドがアクティブになったときの処理
+    function handleVideoSlideActive() {
+        // スライドショーを一時停止
+        const wasRunning = isSlideShowRunning;
+        stopSlideshow();
+        
+        // 既存のタイマーをクリア
+        clearAllTimers();
+        
+        // 動画を最初から再生
+        if (heroVideo) {
+            heroVideo.currentTime = 0;
+            heroVideo.play();
+            isVideoPlaying = true;
+            
+            // 8秒後に動画を一時停止
+            videoTimer = setTimeout(() => {
+                if (isVideoSlideActive()) {
+                    heroVideo.pause();
+                    isVideoPlaying = false;
+                    
+                    // 2秒間待機してからスライドショーの最初に戻る
+                    pauseTimer = setTimeout(() => {
+                        // 最初のスライドに移動
+                        goToSlide(0);
+                        
+                        // スライドショーを再開
+                        if (wasRunning) {
+                            startSlideshow();
+                        }
+                    }, 2000);
+                }
+            }, 8000);
+        }
+    }
+    
+    // 全てのタイマーをクリアする関数
+    function clearAllTimers() {
+        if (videoTimer) {
+            clearTimeout(videoTimer);
+            videoTimer = null;
+        }
+        
+        if (pauseTimer) {
+            clearTimeout(pauseTimer);
+            pauseTimer = null;
+        }
+    }
+    
+    // ナビゲーションボタンのイベントリスナーを設定
     if (prevButton && nextButton) {
         prevButton.addEventListener('click', () => {
-            prevSlide();
-            stopSlideshow();
-            startSlideshow(); // クリック後に自動スライドショーを再開
+            goToPrevSlide();
+            if (!isVideoSlideActive()) {
+                stopSlideshow();
+                startSlideshow();
+            }
         });
-
+        
         nextButton.addEventListener('click', () => {
-            nextSlide();
-            stopSlideshow();
-            startSlideshow(); // クリック後に自動スライドショーを再開
+            goToNextSlide();
+            if (!isVideoSlideActive()) {
+                stopSlideshow();
+                startSlideshow();
+            }
         });
     }
-
-    // スライドショーの開始
+    
+    // 初期化処理
     if (slides.length > 0) {
+        // 最初のスライドをアクティブに
+        goToSlide(0);
+        
+        // スライドショーを開始
         startSlideshow();
     }
 });
@@ -210,17 +311,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 videoElement.className = 'popup-video-error';
             }
         } else {
-            // 日本語ファイル名の場合のフォールバック処理
-            if (videoUrl.includes('スタジオQ')) {
-                // 日本語ファイル名がある場合は代替ファイルを使用
-                videoUrl = 'movie/PR_NA_BGM.mp4';
+            // 日本語ファイル名の処理
+            // URLエンコードが必要な場合はエンコードする
+            try {
+                // URLが既にエンコードされているか確認
+                const decodedUrl = decodeURIComponent(videoUrl);
+                if (decodedUrl !== videoUrl && !videoUrl.includes('%')) {
+                    // まだエンコードされていない場合はエンコード
+                    videoUrl = encodeURI(videoUrl);
+                }
+            } catch (e) {
+                console.error('URL処理エラー:', e);
             }
             
             // 通常の動画ファイルの場合
             videoElement = document.createElement('video');
-            videoElement.setAttribute('src', videoUrl);
+            
+            // キャッシュバスターを追加
+            const cacheBuster = `?t=${new Date().getTime()}`;
+            const videoUrlWithCacheBuster = videoUrl + cacheBuster;
+            
+            // source要素を使用して動画を読み込む
+            const sourceElement = document.createElement('source');
+            sourceElement.setAttribute('src', videoUrlWithCacheBuster);
+            sourceElement.setAttribute('type', 'video/mp4');
+            videoElement.appendChild(sourceElement);
+            
             videoElement.setAttribute('controls', 'true');
             videoElement.setAttribute('autoplay', 'true');
+            videoElement.setAttribute('playsinline', 'true'); // iOSでの再生をサポート
             videoElement.className = 'popup-video';
         }
         
@@ -276,3 +395,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// ヒーロービデオの制御は新しいスライドショー制御に統合されました

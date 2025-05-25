@@ -1575,6 +1575,38 @@ footer {
     .section-title {
         font-size: 2rem;
     }
+    
+    /* ギャラリーのタブレット対応 */
+    .gallery-video-thumbnail img {
+        height: auto;
+        min-height: 180px;
+        width: 100%;
+        object-fit: cover;
+        display: block;
+    }
+    
+    .gallery-video-thumbnail {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        margin-bottom: 15px;
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+    
+    /* テーブルレイアウトのタブレット対応 */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    td {
+        padding: 5px;
+    }
+    
+    .gallery-item {
+        margin-bottom: 15px;
+    }
 }
 
 @media screen and (max-width: 480px) {

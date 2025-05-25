@@ -1366,6 +1366,25 @@ iframe.popup-video {
     font-weight: bold;
     color: #fff;
     margin-bottom: 5px;
+    text-align: left;
+}
+
+/* 編集作業の行のスタイル調整 */
+[colspan="2"] .fee-amount {
+    padding-left: 0;
+    margin-top: 0;
+    margin-left: 0;
+    padding-right: 0;
+    text-align: left;
+    display: block;
+    width: 100%;
+}
+
+/* テキストの左端を揃えるための追加スタイル */
+.fee-cell .fee-amount {
+    padding-left: 0;
+    text-align: left;
+    display: block;
 }
 
 .fee-note {

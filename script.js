@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             goToNextSlide();
-        }, 5000);
+        }, 4000);
         
         console.log('スライドショー開始');
     }
@@ -121,10 +121,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             heroVideo.pause();
                             isVideoPlaying = false;
                             
-                            // 2秒間待機してからスライドショーの最初に戻る
-                            console.log('2秒後に最初のスライドに戻ります');
+                            // 1秒間待機してからスライドショーの最初に戻る
+                            console.log('1秒後に最初のスライドに戻ります');
                             pauseTimer = setTimeout(() => {
-                                console.log('2秒経過: 最初のスライドに移動します');
+                                console.log('1秒経過: 最初のスライドに移動します');
                                 // 最初のスライドに移動
                                 goToSlide(0);
                                 
@@ -133,19 +133,19 @@ document.addEventListener('DOMContentLoaded', () => {
                                     console.log('スライドショーを再開します');
                                     startSlideshow();
                                 }
-                            }, 2000);
+                            }, 1000);
                         }
                     }, 8000);
                 }).catch(error => {
                     // 再生失敗
                     console.error('動画再生エラー:', error);
-                    // エラー時は2秒後に次のスライドへ
+                    // エラー時は1秒後に次のスライドへ
                     pauseTimer = setTimeout(() => {
                         goToSlide(0);
                         if (wasRunning) {
                             startSlideshow();
                         }
-                    }, 2000);
+                    }, 1000);
                 });
             } else {
                 // Promiseをサポートしていないブラウザの場合
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         heroVideo.pause();
                         isVideoPlaying = false;
                         
-                        // 2秒間待機してからスライドショーの最初に戻る
+                        // 1秒間待機してからスライドショーの最初に戻る
                         pauseTimer = setTimeout(() => {
                             // 最初のスライドに移動
                             goToSlide(0);
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (wasRunning) {
                                 startSlideshow();
                             }
-                        }, 2000);
+                        }, 1000);
                     }
                 }, 8000);
             }

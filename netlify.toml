@@ -1,6 +1,12 @@
 [build]
-  publish = "/"
-  command = ""
+  publish = "_site"
+  command = "eleventy"
+
+[[plugins]]
+  package = "@netlify/plugin-netlify-cms"
+
+[template.environment]
+  NODE_VERSION = "16"
 
 [build.environment]
   NODE_VERSION = "16"
@@ -9,3 +15,8 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

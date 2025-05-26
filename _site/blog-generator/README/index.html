@@ -1,0 +1,96 @@
+<h1>スタジオQ ブログ自動生成システム</h1>
+<p>このシステムは、指定されたキーワードに基づいてブログ記事を自動生成し、スタジオQのウェブサイトに投稿するためのツールです。</p>
+<h2>機能</h2>
+<ul>
+<li>指定されたキーワードに基づいたブログ記事の自動生成</li>
+<li>OpenAI APIを使用した高品質なコンテンツ作成</li>
+<li>SEO対策済みのHTML形式での出力</li>
+<li>ブログインデックスページの自動更新</li>
+<li>GitHub Actionsによる定期実行</li>
+</ul>
+<h2>セットアップ</h2>
+<ol>
+<li>必要なパッケージをインストール：</li>
+</ol>
+<pre><code class="language-bash">npm install
+</code></pre>
+<ol start="2">
+<li><code>.env.example</code>ファイルを<code>.env</code>にコピーし、必要な情報を入力：</li>
+</ol>
+<pre><code class="language-bash">cp .env.example .env
+</code></pre>
+<ol start="3">
+<li><code>.env</code>ファイルを編集し、OpenAI APIキーを設定：</li>
+</ol>
+<pre><code>OPENAI_API_KEY=your_openai_api_key_here
+</code></pre>
+<h2>使用方法</h2>
+<h3>手動実行</h3>
+<p>特定のキーワードでブログ記事を生成：</p>
+<pre><code class="language-bash">node generate.js &quot;4K映像制作&quot;
+</code></pre>
+<p>キーワードを指定せずにランダムなキーワードで記事を生成：</p>
+<pre><code class="language-bash">node generate.js
+</code></pre>
+<h3>自動実行（GitHub Actions）</h3>
+<p>このリポジトリには、GitHub Actionsの設定ファイルが含まれています。これにより、毎日指定された時間にブログ記事が自動的に生成されます。</p>
+<h2>GitHub Actions設定</h2>
+<p><code>.github/workflows/daily-blog-post.yml</code>ファイルを作成し、以下の内容を設定します：</p>
+<pre><code class="language-yaml">name: Daily Blog Post
+
+on:
+  schedule:
+    # 毎日午前9時（UTC 0:00）に実行
+    - cron: '0 0 * * *'
+  workflow_dispatch:  # 手動実行用
+
+jobs:
+  generate-blog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: cd blog-generator &amp;&amp; npm install
+        
+      - name: Generate blog post
+        env:
+          OPENAI_API_KEY: $
+        run: cd blog-generator &amp;&amp; node generate.js
+        
+      - name: Commit and push if changes
+        run: |
+          git config --global user.name 'Blog Bot'
+          git config --global user.email 'bot@studioq.co.jp'
+          git add -A
+          git diff --quiet &amp;&amp; git diff --staged --quiet || git commit -m &quot;Add daily blog post $(date +'%Y-%m-%d')&quot;
+          git push
+</code></pre>
+<h2>ディレクトリ構造</h2>
+<pre><code>blog-generator/
+├── generate.js        # メインスクリプト
+├── package.json       # 依存関係
+├── .env               # 環境変数（APIキーなど）
+├── .env.example       # 環境変数のサンプル
+├── blog-style.css     # ブログ用スタイルシート
+└── README.md          # このドキュメント
+</code></pre>
+<h2>カスタマイズ</h2>
+<p><code>generate.js</code>ファイル内の以下の変数を編集することで、生成されるブログ記事の内容をカスタマイズできます：</p>
+<ul>
+<li><code>keywords</code>: 記事生成に使用されるキーワードのリスト</li>
+<li><code>categories</code>: ブログ記事のカテゴリーリスト</li>
+</ul>
+<h2>注意事項</h2>
+<ul>
+<li>OpenAI APIの使用には料金が発生します。使用量に応じた課金が行われるため、予算を考慮して使用してください。</li>
+<li>自動生成されたコンテンツは、公開前に内容を確認することをお勧めします。</li>
+<li>画像は自動生成されないため、必要に応じて手動で追加してください。</li>
+</ul>
+<h2>ライセンス</h2>
+<p>このプロジェクトはスタジオQの内部使用を目的としています。</p>

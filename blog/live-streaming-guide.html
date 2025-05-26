@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="大阪のプロ必見！完全防音×4K×4台カメラで極める高音質ライブ配信術。Studio Qが提供する高品質ライブ配信のノウハウと設備の解説">
+    <meta name="keywords" content="ライブ配信,4K映像,完全防音,多視点カメラ,音楽配信,スタジオQ,大阪,プロ仕様音響機器">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="大阪のプロ必見！完全防音×4K×4台カメラで極める高音質ライブ配信術 | Studio Q">
+    <meta property="og:description" content="音楽プロモーターやミュージシャン向け。Studio Qの完全防音スタジオ、4K対応カメラ4台、プロ仕様音響機器を活用した高品質ライブ配信のノウハウを解説">
+    <meta property="og:image" content="../images/top_VR7-1.jpg">
+    <meta property="og:url" content="https://studioq.co.jp/blog/live-streaming-guide.html">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@StudioQ080">
+    <title>大阪のプロ必見！完全防音×4K×4台カメラで極める高音質ライブ配信術 | Studio Q</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style">
+    <style>
+        .blog-content {
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .blog-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-top: 120px;
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .blog-header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+        }
+        
+        .blog-header-bg-image {
+            background-image: url('../images/bl04.png');
+        }
+        
+        .blog-header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 100%);
+            z-index: -1;
+        }
+        
+        .blog-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 20px 30px;
+            border-radius: 8px;
+            display: inline-block;
+            max-width: 90%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            line-height: 1.3;
+        }
+        
+        .blog-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            color: #fff;
+            margin-bottom: 2rem;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 10px 20px;
+            border-radius: 30px;
+        }
+        
+        .blog-date, .blog-author, .blog-category {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .blog-featured-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .featured-image-container {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .featured-image-centered {
+            max-width: 80%;
+            margin: 0 auto;
+        }
+        
+        .blog-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #ffffff;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 12px;
+            border-radius: 5px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+        }
+        
+        .highlight-box p {
+            color: #000000;
+            background-color: transparent;
+            padding: 0;
+            text-shadow: none;
+            margin-top: 10px;
+        }
+        
+        .equipment-item p {
+            color: #000000;
+            background-color: transparent;
+            padding: 0;
+            text-shadow: none;
+            text-align: left;
+        }
+        
+        .blog-text h2 {
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            border-bottom: 2px solid #ffffff;
+            padding-bottom: 8px;
+            display: inline-block;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+        
+        .blog-text h3 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: #444;
+        }
+        
+        .blog-text ul, .blog-text ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+        
+        .blog-text li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .blog-text a {
+            color: #00c896;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .blog-text a:hover {
+            text-decoration: underline;
+        }
+        
+        .blog-text blockquote {
+            border-left: 4px solid #00c896;
+            padding-left: 1.5rem;
+            margin-left: 0;
+            margin-right: 0;
+            font-style: italic;
+            color: #555;
+        }
+        
+        .blog-text img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .blog-text hr {
+            margin: 2rem 0;
+            border: none;
+            border-top: 1px solid #eee;
+        }
+        
+        .blog-text table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .blog-text th, .blog-text td {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+        }
+        
+        .blog-text th {
+            background-color: #f5f5f5;
+        }
+        
+        .blog-cta {
+            background-color: #f9f9f9;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        .blog-cta h3 {
+            margin-top: 0;
+            color: #000000;
+        }
+        
+        .blog-related {
+            margin-top: 4rem;
+        }
+        
+        .related-posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .related-post {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .related-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .related-post img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .related-post-content {
+            padding: 1.5rem;
+        }
+        
+        .related-post-title {
+            font-size: 1.2rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        
+        .related-post-excerpt {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .related-post-link {
+            color: #00c896;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s;
+        }
+        
+        .related-post-link:hover {
+            color: #009b77;
+        }
+        
+        .related-post-link i {
+            font-size: 0.8rem;
+        }
+        
+        .highlight-box {
+            background-color: #c5e8d5;
+            border-left: 4px solid #00a37a;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .highlight-box h3 {
+            margin-top: 0;
+            color: #000000;
+            font-weight: bold;
+            background-color: transparent;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        }
+        
+        .highlight-box ul li {
+            color: #000000;
+            font-weight: bold;
+            background-color: transparent;
+        }
+        
+        .highlight-box ul li strong {
+            color: #000000;
+            font-weight: bold;
+            background-color: transparent;
+        }
+        
+        .highlight-box ul {
+            margin-bottom: 0;
+        }
+        
+        .feature-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .feature-list li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-list li:before {
+            content: "\2713";
+            position: absolute;
+            left: 0;
+            color: #00c896;
+            font-weight: bold;
+        }
+        
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        /* 画像ギャラリーのスタイル */
+        .blog-image-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .blog-image-gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .blog-image-gallery img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .blog-image-full {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .blog-image-full img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+        
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .blog-image-gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .blog-image-gallery img {
+                margin-bottom: 1rem;
+            }
+        }
+        
+        .equipment-item {
+            background-color: #d0d0d0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+        }
+        
+        .equipment-item i {
+            font-size: 2.5rem;
+            color: #00c896;
+            margin-bottom: 1rem;
+        }
+        
+        .equipment-item h4 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            color: #000000;
+        }
+        
+        @media (max-width: 768px) {
+            .blog-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .related-posts {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <!-- 構造化データ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "大阪のプロ必見！完全防音×4K×4台カメラで極める高音質ライブ配信術",
+      "image": "https://studioq.co.jp/images/top_VR7-1.jpg",
+      "author": {
+        "@type": "Organization",
+        "name": "Studio Q"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Studio Q",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://studioq.co.jp/images/studioq_logo.png"
+        }
+      },
+      "datePublished": "2025-05-25",
+      "dateModified": "2025-05-25",
+      "description": "音楽プロモーターやミュージシャン向け。Studio Qの完全防音スタジオ、4K対応カメラ4台、プロ仕様音響機器を活用した高品質ライブ配信のノウハウを解説",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://studioq.co.jp/blog/live-streaming-guide.html"
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- ヘッダーとナビゲーション -->
+    <header>
+        <div class="logo">
+            <a href="../index.html"><img src="../images/studioq_logo_white.png" alt="大阪 Studio Q プロフェッショナルバーチャルスタジオ" class="logo-image" loading="eager"></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">ホーム</a></li>
+                <li><a href="../index.html#features">スタジオについて</a></li>
+                <li><a href="../index.html#gallery">ギャラリー</a></li>
+                <li><a href="../index.html#contact">お問い合わせ</a></li>
+                <li><a href="../blog/index.html">ブログ</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- ブログ記事 -->
+    <main class="blog-content">
+        <article>
+            <header class="blog-header">
+                <div class="blog-header-bg blog-header-bg-image"></div>
+                <div class="blog-header-overlay"></div>
+                <h1 class="blog-title">大阪のプロ必見！<br>完全防音×4K×4台カメラで極める<br>高音質ライブ配信術</h1>
+                <div class="blog-meta">
+                    <div class="blog-date">
+                        <i class="far fa-calendar-alt"></i>
+                        <span>2025.05.25</span>
+                    </div>
+                    <div class="blog-author">
+                        <i class="far fa-user"></i>
+                        <span>Studio Q 編集部</span>
+                    </div>
+                    <div class="blog-category">
+                        <i class="far fa-folder"></i>
+                        <span>ライブ配信</span>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="blog-text">
+                <p>音楽プロモーターやミュージシャンにとって、配信クオリティはファンとの信頼を築く要です。Studio Qでは、完全防音スタジオ、4K対応の業務用カメラ4台、そしてプロ仕様の音響機器を組み合わせることで、ライブ配信のレベルをワンランク引き上げます。本記事では、その強みと活用法をわかりやすくご紹介します。</p>
+                
+                <h2>完全防音スタジオの秘密</h2>
+                <p>Studio Qの防音ルームは、厚さ20cmの二重壁構造と吸音パネルで音漏れをゼロに近づけます。天井高5m以上の広々とした空間は、演奏時の響きを自然に吸収しつつ、マイクがピュアな音をキャッチ。屋外ノイズの影響を受けず、深夜や早朝のリハーサルも安心して行えます。</p>
+                
+                <div class="highlight-box">
+                    <h3>防音スタジオのメリット</h3>
+                    <ul class="feature-list">
+                        <li><strong>ノイズカットに悩むことなく、クリアな音声を配信できる</strong></li>
+                        <li><strong>思わぬ雑音でファンの没入感を損なわない</strong></li>
+                        <li><strong>周辺への音漏れを気にせず、大音量での演奏が可能</strong></li>
+                        <li><strong>時間帯を問わず利用できる柔軟性</strong></li>
+                    </ul>
+                </div>
+                
+                <div class="blog-image-full">
+                    <img src="../images/bl01.png" alt="Studio Qの完全防音スタジオ設備" loading="lazy">
+                    <p class="image-caption">Studio Qの完全防音スタジオ - 厚さ20cmの二重壁構造と吸音パネルを完備</p>
+                </div>
+                
+                <h2>4K×4台カメラで魅せる多視点スイッチング</h2>
+                <p>4K対応の業務用カメラを4台設置し、バンド全体からソロパートまでを同時に撮影。タブレット操作で直感的に切り替えられるので、機材知識が浅い方でも臨場感のある映像を簡単に演出できます。</p>
+                
+                <ol>
+                    <li><strong>メインショット</strong>（正面全体像）</li>
+                    <li><strong>ソロショット</strong>（ギター、ボーカルなど）</li>
+                    <li><strong>アンビエンスショット</strong>（ステージ背景やライト）</li>
+                    <li><strong>リズムパートショット</strong>（ドラムなど）</li>
+                </ol>
+                
+                <p>これらのカメラアングルを効果的に切り替えることで、視聴者は会場にいるかのような臨場感を体験できます。また、4K画質により、アーティストの表情や楽器の細部まで鮮明に伝えることが可能です。</p>
+                
+                <div class="blog-image-gallery">
+                    <img src="../images/bl02.png" alt="Studio Qの4Kカメラによるメインショット" loading="lazy">
+                    <img src="../images/bl03.png" alt="多視点スイッチングによるソロショット" loading="lazy">
+                </div>
+                
+                <h2>高性能音響機器で叶える"スタジオ品質"サウンド</h2>
+                <p>音質の劣化を抑えるため、以下の機材を厳選しています。</p>
+                
+                <div class="equipment-grid">
+                    <div class="equipment-item">
+                        <i class="fas fa-microphone"></i>
+                        <h4>コンデンサーマイク</h4>
+                        <p>細かなニュアンスまで拾うショットガン型</p>
+                    </div>
+                    <div class="equipment-item">
+                        <i class="fas fa-digital-tachograph"></i>
+                        <h4>オーディオインターフェース</h4>
+                        <p>高精度AD/DA変換でPCへの取り込み音を劣化させない</p>
+                    </div>
+                    <div class="equipment-item">
+                        <i class="fas fa-sliders-h"></i>
+                        <h4>低レイテンシミキサー</h4>
+                        <p>遅延を極力抑えたモデルで快適にモニタリング</p>
+                    </div>
+                </div>
+                
+                <p>これらの機材により、弦の震えやボーカルの息づかいをそのままリスナーに届けることができます。配信特有の音質劣化を最小限に抑え、スタジオレコーディングに近い高品質なサウンドを実現します。</p>
+                
+                <div class="blog-image-full">
+                    <img src="../images/bl04.png" alt="Studio Qのプロ仕様音響機器セットアップ" loading="lazy">
+                    <p class="image-caption">Studio Q導入のプロ仕様音響機器 - 高精度オーディオインターフェースと低レイテンシミキサー</p>
+                </div>
+                
+                <h2>リアルタイムに強みを活かす運用フロー</h2>
+                <p>Studio Qでのライブ配信は、以下のフローで進行します。</p>
+                
+                <ol>
+                    <li><strong>事前打ち合わせ</strong>：セットリストや演出イメージを共有</li>
+                    <li><strong>リハーサル撮影</strong>：テスト配信で映像・音声のチェック</li>
+                    <li><strong>本番配信</strong>：裏方エンジニアがスイッチング＆音響を一括管理</li>
+                    <li><strong>アーカイブ編集</strong>：不要部分をカットしてオンデマンド公開</li>
+                </ol>
+                
+                <p>機材トラブルや音ズレのリスクを最小化し、アーティストは安心してパフォーマンスに集中できます。また、専門スタッフがサポートするため、技術的な心配をすることなく、創作活動に専念できる環境が整っています。</p>
+                
+                <h2>実践的に役立つ成功のポイント集</h2>
+                
+                <div class="highlight-box">
+                    <h3>マルチアングルを活かしてみよう</h3>
+                    <p>見せ場の切り替えタイミングを事前にチームで共有しておくと、当日の操作がスムーズになります。例えば、ギターソロの開始時にはソロショットに切り替えるなど、演出プランを立てておきましょう。</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h3>音声レベルはお互いに確認し合おう</h3>
+                    <p>ギターやドラムが強いパートでは、リハーサル中にフェーダー操作を試し合い、最適なバランスを見つけましょう。各楽器のピークレベルを事前に確認しておくことで、本番での音割れを防止できます。</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h3>ライティング演出で気分を盛り上げる</h3>
+                    <p>DMX対応のLED照明を使って、曲調に合わせた色変化を事前にプランニングすると、視聴者の没入感が高まります。明るい曲調には暖色系、シリアスな曲には寒色系など、感情に訴える照明演出を心がけましょう。</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h3>視聴者参加型の仕掛けを取り入れてみる</h3>
+                    <p>コメント表示や投げ銭機能をオンにして、ファンとのコミュニケーションをリアルタイムで楽しめる演出を試してみましょう。MCの時間に視聴者からの質問に答えるなど、双方向のやり取りがファンの満足度を高めます。</p>
+                </div>
+                
+                <h2>まとめ</h2>
+                <p>Studio Qの完全防音スタジオ、4K×4台カメラ、多視点スイッチングとプロ仕様音響機器を組み合わせれば、オンラインでもリアルライブと変わらぬ感動をファンに届けられます。技術的なハードルを気にせず、最高のパフォーマンスに集中できる環境が、次のヒットを生むキッカケになるはずです。</p>
+                
+                <p>大阪で高品質なライブ配信をお考えの音楽プロモーターやミュージシャンの皆様、ぜひ一度、Studio Qでその違いを体感してください。</p>
+            </div>
+            
+            <div class="blog-cta">
+                <h3>Studio Qで高品質なライブ配信を体験しませんか？</h3>
+                <p>プロフェッショナルな設備と経験豊富なスタッフが、あなたの音楽活動をサポートします。</p>
+                <a href="../index.html#contact" class="btn">お問い合わせ・見学予約</a>
+            </div>
+            
+            <div class="blog-related">
+                <h3>関連記事</h3>
+                <div class="related-posts">
+                    <div class="related-post">
+                        <img src="../images/cropped-slide3-2_1920-jpg.webp" alt="バーチャルプロダクションの最新トレンド" loading="lazy">
+                        <div class="related-post-content">
+                            <h4 class="related-post-title">2025年バーチャルプロダクションの最新トレンド</h4>
+                            <p class="related-post-excerpt">進化を続けるバーチャルプロダクション技術の最新トレンドをご紹介</p>
+                            <a href="virtual-production.html" class="related-post-link">続きを読む <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="related-post">
+                        <img src="../images/slide4-2_1920-jpg (1).webp" alt="4Kカメラの選び方" loading="lazy">
+                        <div class="related-post-content">
+                            <h4 class="related-post-title">プロが教える4Kカメラの選び方</h4>
+                            <p class="related-post-excerpt">映像制作において重要な4Kカメラの選び方について解説</p>
+                            <a href="camera-selection.html" class="related-post-link">続きを読む <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="related-post">
+                        <img src="../images/top3-1.jpg" alt="グリーンスクリーン撮影のコツ" loading="lazy">
+                        <div class="related-post-content">
+                            <h4 class="related-post-title">グリーンスクリーン撮影の基本とコツ</h4>
+                            <p class="related-post-excerpt">バーチャル撮影に欠かせないグリーンスクリーン撮影の基本</p>
+                            <a href="green-screen.html" class="related-post-link">続きを読む <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+    
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../images/studioq_logo_white.png" alt="大阪 Studio Q プロフェッショナルバーチャルスタジオ" class="footer-logo-image" loading="lazy">
+                
+                </div>
+                <div class="footer-links">
+                    <h3>リンク</h3>
+                    <ul>
+                        <li><a href="../index.html#home">ホーム</a></li>
+                        <li><a href="../index.html#features">スタジオについて</a></li>
+                        <li><a href="../index.html#gallery">ギャラリー</a></li>
+                        <li><a href="../index.html#contact">お問い合わせ</a></li>
+                        <li><a href="../blog/index.html">ブログ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>お問い合わせ</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 大阪市浪速区恵美須西3-2-4 2F</p>
+                    <p><i class="fas fa-phone"></i> 06-6978-8122</p>
+                    <p><i class="fas fa-envelope"></i> info@studioq.co.jp</p>
+                </div>
+                <div class="footer-social">
+                    <h3>ソーシャルメディア</h3>
+                    <div class="social-icons">
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Studio Q. All Rights Reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="../privacy-policy.html">プライバシーポリシー</a>
+                    <a href="../terms-of-service.html">利用規約</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<h1>スタジオQ ブログ自動化システム</h1>
+<p>このシステムは、スタジオQのブログ記事を簡単に作成し、トップページに自動的に掲載するためのツールです。</p>
+<h2>機能</h2>
+<ul>
+<li>JSONデータからブログ記事HTMLを自動生成</li>
+<li>トップページのブログセクションを自動更新</li>
+<li>テンプレートを使用した一貫性のあるデザイン</li>
+</ul>
+<h2>セットアップ</h2>
+<ol>
+<li>必要なパッケージをインストール:</li>
+</ol>
+<pre><code class="language-bash">cd blog-automation
+npm install
+</code></pre>
+<h2>使い方</h2>
+<h3>1. ブログ記事データの準備</h3>
+<p><code>blog-data.json</code>ファイルを作成し、以下のような形式でブログ記事のデータを定義します:</p>
+<pre><code class="language-json">{
+  &quot;title&quot;: &quot;記事のタイトル&quot;,
+  &quot;slug&quot;: &quot;url-friendly-slug&quot;,
+  &quot;date&quot;: &quot;2025.04.01&quot;,
+  &quot;category&quot;: &quot;カテゴリー名&quot;,
+  &quot;image&quot;: &quot;image-filename.jpg&quot;,
+  &quot;excerpt&quot;: &quot;記事の概要（トップページに表示）&quot;,
+  &quot;content&quot;: &quot;記事の本文（HTMLタグ使用可）&quot;,
+  &quot;author&quot;: &quot;著者名&quot;
+}
+</code></pre>
+<p>サンプルとして<code>blog-data-sample.json</code>を参考にしてください。</p>
+<h3>2. ブログ記事の生成と公開</h3>
+<p>準備したJSONファイルを使用して、ブログ記事を生成します:</p>
+<pre><code class="language-bash"># カスタムデータファイルを使用
+node blog-generator.js create path/to/your-blog-data.json
+
+# または、デフォルトのblog-data.jsonを使用
+npm run create
+
+# サンプルデータを使用
+npm run create-sample
+</code></pre>
+<h3>3. 自動化のアイデア</h3>
+<p>以下のような方法で、さらに自動化することができます:</p>
+<h4>定期的な記事公開（cron jobを使用）</h4>
+<pre><code class="language-bash"># 毎週月曜日の朝9時に実行する例
+0 9 * * 1 cd /path/to/blog-automation &amp;&amp; npm run create
+</code></pre>
+<h4>CMS連携</h4>
+<ul>
+<li>HeadlessCMS（Contentful、Strapi等）と連携し、CMSからデータを取得して記事を生成</li>
+<li>CMSのWebhookを使用して、コンテンツ更新時に自動的に記事を生成・公開</li>
+</ul>
+<h4>GitHubワークフロー</h4>
+<ul>
+<li>GitHubリポジトリでブログ記事のマークダウンを管理</li>
+<li>GitHub Actionsを使用して、新しい記事がプッシュされたときに自動的にHTMLに変換して公開</li>
+</ul>
+<h2>カスタマイズ</h2>
+<ul>
+<li><code>templates/blog-post-template.html</code>: ブログ記事のテンプレート</li>
+<li><code>blog-generator.js</code>: 生成ロジックのカスタマイズ</li>
+<li><code>CONFIG</code>オブジェクト: 各種設定（ディレクトリパスなど）</li>
+</ul>
+<h2>注意事項</h2>
+<ul>
+<li>画像ファイルは<code>/images</code>ディレクトリに事前に配置しておく必要があります</li>
+<li>スラグ（URLフレンドリーな文字列）は一意である必要があります</li>
+<li>日本語のスラグは自動的に処理されないため、英数字のスラグを推奨します</li>
+</ul>

@@ -249,6 +249,7 @@ header {
     padding: 20px 5%;
     z-index: 1000;
     background-color: rgba(10, 17, 24, 0.9);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     transition: var(--transition);
 }
@@ -306,6 +307,7 @@ nav ul li a:hover::after {
 
 /* ヒーローセクション */
 .hero {
+    padding-top: 100px; /* ヘッダー高さ分の余白を追加 */
     height: 100vh;
     position: relative;
     display: flex;
@@ -388,11 +390,14 @@ nav ul li a:hover::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+    background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 2;
+    padding: 2rem;
+    /* blur効果を削除して画質を維持 */
+    /* -webkit-backdrop-filter: blur(3px); */
+    /* backdrop-filter: blur(3px); */
 }
 
 .slide-overlay.green-gradient {
@@ -492,11 +497,11 @@ nav ul li a:hover::after {
     bottom: 0;
     left: 0;
     width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    -webkit-backdrop-filter: blur(10px); /* Safari対応 */
+    backdrop-filter: blur(10px);
     display: flex;
     justify-content: space-around;
-    background-color: rgba(0, 0, 0, 0.8);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
     padding: 15px 0;
     z-index: 10;
     border-top: 1px solid rgba(57, 255, 20, 0.2);
@@ -1301,6 +1306,59 @@ iframe.popup-video {
     transform: translateX(5px);
 }
 
+/* Blog styles */
+.blog-section {
+    padding: 4rem 0;
+    background-color: #f9f9f9;
+}
+
+/* Gamma document link styles */
+.gamma-document-link {
+    background-color: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 30px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    position: relative;
+}
+
+.gamma-document-link h3 {
+    color: #333;
+    margin-top: 0;
+    font-size: 1.4rem;
+}
+
+.gamma-button {
+    display: inline-block;
+    background-color: #4285f4;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    margin: 15px 0;
+    transition: background-color 0.3s ease;
+}
+
+.gamma-button:hover {
+    background-color: #3367d6;
+    text-decoration: none;
+    color: white;
+}
+
+.gamma-icon {
+    margin-right: 8px;
+}
+
+.gamma-note {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 10px;
+}
+
 /* 料金表ページのスタイル */
 .fee-section {
     padding: 100px 0 60px;
@@ -1465,8 +1523,116 @@ iframe.popup-video {
 
 /* フッター */
 footer {
-    background-color: var(--secondary-color);
-    padding: 60px 0 20px;
+    background-color: #111;
+    color: #fff;
+    padding: 60px 0 30px;
+}
+
+/* テーブルレイアウトとギャラリー関連のスタイル */
+.gallery-table {
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto 0;
+    border-spacing: 20px;
+    border-collapse: separate;
+}
+
+.gallery-table td {
+    width: 50%;
+    vertical-align: top;
+}
+
+.gallery-video-thumbnail {
+    background-size: cover;
+    background-position: center;
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+/* アクセシビリティ関連のスタイル */
+.skip-link {
+    background: #000;
+    color: #fff;
+    font-weight: 700;
+    left: 50%;
+    padding: 4px;
+    position: absolute;
+    transform: translateY(-100%);
+    transition: transform 0.3s;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    transform: translateY(0%);
+}
+
+/* パンくずリストスタイル */
+.breadcrumb {
+    margin-bottom: 15px;
+}
+
+.breadcrumb ol {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumb li {
+    display: inline-flex;
+    align-items: center;
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.breadcrumb li:not(:last-child)::after {
+    content: '/';
+    margin: 0 8px;
+    color: #999;
+}
+
+.breadcrumb a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* Google Mapスタイル */
+.map-thumbnail iframe {
+    border: 0;
+    width: 100%;
+    height: 450px;
+}
+
+/* タブレットサイズ対応のギャラリー画像スタイル */
+@media (max-width: 768px) {
+    .gallery-item img, 
+    img[alt="eラーニング動画"] {
+        display: block;
+        min-height: 150px;
+        object-fit: cover;
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+    }
+    
+    /* eラーニング動画のサムネイル画像に対する特別なスタイル */
+    img[alt*="eラーニング動画"] {
+        display: block !important;
+        min-height: 150px !important;
+        object-fit: cover !important;
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100% !important;
+    }
 }
 
 .footer-content {
@@ -1577,34 +1743,30 @@ footer {
     }
     
     /* ギャラリーのタブレット対応 */
-    .gallery-video-thumbnail img {
-        height: auto;
-        min-height: 180px;
-        width: 100%;
-        object-fit: cover;
-        display: block;
-        max-width: 100%;
-        background-color: #111;
-    }
-    
-    /* eラーニング動画のサムネイル特別対応 */
-    img[alt="eラーニング動画"] {
-        height: auto !important;
-        min-height: 180px !important;
-        width: 100% !important;
-        object-fit: cover !important;
-        display: block !important;
-        background-color: #111 !important;
-    }
-    
     .gallery-video-thumbnail {
         position: relative;
         overflow: hidden;
         border-radius: 8px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         margin-bottom: 15px;
-        background-color: rgba(0, 0, 0, 0.1);
-        min-height: 180px;
+        background-color: #111;
+        min-height: 250px;
+        height: 250px;
+    }
+    
+    .gallery-video-thumbnail img {
+        height: auto;
+        min-height: 250px;
+        width: 100%;
+        object-fit: cover;
+        display: block;
+    }
+    
+    /* 背景画像として設定した場合のスタイル */
+    .gallery-video-thumbnail[style*="background-image"] {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
     }
     
     /* テーブルレイアウトのタブレット対応 */

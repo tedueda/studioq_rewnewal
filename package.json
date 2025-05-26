@@ -1,5 +1,29 @@
 {
   "devDependencies": {
-    "netlify-cli": "^21.5.0"
-  }
+    "@11ty/eleventy": "^3.1.0",
+    "@11ty/eleventy-img": "^6.0.4",
+    "@11ty/eleventy-server-browsersync": "^1.0.2",
+    "netlify-cli": "^21.5.0",
+    "netlify-cms-app": "^2.15.72"
+  },
+  "name": "studioq_rewnewal",
+  "version": "1.0.0",
+  "description": "StudioQのウェブサイトリニューアルプロジェクトです。",
+  "main": "script.js",
+  "scripts": {
+    "start": "npx @11ty/eleventy --serve --port=8080",
+    "build": "npx @11ty/eleventy",
+    "cms": "npx netlify-cms-proxy-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tedueda/studioq_rewnewal.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tedueda/studioq_rewnewal/issues"
+  },
+  "homepage": "https://github.com/tedueda/studioq_rewnewal#readme"
 }

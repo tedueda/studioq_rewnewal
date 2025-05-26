@@ -1,0 +1,23 @@
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true # ローカル開発用
+
+media_folder: "blog/images"
+public_folder: "/blog/images"
+
+collections:
+  - name: "blog"
+    label: "ブログ記事"
+    folder: "blog/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "タイトル", name: "title", widget: "string"}
+      - {label: "公開日", name: "date", widget: "datetime", format: "YYYY-MM-DD"}
+      - {label: "サムネイル", name: "thumbnail", widget: "image"}
+      - {label: "概要", name: "description", widget: "text"}
+      - {label: "本文", name: "body", widget: "markdown"}
+      - {label: "カテゴリー", name: "category", widget: "select", options: ["お知らせ", "ブログ", "メディア"]}
+      - {label: "タグ", name: "tags", widget: "list", required: false}

@@ -1,0 +1,25 @@
+<h1>StudioQ Renewal</h1>
+<p>StudioQのウェブサイトリニューアルプロジェクトです。</p>
+<h2>デプロイ方法</h2>
+<h3>GitHub Pages</h3>
+<p>このプロジェクトはGitHub Pagesを使用して自動的にデプロイされます。<code>main</code>ブランチにプッシュすると、GitHub Actionsによって<code>gh-pages</code>ブランチにデプロイされます。</p>
+<h3>Vercel</h3>
+<p>Vercelでデプロイする場合は、リポジトリをインポートするだけで、<code>vercel.json</code>の設定に基づいて自動的にデプロイされます。</p>
+<h3>Bolt.new</h3>
+<p>Bolt.newでデプロイする場合は、以下の手順に従ってください：</p>
+<ol>
+<li>Bolt.newにログインします</li>
+<li>「新しいプロジェクト」を選択</li>
+<li>このGitHubリポジトリ（https://github.com/tedueda/studioq_rewnewal.git）をインポート</li>
+<li>フレームワークとして「Static Site」を選択</li>
+<li>デプロイボタンをクリック</li>
+</ol>
+<p>Bolt.newは<code>windsurf_deployment.yaml</code>の設定に基づいて自動的にサイトをデプロイします。この設定ファイルには以下の内容が含まれています：</p>
+<ul>
+<li>フレームワーク: static（静的サイト）</li>
+<li>サブドメイン: studioq-website</li>
+<li>ルートディレクトリ: /</li>
+<li>ビルドコマンド: なし（静的サイトのため）</li>
+<li>出力ディレクトリ: /</li>
+</ul>
+<p>デプロイに問題がある場合は、<code>windsurf_deployment.yaml</code>の設定を確認してください。</p>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ブログ - StudioQ</title>
+    <link rel="stylesheet" href="/blog/blog-style.css">
+    <link rel="stylesheet" href="/blog/posts/posts.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+    
+<div class="blog-listing">
+  
+    <article class="blog-post">
+      
+        <img src="https://via.placeholder.com/800x400" alt="最初のブログ投稿のサムネイル">
+      
+      
+      <h2>最初のブログ投稿</h2>
+      <time datetime="2025-05-26">2025年5月26日</time>
+      
+      
+        <p>これはサンプルの最初のブログ投稿です。</p>
+      
+      
+      <a href="/blog/posts/" class="read-more">続きを読む &rarr;</a>
+    </article>
+  
+</div>
+
+
+    <script>
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html>

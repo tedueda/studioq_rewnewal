@@ -11,22 +11,10 @@ async function imageShortcode(src, alt) {
 }
 
 module.exports = function(eleventyConfig) {
-  // ブログ投稿のコレクションを設定
-  eleventyConfig.addCollection("posts", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("blog/posts/*.md");
-  });
 
-  // 静的ファイルのコピー
   eleventyConfig.addPassthroughCopy("style.css");
   eleventyConfig.addPassthroughCopy("script.js");
   eleventyConfig.addPassthroughCopy("images");
-  eleventyConfig.addPassthroughCopy("blog/**/*.css");
-  eleventyConfig.addPassthroughCopy("blog/images");
-
-  // 日付文字列フィルター
-  eleventyConfig.addFilter("dateString", function(date) {
-    return new Date(date).toISOString().split('T')[0];
-  });
 
   // 日付フィルター
   eleventyConfig.addFilter("dateFilter", function(date) {
@@ -37,10 +25,10 @@ module.exports = function(eleventyConfig) {
     });
   });
 
-  eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
+
   
   // パススルーコピー
-  eleventyConfig.addPassthroughCopy("admin");
+  eleventyConfig.addPassthroughCopy("blog/**/*.html");
   eleventyConfig.addPassthroughCopy("blog/images");
   
   return {

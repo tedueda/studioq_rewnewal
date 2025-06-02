@@ -12,6 +12,7 @@
   "main": "script.js",
   "scripts": {
     "start": "npx @11ty/eleventy --serve --port=8080",
+    "dev": "npx @11ty/eleventy --serve --port=8080",
     "build": "npx @11ty/eleventy",
     "cms": "npx netlify-cms-proxy-server"
   },

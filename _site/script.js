@@ -25,6 +25,9 @@ function setBackgroundImages() {
         const bgUrl = slide.getAttribute('data-background');
         if (bgUrl) {
             slide.style.backgroundImage = `url('${bgUrl}')`;
+            slide.style.backgroundSize = 'cover';
+            slide.style.backgroundPosition = 'center';
+            slide.style.backgroundRepeat = 'no-repeat';
         }
     });
     
@@ -34,6 +37,9 @@ function setBackgroundImages() {
         const bgUrl = thumbnail.getAttribute('data-background');
         if (bgUrl) {
             thumbnail.style.backgroundImage = `url('${bgUrl}')`;
+            thumbnail.style.backgroundSize = 'cover';
+            thumbnail.style.backgroundPosition = 'center';
+            thumbnail.style.backgroundRepeat = 'no-repeat';
         }
     });
 }
@@ -41,6 +47,10 @@ function setBackgroundImages() {
 // DOM読み込み後に背景画像を設定
 document.addEventListener('DOMContentLoaded', () => {
     setBackgroundImages();
+    
+    setTimeout(() => {
+        setBackgroundImages();
+    }, 100);
 });
 
 // スクロール時のヘッダーの背景色変更

@@ -1,9 +1,20 @@
 // ナビゲーションメニューのトグル機能
 const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('nav');
+const body = document.querySelector('body');
 
 menuToggle.addEventListener('click', () => {
     nav.classList.toggle('active');
+    menuToggle.classList.toggle('active');
+    
+    // メニュー表示時にスクロールを無効化
+    if (nav.classList.contains('active')) {
+        body.style.overflow = 'hidden';
+        menuToggle.innerHTML = '<i class="fas fa-times"></i>';
+    } else {
+        body.style.overflow = '';
+        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+    }
 });
 
 // data-background属性を使用して背景画像を設定する関数

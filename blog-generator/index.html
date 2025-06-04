@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ブログ記事生成 - スタジオQ</title>
+    <meta name="description" content="OpenAI APIを使用したブログ記事自動生成システム">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="blog-generator.css">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header>
+        <div class="logo">
+            <h1>スタジオQ</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html#home">ホーム</a></li>
+                <li><a href="../index.html#about">スタジオについて</a></li>
+                <li><a href="../index.html#gallery">ギャラリー</a></li>
+                <li><a href="../index.html#contact">お問い合わせ</a></li>
+                <li><a href="../blog.html">ブログ</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="blog-generator-main">
+        <div class="container">
+            <div class="generator-header">
+                <h1 class="page-title">AI ブログ記事生成</h1>
+                <p class="page-subtitle">OpenAI APIを使用して高品質なブログ記事を自動生成します</p>
+            </div>
+
+            <!-- 生成フォーム -->
+            <div class="generator-form-container">
+                <form id="blog-generator-form" class="generator-form">
+                    <!-- 参考URL -->
+                    <div class="form-group">
+                        <label for="reference-url">
+                            <i class="fas fa-link"></i>
+                            参考URL（オプション）
+                        </label>
+                        <input type="url" id="reference-url" name="referenceUrl" placeholder="https://example.com">
+                        <small class="form-help">参考にしたいWebページのURLを入力してください</small>
+                    </div>
+
+                    <!-- ターゲット層 -->
+                    <div class="form-group">
+                        <label for="target-audience">
+                            <i class="fas fa-users"></i>
+                            ターゲット層 <span class="required">*</span>
+                        </label>
+                        <input type="text" id="target-audience" name="targetAudience" required placeholder="例：映像制作初心者、プロのクリエイター">
+                        <small class="form-help">記事の対象読者を具体的に入力してください</small>
+                    </div>
+
+                    <!-- メインキーワード -->
+                    <div class="form-group">
+                        <label for="main-keyword">
+                            <i class="fas fa-key"></i>
+                            メインキーワード
+                        </label>
+                        <input type="text" id="main-keyword" name="mainKeyword" placeholder="例：4K映像制作、音響技術、ライブ配信">
+                        <small class="form-help">記事のメインテーマとなるキーワードを入力してください</small>
+                    </div>
+
+                    <!-- 文字数選択 -->
+                    <div class="form-group">
+                        <label for="total-length">
+                            <i class="fas fa-text-width"></i>
+                            文字数
+                        </label>
+                        <select id="total-length" name="totalLength">
+                            <option value="1000">1,000文字（短編）</option>
+                            <option value="1500" selected>1,500文字（標準）</option>
+                            <option value="2000">2,000文字（詳細）</option>
+                            <option value="2500">2,500文字（長編）</option>
+                        </select>
+                        <small class="form-help">生成する記事の目安文字数を選択してください</small>
+                    </div>
+
+                    <!-- 画像アップロード -->
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-images"></i>
+                            画像アップロード（最大4枚）
+                        </label>
+                        <div class="image-upload-container">
+                            <div class="image-upload-item">
+                                <input type="file" id="image-1" name="images[]" accept="image/png, image/jpeg" class="image-input">
+                                <label for="image-1" class="image-upload-label">
+                                    <i class="fas fa-plus"></i>
+                                    <span>画像1</span>
+                                </label>
+                                <div class="image-preview" id="preview-1"></div>
+                            </div>
+                            <div class="image-upload-item">
+                                <input type="file" id="image-2" name="images[]" accept="image/png, image/jpeg" class="image-input">
+                                <label for="image-2" class="image-upload-label">
+                                    <i class="fas fa-plus"></i>
+                                    <span>画像2</span>
+                                </label>
+                                <div class="image-preview" id="preview-2"></div>
+                            </div>
+                            <div class="image-upload-item">
+                                <input type="file" id="image-3" name="images[]" accept="image/png, image/jpeg" class="image-input">
+                                <label for="image-3" class="image-upload-label">
+                                    <i class="fas fa-plus"></i>
+                                    <span>画像3</span>
+                                </label>
+                                <div class="image-preview" id="preview-3"></div>
+                            </div>
+                            <div class="image-upload-item">
+                                <input type="file" id="image-4" name="images[]" accept="image/png, image/jpeg" class="image-input">
+                                <label for="image-4" class="image-upload-label">
+                                    <i class="fas fa-plus"></i>
+                                    <span>画像4</span>
+                                </label>
+                                <div class="image-preview" id="preview-4"></div>
+                            </div>
+                        </div>
+                        <small class="form-help">PNG または JPEG 形式の画像をアップロードしてください</small>
+                    </div>
+
+                    <!-- 生成ボタン -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-generate">
+                            <i class="fas fa-magic"></i>
+                            記事生成
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- ローディングモーダル -->
+    <div id="loading-modal" class="modal">
+        <div class="modal-content">
+            <div class="loading-container">
+                <div class="loading-spinner"></div>
+                <h3>記事を生成中です</h3>
+                <p>しばらくお待ちください...</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="progress-text" id="progress-text">OpenAI APIに接続中...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>スタジオQ</h2>
+                    <p>写真とクリエイティブのための空間</p>
+                </div>
+                <div class="footer-links">
+                    <h3>リンク</h3>
+                    <ul>
+                        <li><a href="../index.html#home">ホーム</a></li>
+                        <li><a href="../index.html#about">スタジオについて</a></li>
+                        <li><a href="../index.html#gallery">ギャラリー</a></li>
+                        <li><a href="../index.html#contact">お問い合わせ</a></li>
+                        <li><a href="../blog.html">ブログ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>お問い合わせ</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 大阪市浪速区恵美須西3-2-4 2F</p>
+                    <p><i class="fas fa-phone"></i> 06-6978-8122</p>
+                    <p><i class="fas fa-envelope"></i> info@studioq.jp</p>
+                </div>
+                <div class="footer-social">
+                    <h3>ソーシャルメディア</h3>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/0804studioq" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://twitter.com/StudioQ080" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://www.instagram.com/studioq0804" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/channel/UCxnEj084atnqvlbW29DsFKA" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 スタジオQ All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../script.js"></script>
+    <script src="blog-generator.js"></script>
+</body>
+</html>

@@ -1,69 +1,202 @@
-<h1>スタジオQ ブログ自動化システム</h1>
-<p>このシステムは、スタジオQのブログ記事を簡単に作成し、トップページに自動的に掲載するためのツールです。</p>
+<h1>ブログ自動生成システム</h1>
+<p>スタジオQのブログ記事を自動生成・公開するシステムです。OpenAI API統合により、キーワードベースでの自動記事生成が可能です。</p>
 <h2>機能</h2>
+<h3>基本機能</h3>
 <ul>
-<li>JSONデータからブログ記事HTMLを自動生成</li>
-<li>トップページのブログセクションを自動更新</li>
-<li>テンプレートを使用した一貫性のあるデザイン</li>
+<li>JSONデータからHTMLブログ記事を自動生成</li>
+<li>ホームページのブログセクションを自動更新</li>
+<li>テンプレートベースの記事作成</li>
+<li>複数記事の一括処理対応</li>
 </ul>
-<h2>セットアップ</h2>
-<ol>
-<li>必要なパッケージをインストール:</li>
-</ol>
-<pre><code class="language-bash">cd blog-automation
-npm install
+<h3>OpenAI API統合機能 🆕</h3>
+<ul>
+<li><strong>キーワードベース記事生成</strong>: 指定キーワードから自動でブログ記事を生成</li>
+<li><strong>SEO最適化</strong>: メタタグ、構造化データ（JSON-LD）、Open Graphタグの自動生成</li>
+<li><strong>高品質コンテンツ</strong>: GPT-4/GPT-3.5による専門的な記事作成</li>
+<li><strong>自動SEOスコア算出</strong>: 生成記事の品質指標を自動計算</li>
+</ul>
+<h2>使用方法</h2>
+<h3>1. 依存関係のインストール</h3>
+<pre><code class="language-bash">npm install
 </code></pre>
-<h2>使い方</h2>
-<h3>1. ブログ記事データの準備</h3>
-<p><code>blog-data.json</code>ファイルを作成し、以下のような形式でブログ記事のデータを定義します:</p>
+<h3>2. 環境設定（OpenAI API使用時）</h3>
+<p><code>.env.example</code>をコピーして<code>.env</code>ファイルを作成：</p>
+<pre><code class="language-bash">cp .env.example .env
+</code></pre>
+<p>OpenAI APIキーを設定：</p>
+<pre><code class="language-env">OPENAI_API_KEY=your_openai_api_key_here
+</code></pre>
+<h3>3. ブログ記事の作成</h3>
+<h4>OpenAI APIを使用した自動生成 🆕</h4>
+<pre><code class="language-bash"># 基本的な使用方法
+npm run generate-ai &quot;4K映像制作技術&quot;
+
+# カテゴリーを指定
+node blog-generator.js generate-ai &quot;音響技術&quot; &quot;技術情報&quot;
+
+# 複数キーワード
+npm run generate-ai &quot;ライブ配信 スタジオ設備&quot;
+</code></pre>
+<h4>従来のJSONベース記事作成</h4>
+<pre><code class="language-bash"># サンプルデータを使用
+npm run create-sample
+
+# 独自のJSONファイルを使用
+npm run create custom-blog-data.json
+
+# 直接実行
+node blog-generator.js create blog-data-sample.json
+</code></pre>
+<h3>4. テスト実行</h3>
+<pre><code class="language-bash"># モックテスト（OpenAI APIキー不要、推奨）
+npm run test-mock
+
+# 完全統合テスト
+npm run test-integration
+
+# デモ実行（複数記事の一括生成）
+npm run demo
+
+# 実際のOpenAI APIテスト（APIキー必要）
+npm run test
+
+# または直接実行
+node test-openai.js
+</code></pre>
+<h2>ファイル構造</h2>
+<pre><code>blog-automation/
+├── blog-generator.js              # メイン生成スクリプト
+├── openai-integration.js          # OpenAI API統合モジュール 🆕
+├── test-openai.js                 # OpenAIテストスクリプト 🆕
+├── test-openai-mock.js            # モックテストスクリプト 🆕
+├── test-integration.js            # 統合テストスクリプト 🆕
+├── demo-ai-generation.js          # デモ実行スクリプト 🆕
+├── blog-data-sample.json          # サンプルブログデータ
+├── .env.example                   # 環境変数テンプレート 🆕
+├── .env                           # 環境変数（要作成）🆕
+├── templates/
+│   ├── blog-post-template.html    # 標準ブログ記事テンプレート
+│   └── blog-post-seo-template.html # SEO最適化テンプレート 🆕
+├── package.json                   # 依存関係とスクリプト
+└── README-OpenAI.md              # OpenAI統合詳細ドキュメント 🆕
+</code></pre>
+<h2>データ形式</h2>
+<h3>JSONデータ形式（従来）</h3>
 <pre><code class="language-json">{
-  &quot;title&quot;: &quot;記事のタイトル&quot;,
-  &quot;slug&quot;: &quot;url-friendly-slug&quot;,
+  &quot;title&quot;: &quot;記事タイトル&quot;,
+  &quot;slug&quot;: &quot;article-slug&quot;,
   &quot;date&quot;: &quot;2025.04.01&quot;,
-  &quot;category&quot;: &quot;カテゴリー名&quot;,
-  &quot;image&quot;: &quot;image-filename.jpg&quot;,
-  &quot;excerpt&quot;: &quot;記事の概要（トップページに表示）&quot;,
-  &quot;content&quot;: &quot;記事の本文（HTMLタグ使用可）&quot;,
+  &quot;category&quot;: &quot;カテゴリー&quot;,
+  &quot;image&quot;: &quot;image.jpg&quot;,
+  &quot;excerpt&quot;: &quot;記事の概要&quot;,
+  &quot;content&quot;: &quot;&lt;p&gt;記事の内容（HTML形式）&lt;/p&gt;&quot;,
   &quot;author&quot;: &quot;著者名&quot;
 }
 </code></pre>
-<p>サンプルとして<code>blog-data-sample.json</code>を参考にしてください。</p>
-<h3>2. ブログ記事の生成と公開</h3>
-<p>準備したJSONファイルを使用して、ブログ記事を生成します:</p>
-<pre><code class="language-bash"># カスタムデータファイルを使用
-node blog-generator.js create path/to/your-blog-data.json
-
-# または、デフォルトのblog-data.jsonを使用
-npm run create
-
-# サンプルデータを使用
-npm run create-sample
+<h3>OpenAI生成データ形式 🆕</h3>
+<p>OpenAI APIで生成される記事には以下の追加フィールドが含まれます：</p>
+<pre><code class="language-json">{
+  &quot;title&quot;: &quot;記事タイトル&quot;,
+  &quot;excerpt&quot;: &quot;記事の概要&quot;,
+  &quot;content&quot;: &quot;&lt;p&gt;記事の内容（HTML形式）&lt;/p&gt;&quot;,
+  &quot;meta_description&quot;: &quot;SEO用メタディスクリプション&quot;,
+  &quot;keywords&quot;: [&quot;キーワード1&quot;, &quot;キーワード2&quot;],
+  &quot;seo_score&quot;: 85,
+  &quot;structured_data&quot;: { /* JSON-LD構造化データ */ },
+  &quot;category&quot;: &quot;技術情報&quot;,
+  &quot;author&quot;: &quot;スタジオQ&quot;,
+  &quot;date&quot;: &quot;2025.04.01&quot;,
+  &quot;image&quot;: &quot;slide1.jpg&quot;,
+  &quot;slug&quot;: &quot;auto-generated-slug&quot;
+}
 </code></pre>
-<h3>3. 自動化のアイデア</h3>
-<p>以下のような方法で、さらに自動化することができます:</p>
-<h4>定期的な記事公開（cron jobを使用）</h4>
-<pre><code class="language-bash"># 毎週月曜日の朝9時に実行する例
-0 9 * * 1 cd /path/to/blog-automation &amp;&amp; npm run create
-</code></pre>
-<h4>CMS連携</h4>
+<h2>出力</h2>
 <ul>
-<li>HeadlessCMS（Contentful、Strapi等）と連携し、CMSからデータを取得して記事を生成</li>
-<li>CMSのWebhookを使用して、コンテンツ更新時に自動的に記事を生成・公開</li>
+<li><strong>ブログ記事</strong>: <code>../blog/{slug}.html</code></li>
+<li><strong>インデックス更新</strong>: <code>../index.html</code>（トップページのブログセクション）</li>
 </ul>
-<h4>GitHubワークフロー</h4>
+<h3>テンプレート選択</h3>
 <ul>
-<li>GitHubリポジトリでブログ記事のマークダウンを管理</li>
-<li>GitHub Actionsを使用して、新しい記事がプッシュされたときに自動的にHTMLに変換して公開</li>
+<li><strong>SEO最適化記事</strong>: OpenAI生成時は自動的にSEOテンプレートを使用</li>
+<li><strong>標準記事</strong>: JSON入力時は従来のテンプレートを使用</li>
 </ul>
+<h2>環境変数</h2>
+<table>
+<thead>
+<tr>
+<th>変数名</th>
+<th>説明</th>
+<th>デフォルト値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OPENAI_API_KEY</code></td>
+<td>OpenAI APIキー</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>OPENAI_MODEL</code></td>
+<td>使用するGPTモデル</td>
+<td><code>gpt-4</code></td>
+</tr>
+<tr>
+<td><code>OPENAI_MAX_TOKENS</code></td>
+<td>最大トークン数</td>
+<td><code>2000</code></td>
+</tr>
+<tr>
+<td><code>OPENAI_TEMPERATURE</code></td>
+<td>創造性レベル</td>
+<td><code>0.7</code></td>
+</tr>
+<tr>
+<td><code>SITE_NAME</code></td>
+<td>サイト名</td>
+<td><code>スタジオQ</code></td>
+</tr>
+<tr>
+<td><code>BASE_URL</code></td>
+<td>ベースURL</td>
+<td><code>https://studioq.jp</code></td>
+</tr>
+<tr>
+<td><code>DEFAULT_AUTHOR</code></td>
+<td>デフォルト著者</td>
+<td><code>スタジオQ</code></td>
+</tr>
+<tr>
+<td><code>DEFAULT_CATEGORY</code></td>
+<td>デフォルトカテゴリー</td>
+<td><code>技術情報</code></td>
+</tr>
+<tr>
+<td><code>DEFAULT_IMAGE</code></td>
+<td>デフォルト画像</td>
+<td><code>slide1.jpg</code></td>
+</tr>
+</tbody>
+</table>
 <h2>カスタマイズ</h2>
+<h3>テンプレートの編集</h3>
 <ul>
-<li><code>templates/blog-post-template.html</code>: ブログ記事のテンプレート</li>
+<li><code>templates/blog-post-template.html</code>: 標準ブログ記事のテンプレート</li>
+<li><code>templates/blog-post-seo-template.html</code>: SEO最適化ブログ記事のテンプレート 🆕</li>
 <li><code>blog-generator.js</code>: 生成ロジックのカスタマイズ</li>
 <li><code>CONFIG</code>オブジェクト: 各種設定（ディレクトリパスなど）</li>
 </ul>
+<h3>OpenAI設定の調整 🆕</h3>
+<ul>
+<li><code>openai-integration.js</code>の<code>buildPrompt</code>メソッド: 生成プロンプトのカスタマイズ</li>
+<li><code>.env</code>ファイル: APIキーやモデル設定の変更</li>
+</ul>
 <h2>注意事項</h2>
 <ul>
-<li>画像ファイルは<code>/images</code>ディレクトリに事前に配置しておく必要があります</li>
-<li>スラグ（URLフレンドリーな文字列）は一意である必要があります</li>
-<li>日本語のスラグは自動的に処理されないため、英数字のスラグを推奨します</li>
+<li>画像ファイルは手動で<code>../images/</code>ディレクトリに配置してください</li>
+<li>生成されたHTMLファイルは既存ファイルを上書きします</li>
+<li>トップページの更新は最新3記事のみ表示されます</li>
+<li>OpenAI APIの使用には料金が発生します 🆕</li>
+<li>APIキーは絶対に公開しないでください 🆕</li>
 </ul>
+<h2>詳細ドキュメント</h2>
+<p>OpenAI API統合の詳細については、<a href="./README-OpenAI.md">README-OpenAI.md</a>をご覧ください。</p>

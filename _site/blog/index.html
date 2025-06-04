@@ -1,32 +1,25 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ブログ - StudioQ</title>
-    <link rel="stylesheet" href="/blog/blog-style.css">
-    <link rel="stylesheet" href="/blog/posts/posts.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-</head>
-<body>
-    
+---
+layout: base.njk
+title: ブログ
+permalink: /blog/
+---
+
 <div class="blog-listing">
   <div class="blog-date">2025.04.25</div>
-  
+  {% for post in collections.posts | reverse %}
+    <article class="blog-post">
+      {% if post.data.thumbnail %}
+        <img src="{{ post.data.thumbnail }}" alt="{{ post.data.title }}のサムネイル">
+      {% endif %}
+      
+      <h2>{{ post.data.title }}</h2>
+      <time datetime="{{ post.date | dateString }}">{{ post.date | dateFilter }}</time>
+      
+      {% if post.data.description %}
+        <p>{{ post.data.description }}</p>
+      {% endif %}
+      
+      <a href="{{ post.url }}" class="read-more">続きを読む &rarr;</a>
+    </article>
+  {% endfor %}
 </div>
-
-
-    <script>
-        if (window.netlifyIdentity) {
-            window.netlifyIdentity.on("init", user => {
-                if (!user) {
-                    window.netlifyIdentity.on("login", () => {
-                        document.location.href = "/admin/";
-                    });
-                }
-            });
-        }
-    </script>
-</body>
-</html>

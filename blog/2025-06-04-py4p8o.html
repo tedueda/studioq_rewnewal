@@ -45,10 +45,15 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('../../images/bl04.png');
+            background-image: var(--header-bg-image, url('../../images/bl04.png'));
             background-size: cover;
             background-position: center;
             z-index: 1;
+        }
+        
+        /* Dynamic header image support */
+        .blog-header[data-bg-image] .blog-header-bg {
+            background-image: var(--header-bg-image);
         }
         
         .blog-header-overlay {
@@ -57,8 +62,24 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%);
+            background: var(--header-overlay, linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%));
             z-index: 2;
+        }
+        
+        /* Auto text color based on background */
+        .blog-header.light-bg .blog-title,
+        .blog-header.light-bg .blog-meta {
+            color: #333 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
+        }
+        
+        .blog-header.light-bg .blog-meta > div {
+            background: rgba(0,0,0,0.1);
+            color: #333;
+        }
+        
+        .blog-header.light-bg .blog-header-overlay {
+            background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 100%);
         }
         
         .blog-title {
@@ -146,12 +167,15 @@
             font-size: 1.2rem;
         }
         
-        /* Equipment Grid Styling */
+        /* Equipment Grid Styling - Limited to 2 items */
         .equipment-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
             margin: 2rem 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .equipment-item {
@@ -322,11 +346,66 @@
             
             .equipment-grid {
                 grid-template-columns: 1fr;
+                max-width: 400px;
             }
             
             .related-posts {
                 grid-template-columns: 1fr;
             }
+        }
+        
+        /* Header image upload functionality */
+        .header-image-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255,255,255,0.9);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: none;
+        }
+        
+        .header-image-controls.show {
+            display: block;
+        }
+        
+        .header-image-controls input[type="file"] {
+            margin-bottom: 0.5rem;
+        }
+        
+        .header-image-controls button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0.25rem;
+        }
+        
+        .header-image-controls button:hover {
+            background: #0056b3;
+        }
+        
+        /* Edit mode toggle */
+        .edit-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .edit-mode-toggle:hover {
+            background: #218838;
         }
     </style>
     
@@ -383,7 +462,7 @@
     <!-- ブログ記事 -->
     <main class="blog-content">
         <article>
-            <header class="blog-header">
+            <header class="blog-header" id="blogHeader">
                 <div class="blog-header-bg blog-header-bg-image"></div>
                 <div class="blog-header-overlay"></div>
                 <h1 class="blog-title">4K映像制作の技術情報<br>クリエイターに向けた実践的ガイド</h1>
@@ -437,11 +516,6 @@
                         <i class="fas fa-lightbulb"></i>
                         <h4>プロ照明機材</h4>
                         <p>4K映像に最適化されたLED照明システム</p>
-                    </div>
-                    <div class="equipment-item">
-                        <i class="fas fa-desktop"></i>
-                        <h4>編集ワークステーション</h4>
-                        <p>4K映像編集に対応した高性能コンピューター</p>
                     </div>
                 </div>
                 
@@ -574,5 +648,139 @@
     </footer>
 
     <script src="../../script.js"></script>
+    
+    <!-- Header image upload controls -->
+    <div class="header-image-controls" id="headerImageControls">
+        <h4>ヘッダー画像設定</h4>
+        <input type="file" id="headerImageUpload" accept="image/*">
+        <br>
+        <button onclick="applyHeaderImage()">画像を適用</button>
+        <button onclick="resetHeaderImage()">デフォルトに戻す</button>
+        <button onclick="toggleBackgroundMode()">背景モード切替</button>
+    </div>
+    
+    <!-- Edit mode toggle button -->
+    <button class="edit-mode-toggle" onclick="toggleEditMode()" title="編集モード切替">
+        <i class="fas fa-edit"></i>
+    </button>
+    
+    <script>
+        let editMode = false;
+        let isLightBackground = false;
+        
+        function toggleEditMode() {
+            editMode = !editMode;
+            const controls = document.getElementById('headerImageControls');
+            if (editMode) {
+                controls.classList.add('show');
+            } else {
+                controls.classList.remove('show');
+            }
+        }
+        
+        function applyHeaderImage() {
+            const fileInput = document.getElementById('headerImageUpload');
+            const file = fileInput.files[0];
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imageUrl = e.target.result;
+                    document.documentElement.style.setProperty('--header-bg-image', `url(${imageUrl})`);
+                    
+                    // Auto-detect if image is light or dark and adjust text accordingly
+                    detectImageBrightness(imageUrl);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        function resetHeaderImage() {
+            document.documentElement.style.setProperty('--header-bg-image', "url('../../images/bl04.png')");
+            const header = document.getElementById('blogHeader');
+            header.classList.remove('light-bg');
+            isLightBackground = false;
+        }
+        
+        function toggleBackgroundMode() {
+            const header = document.getElementById('blogHeader');
+            isLightBackground = !isLightBackground;
+            
+            if (isLightBackground) {
+                header.classList.add('light-bg');
+                document.documentElement.style.setProperty('--header-overlay', 'linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 100%)');
+            } else {
+                header.classList.remove('light-bg');
+                document.documentElement.style.setProperty('--header-overlay', 'linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%)');
+            }
+        }
+        
+        function detectImageBrightness(imageSrc) {
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = function() {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                
+                ctx.drawImage(img, 0, 0);
+                
+                try {
+                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    const data = imageData.data;
+                    let brightness = 0;
+                    
+                    for (let i = 0; i < data.length; i += 4) {
+                        const r = data[i];
+                        const g = data[i + 1];
+                        const b = data[i + 2];
+                        brightness += (r * 0.299 + g * 0.587 + b * 0.114);
+                    }
+                    
+                    brightness = brightness / (data.length / 4);
+                    
+                    const header = document.getElementById('blogHeader');
+                    if (brightness > 128) {
+                        header.classList.add('light-bg');
+                        isLightBackground = true;
+                    } else {
+                        header.classList.remove('light-bg');
+                        isLightBackground = false;
+                    }
+                } catch (e) {
+                    console.log('Could not analyze image brightness:', e);
+                }
+            };
+            img.src = imageSrc;
+        }
+        
+        // Preset image options from existing library
+        function usePresetImage(imageName) {
+            const imageUrl = `../../images/${imageName}`;
+            document.documentElement.style.setProperty('--header-bg-image', `url(${imageUrl})`);
+            detectImageBrightness(imageUrl);
+        }
+        
+        // Add preset image buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const controls = document.getElementById('headerImageControls');
+            const presetImages = ['bl01.png', 'bl02.png', 'bl03.png', 'bl04.png', 'slide1.jpg', 'slide2.jpg', 'slide3.jpg', 'top_VR7-1.jpg'];
+            
+            const presetContainer = document.createElement('div');
+            presetContainer.innerHTML = '<h5>プリセット画像:</h5>';
+            
+            presetImages.forEach(imageName => {
+                const button = document.createElement('button');
+                button.textContent = imageName.replace(/\.(png|jpg)$/, '');
+                button.onclick = () => usePresetImage(imageName);
+                button.style.fontSize = '0.8rem';
+                button.style.padding = '0.25rem 0.5rem';
+                presetContainer.appendChild(button);
+            });
+            
+            controls.appendChild(presetContainer);
+        });
+    </script>
 </body>
 </html>

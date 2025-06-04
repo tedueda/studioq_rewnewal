@@ -693,6 +693,66 @@ class BlogGeneratorUI {
     goBack() {
         window.location.href = '../blog-generator/';
     }
+
+    showImageError(message) {
+        let modal = document.getElementById('image-error-modal');
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'image-error-modal';
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-exclamation-triangle"></i> 画像アップロードエラー</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p id="image-error-message"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="this.closest('.modal').classList.remove('active')">
+                            OK
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+        
+        document.getElementById('image-error-message').textContent = message;
+        modal.classList.add('active');
+    }
+
+    showImageProcessing(imageNumber, message) {
+        const preview = document.getElementById(`preview-${imageNumber}`);
+        preview.innerHTML = `
+            <div class="processing-indicator">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>${message}</p>
+            </div>
+        `;
+        preview.classList.add('active');
+    }
+
+    showCompressionSuccess(imageNumber, originalSize, compressedSize, compressionRatio) {
+        const originalMB = (originalSize / (1024 * 1024)).toFixed(1);
+        const compressedMB = (compressedSize / (1024 * 1024)).toFixed(1);
+        
+        const preview = document.getElementById(`preview-${imageNumber}`);
+        const successMessage = document.createElement('div');
+        successMessage.className = 'compression-success';
+        successMessage.innerHTML = `
+            <i class="fas fa-check-circle"></i>
+            <p>圧縮完了: ${originalMB}MB → ${compressedMB}MB (${compressionRatio}%削減)</p>
+        `;
+        
+        preview.appendChild(successMessage);
+        
+        setTimeout(() => {
+            if (successMessage.parentNode) {
+                successMessage.remove();
+            }
+        }, 3000);
+    }
 }
 
 window.blogGenerator = new BlogGeneratorUI();

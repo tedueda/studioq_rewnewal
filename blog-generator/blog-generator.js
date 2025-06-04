@@ -82,41 +82,108 @@ class BlogGeneratorUI {
 
     handleImageUpload(event, imageNumber) {
         const file = event.target.files[0];
-        const preview = document.getElementById(`preview-${imageNumber}`);
-        const label = event.target.nextElementSibling;
 
         if (file) {
-            if (file.size > 5 * 1024 * 1024) {
-                alert('ファイルサイズは5MB以下にしてください。');
-                event.target.value = '';
-                return;
-            }
-
             if (!file.type.match(/^image\/(png|jpeg|jpg)$/)) {
-                alert('PNG または JPEG 形式の画像を選択してください。');
+                this.showImageError('PNG または JPEG 形式の画像を選択してください。');
                 event.target.value = '';
                 return;
             }
 
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                preview.innerHTML = `
-                    <img src="${e.target.result}" alt="プレビュー ${imageNumber}">
-                    <button type="button" class="remove-image" onclick="blogGenerator.removeImage(${imageNumber})">
-                        <i class="fas fa-times"></i>
-                    </button>
-                `;
-                preview.classList.add('active');
-                label.style.display = 'none';
-
-                this.uploadedImages[imageNumber - 1] = {
-                    file: file,
-                    dataUrl: e.target.result,
-                    name: file.name
-                };
-            };
-            reader.readAsDataURL(file);
+            if (file.size > 2 * 1024 * 1024) {
+                this.showImageProcessing(imageNumber, 'ファイルサイズが大きいため、自動圧縮中...');
+                this.compressImage(file, imageNumber, event.target);
+            } else {
+                this.processImageFile(file, imageNumber, event.target);
+            }
         }
+    }
+
+    async compressImage(file, imageNumber, inputElement) {
+        try {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+            
+            img.onload = () => {
+                let { width, height } = this.calculateOptimalDimensions(img.width, img.height);
+                
+                canvas.width = width;
+                canvas.height = height;
+                
+                ctx.drawImage(img, 0, 0, width, height);
+                
+                canvas.toBlob((blob) => {
+                    if (blob) {
+                        const compressedFile = new File([blob], file.name, {
+                            type: file.type,
+                            lastModified: Date.now()
+                        });
+                        
+                        const compressionRatio = ((file.size - compressedFile.size) / file.size * 100).toFixed(1);
+                        this.showCompressionSuccess(imageNumber, file.size, compressedFile.size, compressionRatio);
+                        this.processImageFile(compressedFile, imageNumber, inputElement);
+                    } else {
+                        this.showImageError('画像の圧縮に失敗しました。');
+                    }
+                }, file.type, 0.8);
+            };
+            
+            img.onerror = () => {
+                this.showImageError('画像の読み込みに失敗しました。');
+            };
+            
+            img.src = URL.createObjectURL(file);
+        } catch (error) {
+            console.error('Image compression error:', error);
+            this.showImageError('画像の圧縮中にエラーが発生しました。');
+        }
+    }
+
+    calculateOptimalDimensions(originalWidth, originalHeight) {
+        const maxWidth = 1920;
+        const maxHeight = 1080;
+        
+        let width = originalWidth;
+        let height = originalHeight;
+        
+        if (width > maxWidth || height > maxHeight) {
+            const ratio = Math.min(maxWidth / width, maxHeight / height);
+            width = Math.floor(width * ratio);
+            height = Math.floor(height * ratio);
+        }
+        
+        return { width, height };
+    }
+
+    processImageFile(file, imageNumber, inputElement) {
+        if (file.size > 5 * 1024 * 1024) {
+            this.showImageError('圧縮後もファイルサイズが5MBを超えています。別の画像を選択してください。');
+            inputElement.value = '';
+            return;
+        }
+
+        const preview = document.getElementById(`preview-${imageNumber}`);
+        const label = inputElement.nextElementSibling;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            preview.innerHTML = `
+                <img src="${e.target.result}" alt="プレビュー ${imageNumber}">
+                <button type="button" class="remove-image" onclick="blogGenerator.removeImage(${imageNumber})">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            preview.classList.add('active');
+            label.style.display = 'none';
+
+            this.uploadedImages[imageNumber - 1] = {
+                file: file,
+                dataUrl: e.target.result,
+                name: file.name
+            };
+        };
+        reader.readAsDataURL(file);
     }
 
     removeImage(imageNumber) {
@@ -175,6 +242,66 @@ class BlogGeneratorUI {
             totalLength: document.getElementById('total-length').value,
             images: this.uploadedImages.filter(img => img !== null)
         };
+    }
+
+    showImageError(message) {
+        let modal = document.getElementById('image-error-modal');
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'image-error-modal';
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-exclamation-triangle"></i> 画像アップロードエラー</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p id="image-error-message"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="this.closest('.modal').classList.remove('active')">
+                            OK
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+        
+        document.getElementById('image-error-message').textContent = message;
+        modal.classList.add('active');
+    }
+
+    showImageProcessing(imageNumber, message) {
+        const preview = document.getElementById(`preview-${imageNumber}`);
+        preview.innerHTML = `
+            <div class="processing-indicator">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>${message}</p>
+            </div>
+        `;
+        preview.classList.add('active');
+    }
+
+    showCompressionSuccess(imageNumber, originalSize, compressedSize, compressionRatio) {
+        const originalMB = (originalSize / (1024 * 1024)).toFixed(1);
+        const compressedMB = (compressedSize / (1024 * 1024)).toFixed(1);
+        
+        const preview = document.getElementById(`preview-${imageNumber}`);
+        const successMessage = document.createElement('div');
+        successMessage.className = 'compression-success';
+        successMessage.innerHTML = `
+            <i class="fas fa-check-circle"></i>
+            <p>圧縮完了: ${originalMB}MB → ${compressedMB}MB (${compressionRatio}%削減)</p>
+        `;
+        
+        preview.appendChild(successMessage);
+        
+        setTimeout(() => {
+            if (successMessage.parentNode) {
+                successMessage.remove();
+            }
+        }, 3000);
     }
 
     async generateContent() {

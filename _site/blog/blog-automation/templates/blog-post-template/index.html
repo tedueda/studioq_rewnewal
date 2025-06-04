@@ -4,8 +4,421 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> - スタジオQ</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://studioq.jp/blog//">
+    <meta property="og:title" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="https://studioq.jp/images/">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://studioq.jp/blog//">
+    <meta property="twitter:title" content="">
+    <meta property="twitter:description" content="">
+    <meta property="twitter:image" content="https://studioq.jp/images/">
+    
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "description": "",
+        "image": "https://studioq.jp/images/",
+        "author": {
+            "@type": "Organization",
+            "name": ""
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "スタジオQ",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://studioq.jp/images/studioq_logo-1.png"
+            }
+        },
+        "datePublished": "",
+        "dateModified": "",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://studioq.jp/blog//"
+        }
+    }
+    </script>
+    
+    <style>
+        /* Advanced Blog Template Styling */
+        :root {
+            --header-bg-image: url('../images/');
+            --header-text-color: white;
+            --header-text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        
+        /* Blog Header with Dynamic Background */
+        .blog-header {
+            background: var(--header-bg-image) center/cover;
+            position: relative;
+            padding: 4rem 0;
+            text-align: center;
+            color: var(--header-text-color);
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .blog-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 1;
+        }
+        
+        .blog-header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+        
+        .blog-title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--header-text-color);
+            text-shadow: var(--header-text-shadow);
+            line-height: 1.2;
+        }
+        
+        .blog-meta {
+            font-size: 1.1rem;
+            color: var(--header-text-color);
+            text-shadow: var(--header-text-shadow);
+        }
+        
+        .blog-meta span {
+            margin: 0 1rem;
+        }
+        
+        .blog-meta i {
+            margin-right: 0.5rem;
+        }
+        
+        /* Main Content Styling */
+        .blog-text {
+            color: white;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .blog-text h2, .blog-text h3, .blog-text h4 {
+            color: white !important;
+            margin: 2rem 0 1rem 0;
+            font-weight: bold;
+        }
+        
+        .blog-text h2 {
+            font-size: 2rem;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 0.5rem;
+        }
+        
+        .blog-text h3 {
+            font-size: 1.5rem;
+        }
+        
+        .blog-text p, .blog-text li {
+            color: white !important;
+            margin-bottom: 1rem;
+        }
+        
+        /* Light background mode overrides */
+        .blog-header.light-bg {
+            --header-text-color: #333;
+            --header-text-shadow: 2px 2px 4px rgba(255,255,255,0.8);
+        }
+        
+        .blog-header.light-bg ~ main .blog-text {
+            color: #333;
+        }
+        
+        .blog-header.light-bg ~ main .blog-text h2,
+        .blog-header.light-bg ~ main .blog-text h3,
+        .blog-header.light-bg ~ main .blog-text h4 {
+            color: #333 !important;
+        }
+        
+        .blog-header.light-bg ~ main .blog-text p,
+        .blog-header.light-bg ~ main .blog-text li {
+            color: #555 !important;
+        }
+        
+        /* Highlight Box Styling */
+        .highlight-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-left: 5px solid #007bff;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .highlight-box h3 {
+            color: #007bff !important;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .highlight-box p {
+            color: #333 !important;
+        }
+        
+        .highlight-box li {
+            color: #333 !important;
+        }
+        
+        .highlight-box ul {
+            color: #333 !important;
+        }
+        
+        /* Override any global white text rules for highlight boxes */
+        .highlight-box,
+        .highlight-box * {
+            color: #333 !important;
+        }
+        
+        .highlight-box h3 {
+            color: #007bff !important;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* Equipment Grid Styling - Limited to 2 items */
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .equipment-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .equipment-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .equipment-item i {
+            font-size: 2.5rem;
+            color: #007bff;
+            margin-bottom: 1rem;
+        }
+        
+        /* Equipment grid items always have dark text on white background */
+        .equipment-item h4 {
+            color: #333 !important;
+            margin-bottom: 0.5rem;
+        }
+        
+        .equipment-item p {
+            color: #666 !important;
+        }
+        
+        /* Override any global white text rules for equipment grid */
+        .equipment-grid .equipment-item,
+        .equipment-grid .equipment-item h4,
+        .equipment-grid .equipment-item p {
+            color: #333 !important;
+        }
+        
+        .equipment-grid .equipment-item p {
+            color: #666 !important;
+        }
+        
+        /* Image Styling */
+        .blog-image-full, .blog-image-gallery, .blog-image-single {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .blog-image-full img, .blog-image-single img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .blog-image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .blog-image-gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Header Image Controls */
+        .header-image-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.95);
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: none;
+        }
+        
+        .header-image-controls.active {
+            display: block;
+        }
+        
+        .header-image-controls h4 {
+            margin: 0 0 1rem 0;
+            color: #333;
+            font-size: 1rem;
+        }
+        
+        .control-group {
+            margin-bottom: 1rem;
+        }
+        
+        .control-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-size: 0.9rem;
+        }
+        
+        .control-group input[type="file"] {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .control-group button {
+            padding: 0.5rem 1rem;
+            margin: 0.25rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+        
+        /* Edit Mode Toggle */
+        .edit-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 999;
+        }
+        
+        .edit-mode-toggle:hover {
+            background: #218838;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .blog-title {
+                font-size: 2rem;
+            }
+            
+            .blog-text {
+                padding: 2rem 1rem;
+                font-size: 1rem;
+            }
+            
+            .equipment-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+            
+            .header-image-controls {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+                width: auto;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- ヘッダーとナビゲーション -->
@@ -27,22 +440,49 @@
         </div>
     </header>
 
+    <!-- Header Image Controls (Edit Mode) -->
+    <div class="header-image-controls" id="headerImageControls">
+        <h4>ヘッダー画像設定</h4>
+        <div class="control-group">
+            <label for="headerImageUpload">カスタム画像をアップロード:</label>
+            <input type="file" id="headerImageUpload" accept="image/*">
+            <button class="btn-primary" onclick="applyCustomImage()">適用</button>
+        </div>
+        <div class="control-group">
+            <label>プリセット画像:</label>
+            <button class="btn-secondary" onclick="setPresetImage('bl01.png')">bl01.png</button>
+            <button class="btn-secondary" onclick="setPresetImage('bl02.png')">bl02.png</button>
+            <button class="btn-secondary" onclick="setPresetImage('bl03.png')">bl03.png</button>
+            <button class="btn-secondary" onclick="setPresetImage('bl04.png')">bl04.png</button>
+        </div>
+        <div class="control-group">
+            <button class="btn-success" onclick="setPresetImage('')">デフォルトに戻す</button>
+            <button class="btn-secondary" onclick="toggleBackgroundMode()">背景モード切替</button>
+        </div>
+    </div>
+
+    <!-- Edit Mode Toggle Button -->
+    <button class="edit-mode-toggle" onclick="toggleEditMode()">
+        <i class="fas fa-edit"></i>
+    </button>
+
     <!-- ブログ記事 -->
-    <section class="blog-post">
-        <div class="container">
-            <div class="blog-header">
-                <h1 class="blog-title"></h1>
-                <div class="blog-meta">
-                    <span class="blog-date"><i class="far fa-calendar-alt"></i> </span>
-                    <span class="blog-category"><i class="fas fa-tag"></i> </span>
+    <main>
+        <article>
+            <!-- Blog Header with Dynamic Background -->
+            <header class="blog-header" id="blogHeader">
+                <div class="blog-header-content">
+                    <h1 class="blog-title"></h1>
+                    <div class="blog-meta">
+                        <span class="blog-date"><i class="far fa-calendar-alt"></i> </span>
+                        <span class="blog-category"><i class="fas fa-tag"></i> </span>
+                        <span class="blog-author"><i class="fas fa-user"></i> </span>
+                    </div>
                 </div>
-            </div>
+            </header>
             
-            <div class="blog-featured-image">
-                <img src="../images/" alt="">
-            </div>
-            
-            <div class="blog-content">
+            <!-- Blog Content -->
+            <div class="blog-text">
                 
                 
                 <div class="blog-cta">
@@ -50,6 +490,7 @@
                 </div>
             </div>
             
+            <!-- Author Section -->
             <div class="blog-author">
                 <div class="author-image">
                     <img src="../images/studioq_logo-1.png" alt="スタジオQロゴ">
@@ -60,6 +501,7 @@
                 </div>
             </div>
             
+            <!-- Related Posts -->
             <div class="blog-related">
                 <h3>関連記事</h3>
                 <div class="related-posts">
@@ -71,10 +513,14 @@
                         <img src="../images/slide2.jpg" alt="グリーンスクリーン撮影のコツ">
                         <h4>グリーンスクリーン撮影の基本とコツ</h4>
                     </a>
+                    <a href="live-streaming-guide.html" class="related-post">
+                        <img src="../images/slide3.jpg" alt="ライブストリーミング配信ガイド">
+                        <h4>プロが教えるライブストリーミング配信ガイド</h4>
+                    </a>
                 </div>
             </div>
-        </div>
-    </section>
+        </article>
+    </main>
     
     <!-- フッター -->
     <footer>
@@ -117,5 +563,118 @@
     </footer>
 
     <script src="../script.js"></script>
+    
+    <!-- Advanced Template JavaScript -->
+    <script>
+        // Edit Mode State
+        let editMode = false;
+        
+        // Toggle Edit Mode
+        function toggleEditMode() {
+            editMode = !editMode;
+            const controls = document.getElementById('headerImageControls');
+            if (editMode) {
+                controls.classList.add('active');
+            } else {
+                controls.classList.remove('active');
+            }
+        }
+        
+        // Apply Custom Image
+        function applyCustomImage() {
+            const fileInput = document.getElementById('headerImageUpload');
+            const file = fileInput.files[0];
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imageUrl = e.target.result;
+                    updateHeaderImage(imageUrl);
+                    detectImageBrightness(imageUrl);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        // Set Preset Image
+        function setPresetImage(imageName) {
+            const imageUrl = `../images/${imageName}`;
+            updateHeaderImage(imageUrl);
+            detectImageBrightness(imageUrl);
+        }
+        
+        // Update Header Image
+        function updateHeaderImage(imageUrl) {
+            document.documentElement.style.setProperty('--header-bg-image', `url('${imageUrl}')`);
+        }
+        
+        // Toggle Background Mode
+        function toggleBackgroundMode() {
+            const header = document.getElementById('blogHeader');
+            header.classList.toggle('light-bg');
+            
+            if (header.classList.contains('light-bg')) {
+                document.documentElement.style.setProperty('--header-text-color', '#333');
+                document.documentElement.style.setProperty('--header-text-shadow', '2px 2px 4px rgba(255,255,255,0.8)');
+            } else {
+                document.documentElement.style.setProperty('--header-text-color', 'white');
+                document.documentElement.style.setProperty('--header-text-shadow', '2px 2px 4px rgba(0,0,0,0.8)');
+            }
+        }
+        
+        // Detect Image Brightness
+        function detectImageBrightness(imageUrl) {
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = function() {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                
+                ctx.drawImage(img, 0, 0);
+                
+                try {
+                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    const data = imageData.data;
+                    let brightness = 0;
+                    
+                    for (let i = 0; i < data.length; i += 4) {
+                        const r = data[i];
+                        const g = data[i + 1];
+                        const b = data[i + 2];
+                        brightness += (r * 0.299 + g * 0.587 + b * 0.114);
+                    }
+                    
+                    brightness = brightness / (data.length / 4);
+                    
+                    const header = document.getElementById('blogHeader');
+                    if (brightness > 128) {
+                        // Bright image - use dark text
+                        header.classList.add('light-bg');
+                        document.documentElement.style.setProperty('--header-text-color', '#333');
+                        document.documentElement.style.setProperty('--header-text-shadow', '2px 2px 4px rgba(255,255,255,0.8)');
+                    } else {
+                        // Dark image - use light text
+                        header.classList.remove('light-bg');
+                        document.documentElement.style.setProperty('--header-text-color', 'white');
+                        document.documentElement.style.setProperty('--header-text-shadow', '2px 2px 4px rgba(0,0,0,0.8)');
+                    }
+                } catch (e) {
+                    console.log('Could not analyze image brightness, using default dark background mode');
+                }
+            };
+            img.src = imageUrl;
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set initial header image
+            const defaultImage = '';
+            if (defaultImage) {
+                setPresetImage(defaultImage);
+            }
+        });
+    </script>
 </body>
 </html>

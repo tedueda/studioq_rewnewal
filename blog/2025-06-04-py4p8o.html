@@ -121,16 +121,17 @@
             backdrop-filter: blur(10px);
         }
         
-        /* Content Styling */
+        /* Content Styling - Default dark background */
         .blog-text {
             max-width: 800px;
             margin: 0 auto;
             padding: 2rem;
             line-height: 1.8;
+            color: white;
         }
         
         .blog-text h2 {
-            color: #333;
+            color: white !important;
             margin: 2rem 0 1rem 0;
             font-size: 1.8rem;
             border-bottom: 3px solid #007bff;
@@ -139,7 +140,60 @@
         
         .blog-text p {
             margin-bottom: 1.5rem;
-            color: #555;
+            color: white !important;
+        }
+        
+        .blog-text h3 {
+            color: white !important;
+        }
+        
+        .blog-text h4 {
+            color: white !important;
+        }
+        
+        .blog-text li {
+            color: white !important;
+        }
+        
+        .blog-text ol li {
+            color: white !important;
+        }
+        
+        .blog-text ul li {
+            color: white !important;
+        }
+        
+        /* Light background overrides for content */
+        .blog-header.light-bg ~ main .blog-text {
+            color: #333;
+        }
+        
+        .blog-header.light-bg ~ main .blog-text h2 {
+            color: #333 !important;
+        }
+        
+        .blog-header.light-bg ~ main .blog-text p {
+            color: #555 !important;
+        }
+        
+        .blog-header.light-bg ~ main .blog-text h3 {
+            color: #333 !important;
+        }
+        
+        .blog-header.light-bg ~ main .blog-text h4 {
+            color: #333 !important;
+        }
+        
+        .blog-header.light-bg ~ main .blog-text li {
+            color: #555 !important;
+        }
+        
+        .blog-header.light-bg ~ main .blog-text ol li {
+            color: #555 !important;
+        }
+        
+        .blog-header.light-bg ~ main .blog-text ul li {
+            color: #555 !important;
         }
         
         /* Highlight Box Styling */
@@ -153,9 +207,17 @@
         }
         
         .highlight-box h3 {
-            color: #007bff;
+            color: #007bff !important;
             margin-bottom: 1rem;
             font-size: 1.3rem;
+        }
+        
+        .highlight-box p {
+            color: #333 !important;
+        }
+        
+        .highlight-box li {
+            color: #333 !important;
         }
         
         .feature-list {
@@ -209,6 +271,7 @@
         }
         
         .equipment-item h4 {
+            color: #333 !important;
             color: #333;
             margin-bottom: 0.5rem;
         }

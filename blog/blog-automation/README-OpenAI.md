@@ -16,6 +16,7 @@
 ### 1. 依存関係のインストール
 
 ```bash
+cd /home/ubuntu/repos/studioq_rewnewal
 npm install
 ```
 
@@ -118,11 +119,12 @@ blog-automation/
 ├── test-openai.js            # テストスクリプト
 ├── .env.example              # 環境変数テンプレート
 ├── .env                      # 環境変数（要作成）
-├── package.json              # 依存関係とスクリプト
 ├── templates/
 │   ├── blog-post-template.html     # 標準テンプレート
 │   └── blog-post-seo-template.html # SEO最適化テンプレート
 └── README-OpenAI.md          # このファイル
+
+注意: 依存関係はルートのpackage.jsonで管理されています。
 ```
 
 ## 生成されるファイル

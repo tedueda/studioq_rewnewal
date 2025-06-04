@@ -313,7 +313,7 @@ class BlogGeneratorUI {
             uploadedImages: this.uploadedImages
         }));
         
-        window.location.href = 'preview.html';
+        window.location.href = 'preview/';
     }
 
     initializePreviewPage() {
@@ -443,7 +443,7 @@ class BlogGeneratorUI {
         if (closeSuccess) {
             closeSuccess.addEventListener('click', () => {
                 successModal.classList.remove('active');
-                window.location.href = '../blog.html';
+                window.location.href = '../../blog/';
             });
         }
 
@@ -564,7 +564,7 @@ class BlogGeneratorUI {
     }
 
     goBack() {
-        window.location.href = 'index.html';
+        window.location.href = '../blog-generator/';
     }
 }
 

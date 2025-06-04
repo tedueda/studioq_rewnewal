@@ -52,3 +52,4 @@ yarn-error.log*
 .vercel
 .netlify
 _site/
+_site/

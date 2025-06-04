@@ -220,6 +220,20 @@
             color: #333 !important;
         }
         
+        .highlight-box ul {
+            color: #333 !important;
+        }
+        
+        /* Override any global white text rules for highlight boxes */
+        .highlight-box,
+        .highlight-box * {
+            color: #333 !important;
+        }
+        
+        .highlight-box h3 {
+            color: #007bff !important;
+        }
+        
         .feature-list {
             list-style: none;
             padding: 0;
@@ -272,8 +286,22 @@
         
         .equipment-item h4 {
             color: #333 !important;
-            color: #333;
             margin-bottom: 0.5rem;
+        }
+        
+        .equipment-item p {
+            color: #666 !important;
+        }
+        
+        /* Override any global white text rules for equipment grid */
+        .equipment-grid .equipment-item,
+        .equipment-grid .equipment-item h4,
+        .equipment-grid .equipment-item p {
+            color: #333 !important;
+        }
+        
+        .equipment-grid .equipment-item p {
+            color: #666 !important;
         }
         
         /* Image Styling */

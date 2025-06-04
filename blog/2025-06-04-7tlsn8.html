@@ -121,7 +121,7 @@
         
         /* Main Content Styling */
         .blog-text {
-            color: white;
+            color: #000;
             max-width: 800px;
             margin: 0 auto;
             padding: 3rem 2rem;
@@ -130,7 +130,7 @@
         }
         
         .blog-text h2, .blog-text h3, .blog-text h4 {
-            color: white !important;
+            color: #007bff !important;
             margin: 2rem 0 1rem 0;
             font-weight: bold;
         }
@@ -146,7 +146,7 @@
         }
         
         .blog-text p, .blog-text li {
-            color: white !important;
+            color: #000 !important;
             margin-bottom: 1rem;
         }
         
@@ -199,8 +199,9 @@
             color: #333 !important;
         }
         
-        /* Simple white background text color rules */
-        .highlight-box {
+        /* Aggressive white background text color rules */
+        .highlight-box,
+        .highlight-box * {
             background: white !important;
         }
         
@@ -212,7 +213,8 @@
         .highlight-box p,
         .highlight-box li,
         .highlight-box span,
-        .highlight-box div {
+        .highlight-box div,
+        .highlight-box * {
             color: #000 !important;
         }
         
@@ -256,8 +258,9 @@
             color: #000 !important;
         }
         
-        /* Simple white background text color rules for equipment grid */
-        .equipment-grid .equipment-item {
+        /* Aggressive white background text color rules for equipment grid */
+        .equipment-grid .equipment-item,
+        .equipment-grid .equipment-item * {
             background: white !important;
         }
         
@@ -272,10 +275,6 @@
         .equipment-grid .equipment-item span,
         .equipment-grid .equipment-item div {
             color: #000 !important;
-        }
-        
-        .equipment-grid .equipment-item p {
-            color: #666 !important;
         }
         
         /* Image Styling */

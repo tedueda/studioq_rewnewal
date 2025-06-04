@@ -1,0 +1,819 @@
+class BlogGeneratorUI {
+    constructor() {
+        this.currentStep = 1;
+        this.formData = {};
+        this.uploadedImages = [];
+        this.generatedContent = null;
+        
+        this.init();
+    }
+
+    init() {
+        this.bindEvents();
+        this.initializeImageUpload();
+        
+        if (window.location.pathname.includes('preview')) {
+            setTimeout(() => this.initializePreviewPage(), 100);
+        }
+    }
+
+    bindEvents() {
+        const generateForm = document.getElementById('blog-generator-form');
+        if (generateForm) {
+            generateForm.addEventListener('submit', (e) => this.handleFormSubmit(e));
+        }
+
+        const previewForm = document.getElementById('preview-form');
+        if (previewForm) {
+            previewForm.addEventListener('submit', (e) => this.handlePreviewSubmit(e));
+        }
+
+        const backButton = document.getElementById('back-button');
+        if (backButton) {
+            backButton.addEventListener('click', () => this.goBack());
+        }
+
+        const validateJsonBtn = document.getElementById('validate-json');
+        const formatJsonBtn = document.getElementById('format-json');
+        
+        if (validateJsonBtn) {
+            validateJsonBtn.addEventListener('click', () => this.validateJson());
+        }
+        
+        if (formatJsonBtn) {
+            formatJsonBtn.addEventListener('click', () => this.formatJson());
+        }
+
+        this.bindPublishEvents();
+
+        this.bindCharacterCounters();
+    }
+
+    bindCharacterCounters() {
+        const titleInput = document.getElementById('preview-title');
+        const descInput = document.getElementById('preview-meta-description');
+        
+        if (titleInput) {
+            titleInput.addEventListener('input', () => {
+                this.updateCharCounter('title-counter', titleInput.value.length);
+            });
+        }
+        
+        if (descInput) {
+            descInput.addEventListener('input', () => {
+                this.updateCharCounter('description-counter', descInput.value.length);
+            });
+        }
+    }
+
+    updateCharCounter(counterId, length) {
+        const counter = document.getElementById(counterId);
+        if (counter) {
+            counter.textContent = length;
+        }
+    }
+
+    initializeImageUpload() {
+        const imageInputs = document.querySelectorAll('.image-input');
+        imageInputs.forEach((input, index) => {
+            input.addEventListener('change', (e) => this.handleImageUpload(e, index + 1));
+        });
+    }
+
+    handleImageUpload(event, imageNumber) {
+        const file = event.target.files[0];
+
+        if (file) {
+            if (!file.type.match(/^image\/(png|jpeg|jpg)$/)) {
+                this.showImageError('PNG または JPEG 形式の画像を選択してください。');
+                event.target.value = '';
+                return;
+            }
+
+            if (file.size > 2 * 1024 * 1024) {
+                this.showImageProcessing(imageNumber, 'ファイルサイズが大きいため、自動圧縮中...');
+                this.compressImage(file, imageNumber, event.target);
+            } else {
+                this.processImageFile(file, imageNumber, event.target);
+            }
+        }
+    }
+
+    async compressImage(file, imageNumber, inputElement) {
+        try {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+            
+            img.onload = () => {
+                let { width, height } = this.calculateOptimalDimensions(img.width, img.height);
+                
+                canvas.width = width;
+                canvas.height = height;
+                
+                ctx.drawImage(img, 0, 0, width, height);
+                
+                canvas.toBlob((blob) => {
+                    if (blob) {
+                        const compressedFile = new File([blob], file.name, {
+                            type: file.type,
+                            lastModified: Date.now()
+                        });
+                        
+                        const compressionRatio = ((file.size - compressedFile.size) / file.size * 100).toFixed(1);
+                        this.showCompressionSuccess(imageNumber, file.size, compressedFile.size, compressionRatio);
+                        this.processImageFile(compressedFile, imageNumber, inputElement);
+                    } else {
+                        this.showImageError('画像の圧縮に失敗しました。');
+                    }
+                }, file.type, 0.8);
+            };
+            
+            img.onerror = () => {
+                this.showImageError('画像の読み込みに失敗しました。');
+            };
+            
+            img.src = URL.createObjectURL(file);
+        } catch (error) {
+            console.error('Image compression error:', error);
+            this.showImageError('画像の圧縮中にエラーが発生しました。');
+        }
+    }
+
+    calculateOptimalDimensions(originalWidth, originalHeight) {
+        const maxWidth = 1920;
+        const maxHeight = 1080;
+        
+        let width = originalWidth;
+        let height = originalHeight;
+        
+        if (width > maxWidth || height > maxHeight) {
+            const ratio = Math.min(maxWidth / width, maxHeight / height);
+            width = Math.floor(width * ratio);
+            height = Math.floor(height * ratio);
+        }
+        
+        return { width, height };
+    }
+
+    processImageFile(file, imageNumber, inputElement) {
+        if (file.size > 5 * 1024 * 1024) {
+            this.showImageError('圧縮後もファイルサイズが5MBを超えています。別の画像を選択してください。');
+            if (inputElement) {
+                inputElement.value = '';
+            }
+            return;
+        }
+
+        const preview = document.getElementById(`preview-${imageNumber}`);
+        const label = inputElement ? inputElement.nextElementSibling : null;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            preview.innerHTML = `
+                <img src="${e.target.result}" alt="プレビュー ${imageNumber}">
+                <button type="button" class="remove-image" onclick="blogGenerator.removeImage(${imageNumber})">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            preview.classList.add('active');
+            if (label) {
+                label.style.display = 'none';
+            }
+
+            this.uploadedImages[imageNumber - 1] = {
+                file: file,
+                dataUrl: e.target.result,
+                name: file.name
+            };
+        };
+        reader.readAsDataURL(file);
+    }
+
+    removeImage(imageNumber) {
+        const preview = document.getElementById(`preview-${imageNumber}`);
+        const input = document.getElementById(`image-${imageNumber}`);
+        const label = input.nextElementSibling;
+
+        preview.innerHTML = '';
+        preview.classList.remove('active');
+        label.style.display = 'flex';
+        input.value = '';
+
+        this.uploadedImages[imageNumber - 1] = null;
+    }
+
+    async handleFormSubmit(event) {
+        event.preventDefault();
+        
+        if (!this.validateForm()) {
+            return;
+        }
+
+        this.collectFormData();
+        this.showLoadingModal();
+        
+        try {
+            const generatedContent = await this.generateContent();
+            this.generatedContent = generatedContent;
+            
+            this.navigateToPreview();
+            
+        } catch (error) {
+            console.error('コンテンツ生成エラー:', error);
+            this.hideLoadingModal();
+            alert('記事の生成中にエラーが発生しました。もう一度お試しください。');
+        }
+    }
+
+    validateForm() {
+        const targetAudience = document.getElementById('target-audience').value.trim();
+        
+        if (!targetAudience) {
+            alert('ターゲット層は必須項目です。');
+            document.getElementById('target-audience').focus();
+            return false;
+        }
+
+        return true;
+    }
+
+    collectFormData() {
+        this.formData = {
+            referenceUrl: document.getElementById('reference-url').value.trim(),
+            targetAudience: document.getElementById('target-audience').value.trim(),
+            mainKeyword: document.getElementById('main-keyword').value.trim(),
+            totalLength: document.getElementById('total-length').value,
+            images: this.uploadedImages.filter(img => img !== null)
+        };
+    }
+
+    showImageError(message) {
+        let modal = document.getElementById('image-error-modal');
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'image-error-modal';
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-exclamation-triangle"></i> 画像アップロードエラー</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p id="image-error-message"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="this.closest('.modal').classList.remove('active')">
+                            OK
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+        
+        document.getElementById('image-error-message').textContent = message;
+        modal.classList.add('active');
+    }
+
+    showImageProcessing(imageNumber, message) {
+        const preview = document.getElementById(`preview-${imageNumber}`);
+        preview.innerHTML = `
+            <div class="processing-indicator">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>${message}</p>
+            </div>
+        `;
+        preview.classList.add('active');
+    }
+
+    showCompressionSuccess(imageNumber, originalSize, compressedSize, compressionRatio) {
+        const originalMB = (originalSize / (1024 * 1024)).toFixed(1);
+        const compressedMB = (compressedSize / (1024 * 1024)).toFixed(1);
+        
+        const preview = document.getElementById(`preview-${imageNumber}`);
+        const successMessage = document.createElement('div');
+        successMessage.className = 'compression-success';
+        successMessage.innerHTML = `
+            <i class="fas fa-check-circle"></i>
+            <p>圧縮完了: ${originalMB}MB → ${compressedMB}MB (${compressionRatio}%削減)</p>
+        `;
+        
+        preview.appendChild(successMessage);
+        
+        setTimeout(() => {
+            if (successMessage.parentNode) {
+                successMessage.remove();
+            }
+        }, 3000);
+    }
+
+    async generateContent() {
+        this.updateProgress(20, 'OpenAI APIに接続中...');
+        
+        const keyword = this.formData.mainKeyword || this.formData.targetAudience;
+        const options = {
+            category: '技術情報',
+            author: 'スタジオQ',
+            targetAudience: this.formData.targetAudience,
+            referenceUrl: this.formData.referenceUrl,
+            wordCount: parseInt(this.formData.totalLength)
+        };
+
+        this.updateProgress(50, 'コンテンツを生成中...');
+
+        try {
+            const response = await fetch('/api/generate-content', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ keyword, options })
+            });
+            
+            if (!response.ok) {
+                throw new Error(`API call failed: ${response.status}`);
+            }
+            
+            const result = await response.json();
+            
+            if (!result.success) {
+                throw new Error(result.error || 'Content generation failed');
+            }
+            
+            this.updateProgress(80, '記事を最適化中...');
+            const optimizedContent = this.optimizeContent(result.content);
+            
+            this.updateProgress(100, '生成完了！');
+            return optimizedContent;
+            
+        } catch (error) {
+            console.error('OpenAI API error:', error);
+            this.updateProgress(60, 'APIエラー - モックコンテンツを生成中...');
+            
+            const mockContent = await this.generateMockContent(keyword, options);
+            
+            this.updateProgress(80, '記事を最適化中...');
+            const optimizedContent = this.optimizeContent(mockContent);
+            
+            this.updateProgress(100, '生成完了！');
+            return optimizedContent;
+        }
+    }
+
+    async generateMockContent(keyword, options) {
+        
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve({
+                    title: `${keyword}の完全ガイド - プロが教える実践的テクニック`,
+                    excerpt: `${keyword}について、${options.targetAudience}向けに詳しく解説します。実践的なアドバイスと具体例を交えて、わかりやすくお伝えします。`,
+                    content: `
+                        <h2>はじめに</h2>
+                        <p>${keyword}は現代の映像制作において重要な技術です。この記事では、${options.targetAudience}の皆様に向けて、実践的な内容をお届けします。</p>
+                        
+                        <h2>基本的な概念</h2>
+                        <p>${keyword}の基本的な概念について説明します。まず理解しておくべき重要なポイントを整理しましょう。</p>
+                        
+                        <h2>実践的なテクニック</h2>
+                        <p>実際の制作現場で使える具体的なテクニックをご紹介します。これらの方法を活用することで、より効率的な作業が可能になります。</p>
+                        
+                        <h2>まとめ</h2>
+                        <p>${keyword}について解説してきました。今回ご紹介した内容を参考に、ぜひ実際の制作に活用してください。</p>
+                    `,
+                    meta_description: `${keyword}について${options.targetAudience}向けに詳しく解説。実践的なテクニックと具体例を交えてわかりやすくお伝えします。`,
+                    keywords: [keyword, '映像制作', '技術情報', 'スタジオQ'],
+                    seo_score: 85,
+                    category: options.category,
+                    author: options.author,
+                    date: new Date().toISOString().split('T')[0].replace(/-/g, '.'),
+                    image: 'slide1.jpg'
+                });
+            }, 2000);
+        });
+    }
+
+    optimizeContent(content) {
+        const baseUrl = 'https://studioq.jp';
+        
+        content.slug = this.generateSlug(content.title);
+        content.structured_data = this.generateStructuredData(content, baseUrl);
+        
+        return content;
+    }
+
+    generateSlug(title) {
+        const date = new Date().toISOString().split('T')[0];
+        const randomStr = Math.random().toString(36).substring(2, 8);
+        return `${date}-${randomStr}`;
+    }
+
+    generateStructuredData(content, baseUrl) {
+        return {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": content.title,
+            "description": content.meta_description,
+            "author": {
+                "@type": "Organization",
+                "name": content.author
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "スタジオQ",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": `${baseUrl}/images/studioq_logo-1.png`
+                }
+            },
+            "datePublished": content.date.replace(/\./g, '-'),
+            "dateModified": content.date.replace(/\./g, '-'),
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": `${baseUrl}/blog/${content.slug}.html`
+            },
+            "image": `${baseUrl}/images/${content.image}`,
+            "keywords": Array.isArray(content.keywords) ? content.keywords.join(', ') : content.keywords
+        };
+    }
+
+    showLoadingModal() {
+        const modal = document.getElementById('loading-modal');
+        if (modal) {
+            modal.classList.add('active');
+            this.updateProgress(0, 'OpenAI APIに接続中...');
+        }
+    }
+
+    hideLoadingModal() {
+        const modal = document.getElementById('loading-modal');
+        if (modal) {
+            modal.classList.remove('active');
+        }
+    }
+
+    updateProgress(percentage, message) {
+        const progressFill = document.getElementById('progress-fill');
+        const progressText = document.getElementById('progress-text');
+        
+        if (progressFill) {
+            progressFill.style.width = `${percentage}%`;
+        }
+        
+        if (progressText) {
+            progressText.textContent = message;
+        }
+    }
+
+    navigateToPreview() {
+        sessionStorage.setItem('blogGeneratorData', JSON.stringify({
+            formData: this.formData,
+            generatedContent: this.generatedContent,
+            uploadedImages: this.uploadedImages
+        }));
+        
+        window.location.href = 'preview/';
+    }
+
+    initializePreviewPage() {
+        const savedData = sessionStorage.getItem('blogGeneratorData');
+        if (savedData) {
+            const data = JSON.parse(savedData);
+            this.formData = data.formData;
+            this.generatedContent = data.generatedContent;
+            this.uploadedImages = data.uploadedImages;
+            
+            this.populatePreviewForm();
+            this.initializeQuillEditors();
+            this.displayUploadedImages();
+        }
+    }
+
+    populatePreviewForm() {
+        if (!this.generatedContent) {
+            console.warn('No generated content available for preview');
+            return;
+        }
+
+        const titleElement = document.getElementById('preview-title');
+        const metaElement = document.getElementById('preview-meta-description');
+        const jsonElement = document.getElementById('preview-json-ld');
+
+        if (titleElement) {
+            titleElement.value = this.generatedContent.title || '';
+            this.updateCharCounter('title-counter', this.generatedContent.title?.length || 0);
+        }
+        
+        if (metaElement) {
+            metaElement.value = this.generatedContent.meta_description || '';
+            this.updateCharCounter('description-counter', this.generatedContent.meta_description?.length || 0);
+        }
+        
+        if (jsonElement) {
+            jsonElement.value = JSON.stringify(this.generatedContent.structured_data || {}, null, 2);
+        }
+    }
+
+    initializeQuillEditors() {
+        if (!window.quillManager) {
+            console.warn('QuillManager not available');
+            return;
+        }
+        
+        if (!this.generatedContent) {
+            console.warn('No generated content for Quill editors');
+            return;
+        }
+
+        const sections = window.quillManager.parseContentToSections(this.generatedContent.content || '');
+
+        for (let i = 1; i <= 4; i++) {
+            const section = sections[i - 1] || { heading: `セクション ${i}`, content: '' };
+            
+            const headingElement = document.getElementById(`heading-${i}`);
+            if (headingElement) {
+                headingElement.textContent = section.heading;
+            }
+            
+            const editorContainer = document.getElementById(`editor-${i}`);
+            if (editorContainer) {
+                window.quillManager.initializeEditor(`editor-${i}`, section.content);
+            } else {
+                console.warn(`Editor container editor-${i} not found`);
+            }
+        }
+    }
+
+    displayUploadedImages() {
+        const imagesContainer = document.getElementById('uploaded-images');
+        const imagesSection = document.getElementById('images-section');
+        
+        if (!imagesContainer || !this.uploadedImages.length) {
+            if (imagesSection) {
+                imagesSection.style.display = 'none';
+            }
+            return;
+        }
+
+        imagesContainer.innerHTML = '';
+        
+        this.uploadedImages.forEach((image, index) => {
+            if (image) {
+                const imageItem = document.createElement('div');
+                imageItem.className = 'uploaded-image-item';
+                imageItem.innerHTML = `
+                    <img src="${image.dataUrl}" alt="${image.name}">
+                    <div class="image-info">
+                        <div class="image-name">${image.name}</div>
+                        <div class="image-actions">
+                            <button type="button" class="btn btn-secondary" onclick="blogGenerator.removeUploadedImage(${index})">
+                                <i class="fas fa-trash"></i>
+                                削除
+                            </button>
+                        </div>
+                    </div>
+                `;
+                imagesContainer.appendChild(imageItem);
+            }
+        });
+    }
+
+    removeUploadedImage(index) {
+        this.uploadedImages[index] = null;
+        this.displayUploadedImages();
+    }
+
+    validateJson() {
+        const jsonTextarea = document.getElementById('preview-json-ld');
+        try {
+            JSON.parse(jsonTextarea.value);
+            alert('JSON形式は正しいです。');
+        } catch (error) {
+            alert('JSON形式にエラーがあります: ' + error.message);
+        }
+    }
+
+    formatJson() {
+        const jsonTextarea = document.getElementById('preview-json-ld');
+        try {
+            const parsed = JSON.parse(jsonTextarea.value);
+            jsonTextarea.value = JSON.stringify(parsed, null, 2);
+        } catch (error) {
+            alert('JSON形式にエラーがあります: ' + error.message);
+        }
+    }
+
+    handlePreviewSubmit(event) {
+        event.preventDefault();
+        this.showPublishModal();
+    }
+
+    bindPublishEvents() {
+        const publishModal = document.getElementById('publish-modal');
+        const successModal = document.getElementById('success-modal');
+        const cancelPublish = document.getElementById('cancel-publish');
+        const confirmPublish = document.getElementById('confirm-publish');
+        const closeSuccess = document.getElementById('close-success');
+        const copyUrl = document.getElementById('copy-url');
+
+        if (cancelPublish) {
+            cancelPublish.addEventListener('click', () => {
+                publishModal.classList.remove('active');
+            });
+        }
+
+        if (confirmPublish) {
+            confirmPublish.addEventListener('click', () => this.publishArticle());
+        }
+
+        if (closeSuccess) {
+            closeSuccess.addEventListener('click', () => {
+                successModal.classList.remove('active');
+                window.location.href = '../../blog/';
+            });
+        }
+
+        if (copyUrl) {
+            copyUrl.addEventListener('click', () => this.copyPublishedUrl());
+        }
+
+        const shareTwitter = document.getElementById('share-twitter');
+        const shareFacebook = document.getElementById('share-facebook');
+        const shareLinkedin = document.getElementById('share-linkedin');
+
+        if (shareTwitter) {
+            shareTwitter.addEventListener('click', () => this.shareOnTwitter());
+        }
+
+        if (shareFacebook) {
+            shareFacebook.addEventListener('click', () => this.shareOnFacebook());
+        }
+
+        if (shareLinkedin) {
+            shareLinkedin.addEventListener('click', () => this.shareOnLinkedin());
+        }
+    }
+
+    showPublishModal() {
+        const modal = document.getElementById('publish-modal');
+        if (modal) {
+            modal.classList.add('active');
+        }
+    }
+
+    async publishArticle() {
+        const publishModal = document.getElementById('publish-modal');
+        publishModal.classList.remove('active');
+
+        try {
+            const finalData = this.collectFinalData();
+            
+            const publishedUrl = await this.saveArticle(finalData);
+            
+            this.showSuccessModal(publishedUrl);
+            
+        } catch (error) {
+            console.error('公開エラー:', error);
+            alert('記事の公開中にエラーが発生しました。もう一度お試しください。');
+        }
+    }
+
+    collectFinalData() {
+        const title = document.getElementById('preview-title').value;
+        const metaDescription = document.getElementById('preview-meta-description').value;
+        const jsonLd = document.getElementById('preview-json-ld').value;
+
+        const content = window.quillManager ? window.quillManager.generateContentFromSections() : this.generatedContent.content;
+
+        return {
+            ...this.generatedContent,
+            title: title,
+            meta_description: metaDescription,
+            content: content,
+            structured_data: JSON.parse(jsonLd),
+            images: this.uploadedImages.filter(img => img !== null)
+        };
+    }
+
+    async saveArticle(articleData) {
+        
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const baseUrl = 'https://studioq.jp';
+                const publishedUrl = `${baseUrl}/blog/${articleData.slug}.html`;
+                resolve(publishedUrl);
+            }, 1000);
+        });
+    }
+
+    showSuccessModal(publishedUrl) {
+        const modal = document.getElementById('success-modal');
+        const urlInput = document.getElementById('published-url');
+        
+        if (modal && urlInput) {
+            urlInput.value = publishedUrl;
+            this.publishedUrl = publishedUrl;
+            modal.classList.add('active');
+        }
+    }
+
+    copyPublishedUrl() {
+        const urlInput = document.getElementById('published-url');
+        if (urlInput) {
+            urlInput.select();
+            document.execCommand('copy');
+            alert('URLをコピーしました！');
+        }
+    }
+
+    shareOnTwitter() {
+        if (this.publishedUrl) {
+            const text = encodeURIComponent(`新しいブログ記事を公開しました: ${this.generatedContent.title}`);
+            const url = encodeURIComponent(this.publishedUrl);
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+        }
+    }
+
+    shareOnFacebook() {
+        if (this.publishedUrl) {
+            const url = encodeURIComponent(this.publishedUrl);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+        }
+    }
+
+    shareOnLinkedin() {
+        if (this.publishedUrl) {
+            const url = encodeURIComponent(this.publishedUrl);
+            const title = encodeURIComponent(this.generatedContent.title);
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${title}`, '_blank');
+        }
+    }
+
+    goBack() {
+        window.location.href = '../blog-generator/';
+    }
+
+    showImageError(message) {
+        let modal = document.getElementById('image-error-modal');
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'image-error-modal';
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-exclamation-triangle"></i> 画像アップロードエラー</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p id="image-error-message"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="this.closest('.modal').classList.remove('active')">
+                            OK
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+        
+        document.getElementById('image-error-message').textContent = message;
+        modal.classList.add('active');
+    }
+
+    showImageProcessing(imageNumber, message) {
+        const preview = document.getElementById(`preview-${imageNumber}`);
+        preview.innerHTML = `
+            <div class="processing-indicator">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>${message}</p>
+            </div>
+        `;
+        preview.classList.add('active');
+    }
+
+    showCompressionSuccess(imageNumber, originalSize, compressedSize, compressionRatio) {
+        const originalMB = (originalSize / (1024 * 1024)).toFixed(1);
+        const compressedMB = (compressedSize / (1024 * 1024)).toFixed(1);
+        
+        const preview = document.getElementById(`preview-${imageNumber}`);
+        const successMessage = document.createElement('div');
+        successMessage.className = 'compression-success';
+        successMessage.innerHTML = `
+            <i class="fas fa-check-circle"></i>
+            <p>圧縮完了: ${originalMB}MB → ${compressedMB}MB (${compressionRatio}%削減)</p>
+        `;
+        
+        preview.appendChild(successMessage);
+        
+        setTimeout(() => {
+            if (successMessage.parentNode) {
+                successMessage.remove();
+            }
+        }, 3000);
+    }
+}
+
+window.blogGenerator = new BlogGeneratorUI();
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Blog Generator UI initialized');
+});

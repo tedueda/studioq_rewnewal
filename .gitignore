@@ -51,3 +51,5 @@ yarn-error.log*
 # その他
 .vercel
 .netlify
+_site/
+_site/

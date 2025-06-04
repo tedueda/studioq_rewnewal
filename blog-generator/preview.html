@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>記事プレビュー・編集 - スタジオQ</title>
+    <meta name="description" content="生成された記事のプレビューと編集">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Quill Editor -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../blog-generator.css">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header>
+        <div class="logo">
+            <h1>スタジオQ</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html#home">ホーム</a></li>
+                <li><a href="../index.html#about">スタジオについて</a></li>
+                <li><a href="../index.html#gallery">ギャラリー</a></li>
+                <li><a href="../index.html#contact">お問い合わせ</a></li>
+                <li><a href="../blog.html">ブログ</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="blog-generator-main">
+        <div class="container">
+            <div class="generator-header">
+                <h1 class="page-title">記事プレビュー・編集</h1>
+                <p class="page-subtitle">生成された記事を確認し、必要に応じて編集してください</p>
+            </div>
+
+            <!-- プレビュー・編集フォーム -->
+            <div class="preview-container">
+                <form id="preview-form" class="preview-form">
+                    <!-- SEO設定セクション -->
+                    <section class="seo-section">
+                        <h2><i class="fas fa-search"></i> SEO設定</h2>
+                        
+                        <div class="form-group">
+                            <label for="preview-title">SEOタイトル</label>
+                            <input type="text" id="preview-title" name="title" maxlength="60" required>
+                            <div class="char-counter">
+                                <span id="title-counter">0</span>/60文字
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="preview-meta-description">メタディスクリプション</label>
+                            <textarea id="preview-meta-description" name="metaDescription" maxlength="160" rows="3" required></textarea>
+                            <div class="char-counter">
+                                <span id="description-counter">0</span>/160文字
+                            </div>
+                        </div>
+
+                        <!-- JSON-LD構造化データ -->
+                        <div class="form-group">
+                            <details class="json-ld-details">
+                                <summary>
+                                    <i class="fas fa-code"></i>
+                                    JSON-LD構造化データ
+                                </summary>
+                                <textarea id="preview-json-ld" name="jsonLd" rows="15" class="json-editor"></textarea>
+                                <div class="json-actions">
+                                    <button type="button" class="btn btn-secondary" id="validate-json">
+                                        <i class="fas fa-check"></i>
+                                        JSON検証
+                                    </button>
+                                    <button type="button" class="btn btn-secondary" id="format-json">
+                                        <i class="fas fa-indent"></i>
+                                        フォーマット
+                                    </button>
+                                </div>
+                            </details>
+                        </div>
+                    </section>
+
+                    <!-- 画像管理セクション -->
+                    <section class="images-section" id="images-section">
+                        <h2><i class="fas fa-images"></i> 画像管理</h2>
+                        <div class="uploaded-images" id="uploaded-images">
+                            <!-- アップロード済み画像がここに表示される -->
+                        </div>
+                    </section>
+
+                    <!-- コンテンツ編集セクション -->
+                    <section class="content-section">
+                        <h2><i class="fas fa-edit"></i> コンテンツ編集</h2>
+                        
+                        <!-- セクション1 -->
+                        <div class="content-editor-section">
+                            <h3>Section 1: <span id="heading-1">導入部分</span></h3>
+                            <div id="editor-1" class="quill-editor"></div>
+                        </div>
+
+                        <!-- セクション2 -->
+                        <div class="content-editor-section">
+                            <h3>Section 2: <span id="heading-2">主要コンテンツ</span></h3>
+                            <div id="editor-2" class="quill-editor"></div>
+                        </div>
+
+                        <!-- セクション3 -->
+                        <div class="content-editor-section">
+                            <h3>Section 3: <span id="heading-3">実践的アドバイス</span></h3>
+                            <div id="editor-3" class="quill-editor"></div>
+                        </div>
+
+                        <!-- セクション4 -->
+                        <div class="content-editor-section">
+                            <h3>Section 4: <span id="heading-4">まとめ</span></h3>
+                            <div id="editor-4" class="quill-editor"></div>
+                        </div>
+                    </section>
+
+                    <!-- アクションボタン -->
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="back-button">
+                            <i class="fas fa-arrow-left"></i>
+                            戻る
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="authorize-button">
+                            <i class="fas fa-check"></i>
+                            最終確認
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- 公開確認モーダル -->
+    <div id="publish-modal" class="modal">
+        <div class="modal-content">
+            <div class="publish-container">
+                <div class="publish-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3>記事を公開しますか？</h3>
+                <p>この記事をブログに公開します。公開後は編集できません。</p>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-publish">
+                        キャンセル
+                    </button>
+                    <button type="button" class="btn btn-primary" id="confirm-publish">
+                        <i class="fas fa-check"></i>
+                        公開する
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 公開完了モーダル -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <div class="success-container">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>記事が公開されました！</h3>
+                <p>記事が正常に公開されました。</p>
+                <div class="published-url">
+                    <label>公開URL:</label>
+                    <div class="url-container">
+                        <input type="text" id="published-url" readonly>
+                        <button type="button" class="btn btn-secondary" id="copy-url">
+                            <i class="fas fa-copy"></i>
+                            コピー
+                        </button>
+                    </div>
+                </div>
+                <div class="share-buttons">
+                    <button type="button" class="btn btn-social twitter" id="share-twitter">
+                        <i class="fab fa-twitter"></i>
+                        Twitter
+                    </button>
+                    <button type="button" class="btn btn-social facebook" id="share-facebook">
+                        <i class="fab fa-facebook"></i>
+                        Facebook
+                    </button>
+                    <button type="button" class="btn btn-social linkedin" id="share-linkedin">
+                        <i class="fab fa-linkedin"></i>
+                        LinkedIn
+                    </button>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-primary" id="close-success">
+                        閉じる
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>スタジオQ</h2>
+                    <p>写真とクリエイティブのための空間</p>
+                </div>
+                <div class="footer-links">
+                    <h3>リンク</h3>
+                    <ul>
+                        <li><a href="../index.html#home">ホーム</a></li>
+                        <li><a href="../index.html#about">スタジオについて</a></li>
+                        <li><a href="../index.html#gallery">ギャラリー</a></li>
+                        <li><a href="../index.html#contact">お問い合わせ</a></li>
+                        <li><a href="../blog.html">ブログ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>お問い合わせ</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 大阪市浪速区恵美須西3-2-4 2F</p>
+                    <p><i class="fas fa-phone"></i> 06-6978-8122</p>
+                    <p><i class="fas fa-envelope"></i> info@studioq.jp</p>
+                </div>
+                <div class="footer-social">
+                    <h3>ソーシャルメディア</h3>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/0804studioq" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://twitter.com/StudioQ080" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://www.instagram.com/studioq0804" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/channel/UCxnEj084atnqvlbW29DsFKA" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 スタジオQ All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script src="../script.js"></script>
+    <script src="../quill-config.js"></script>
+    <script src="../blog-generator.js"></script>
+</body>
+</html>

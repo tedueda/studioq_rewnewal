@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4K映像制作の技術情報: クリエイターに向けた実践的ガイド - スタジオQ</title>
+    <meta name="description" content="4K映像制作の世界に踏み込むクリエイターのための実践的な情報を提供。高品質な映像制作のためのテクニックやヒントを紹介。">
+    <meta name="keywords" content="4K映像制作, 映像制作, 技術情報">
+    <meta name="author" content="スタジオQ">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://studioq.jp/blog/2025-06-04-py4p8o.html">
+    <meta property="og:title" content="4K映像制作の技術情報: クリエイターに向けた実践的ガイド">
+    <meta property="og:description" content="4K映像制作の世界に踏み込むクリエイターのための実践的な情報を提供。高品質な映像制作のためのテクニックやヒントを紹介。">
+    <meta property="og:image" content="https://studioq.jp/images/slide1.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://studioq.jp/blog/2025-06-04-py4p8o.html">
+    <meta property="twitter:title" content="4K映像制作の技術情報: クリエイターに向けた実践的ガイド">
+    <meta property="twitter:description" content="4K映像制作の世界に踏み込むクリエイターのための実践的な情報を提供。高品質な映像制作のためのテクニックやヒントを紹介。">
+    <meta property="twitter:image" content="https://studioq.jp/images/slide1.jpg">
+    
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Blog Header Styling */
+        .blog-header {
+            position: relative;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+        
+        .blog-header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: var(--header-bg-image, url('../../images/bl04.png'));
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+        
+        /* Dynamic header image support */
+        .blog-header[data-bg-image] .blog-header-bg {
+            background-image: var(--header-bg-image);
+        }
+        
+        .blog-header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--header-overlay, linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%));
+            z-index: 2;
+        }
+        
+        /* Default dark background styling - white text */
+        .blog-title {
+            position: relative;
+            z-index: 3;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: white !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        
+        .blog-meta {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            color: white !important;
+        }
+        
+        .blog-meta > div {
+            color: white !important;
+        }
+        
+        /* Light background override - dark text */
+        .blog-header.light-bg .blog-title {
+            color: #333 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8);
+        }
+        
+        .blog-header.light-bg .blog-meta {
+            color: #333 !important;
+        }
+        
+        .blog-header.light-bg .blog-meta > div {
+            background: rgba(0,0,0,0.1);
+            color: #333 !important;
+        }
+        
+        .blog-header.light-bg .blog-header-overlay {
+            background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 100%);
+        }
+        }
+        
+        .blog-meta > div {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Content Styling - Default dark background */
+        .blog-text {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.8;
+            color: white;
+        }
+        
+        .blog-text h2 {
+            color: white !important;
+            margin: 2rem 0 1rem 0;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 0.5rem;
+        }
+        
+        .blog-text p {
+            margin-bottom: 1.5rem;
+            color: white !important;
+        }
+        
+        .blog-text h3 {
+            color: white !important;
+        }
+        
+        .blog-text h4 {
+            color: white !important;
+        }
+        
+        .blog-text li {
+            color: white !important;
+        }
+        
+        .blog-text ol li {
+            color: white !important;
+        }
+        
+        .blog-text ul li {
+            color: white !important;
+        }
+        
+        /* Light background overrides for content */
+        .blog-header.light-bg ~ main .blog-text {
+            color: #333;
+        }
+        
+        .blog-header.light-bg ~ main .blog-text h2 {
+            color: #333 !important;
+        }
+        
+        .blog-header.light-bg ~ main .blog-text p {
+            color: #555 !important;
+        }
+        
+        .blog-header.light-bg ~ main .blog-text h3 {
+            color: #333 !important;
+        }
+        
+        .blog-header.light-bg ~ main .blog-text h4 {
+            color: #333 !important;
+        }
+        
+        .blog-header.light-bg ~ main .blog-text li {
+            color: #555 !important;
+        }
+        
+        .blog-header.light-bg ~ main .blog-text ol li {
+            color: #555 !important;
+        }
+        
+        .blog-header.light-bg ~ main .blog-text ul li {
+            color: #555 !important;
+        }
+        
+        /* Highlight Box Styling */
+        .highlight-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-left: 5px solid #007bff;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .highlight-box h3 {
+            color: #007bff !important;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .highlight-box p {
+            color: #333 !important;
+        }
+        
+        .highlight-box li {
+            color: #333 !important;
+        }
+        
+        .highlight-box ul {
+            color: #333 !important;
+        }
+        
+        /* Override any global white text rules for highlight boxes */
+        .highlight-box,
+        .highlight-box * {
+            color: #333 !important;
+        }
+        
+        .highlight-box h3 {
+            color: #007bff !important;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* Equipment Grid Styling - Limited to 2 items */
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .equipment-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .equipment-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .equipment-item i {
+            font-size: 2.5rem;
+            color: #007bff;
+            margin-bottom: 1rem;
+        }
+        
+        .equipment-item h4 {
+            color: #333 !important;
+            margin-bottom: 0.5rem;
+        }
+        
+        .equipment-item p {
+            color: #666 !important;
+        }
+        
+        /* Override any global white text rules for equipment grid */
+        .equipment-grid .equipment-item,
+        .equipment-grid .equipment-item h4,
+        .equipment-grid .equipment-item p {
+            color: #333 !important;
+        }
+        
+        .equipment-grid .equipment-item p {
+            color: #666 !important;
+        }
+        
+        /* Image Styling */
+        .blog-image-full, .blog-image-gallery, .blog-image-single {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .blog-image-full img, .blog-image-single img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .blog-image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        
+        .blog-image-gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .image-caption {
+            font-style: italic;
+            color: #666;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        /* CTA Styling */
+        .blog-cta {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 15px;
+            margin: 3rem 0;
+        }
+        
+        .blog-cta h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .blog-cta .btn {
+            background: white;
+            color: #007bff;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .blog-cta .btn:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Related Posts Styling */
+        .blog-related {
+            margin: 3rem 0;
+        }
+        
+        .blog-related h3 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+            font-size: 1.8rem;
+        }
+        
+        .related-posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .related-post {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .related-post:hover {
+            transform: translateY(-5px);
+        }
+        
+        .related-post img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .related-post-content {
+            padding: 1.5rem;
+        }
+        
+        .related-post-title {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .related-post-excerpt {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .related-post-link {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .related-post-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .blog-title {
+                font-size: 2rem;
+            }
+            
+            .blog-meta {
+                gap: 1rem;
+            }
+            
+            .blog-text {
+                padding: 1rem;
+            }
+            
+            .equipment-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+            
+            .related-posts {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Header image upload functionality */
+        .header-image-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255,255,255,0.9);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: none;
+        }
+        
+        .header-image-controls.show {
+            display: block;
+        }
+        
+        .header-image-controls input[type="file"] {
+            margin-bottom: 0.5rem;
+        }
+        
+        .header-image-controls button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0.25rem;
+        }
+        
+        .header-image-controls button:hover {
+            background: #0056b3;
+        }
+        
+        /* Edit mode toggle */
+        .edit-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .edit-mode-toggle:hover {
+            background: #218838;
+        }
+    </style>
+    
+    <!-- 構造化データ -->
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "4K映像制作の技術情報: クリエイターに向けた実践的ガイド",
+  "description": "4K映像制作の世界に踏み込むクリエイターのための実践的な情報を提供。高品質な映像制作のためのテクニックやヒントを紹介。",
+  "author": {
+    "@type": "Organization",
+    "name": "スタジオQ"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "スタジオQ",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://studioq.jp/images/studioq_logo-1.png"
+    }
+  },
+  "datePublished": "2025-06-04",
+  "dateModified": "2025-06-04",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://studioq.jp/blog/2025-06-04-py4p8o.html"
+  },
+  "image": "https://studioq.jp/images/slide1.jpg",
+  "keywords": "4K映像制作, 映像制作, 技術情報"
+}
+    </script>
+</head>
+<body>
+    <!-- ヘッダーとナビゲーション -->
+    <header>
+        <div class="logo">
+            <a href="../index.html"><img src="../images/studioq_logo_white.png" alt="大阪 Studio Q プロフェッショナルバーチャルスタジオ" class="logo-image" loading="eager"></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">ホーム</a></li>
+                <li><a href="../index.html#features">スタジオについて</a></li>
+                <li><a href="../index.html#gallery">ギャラリー</a></li>
+                <li><a href="../index.html#contact">お問い合わせ</a></li>
+                <li><a href="../blog/index.html">ブログ</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- ブログ記事 -->
+    <main class="blog-content">
+        <article>
+            <header class="blog-header" id="blogHeader">
+                <div class="blog-header-bg blog-header-bg-image"></div>
+                <div class="blog-header-overlay"></div>
+                <h1 class="blog-title">4K映像制作の技術情報<br>クリエイターに向けた実践的ガイド</h1>
+                <div class="blog-meta">
+                    <div class="blog-date">
+                        <i class="far fa-calendar-alt"></i>
+                        <span>2025.06.04</span>
+                    </div>
+                    <div class="blog-author">
+                        <i class="far fa-user"></i>
+                        <span>Studio Q 編集部</span>
+                    </div>
+                    <div class="blog-category">
+                        <i class="far fa-folder"></i>
+                        <span>技術情報</span>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="blog-text">
+                <p>4K映像制作は、映像業界で注目を集める技術革新の最前線です。高解像度による美しい映像表現は視聴者を魅了し、クオリティの高いコンテンツ制作が求められています。Studio Qでは、最新の4K撮影機材と専門知識を活用して、クリエイターの皆様の映像制作をサポートしています。</p>
+                
+                <h2>4K映像制作の魅力と可能性</h2>
+                <p>4K映像制作の世界は、従来のHD映像を遥かに超える表現力を提供します。3840×2160ピクセルの高解像度により、細部まで鮮明に描写され、視聴者に圧倒的な没入感を与えることができます。</p>
+                
+                <div class="highlight-box">
+                    <h3>4K映像制作のメリット</h3>
+                    <ul class="feature-list">
+                        <li><strong>圧倒的な高解像度による美しい映像表現</strong></li>
+                        <li><strong>視聴者を魅了する臨場感とクオリティ</strong></li>
+                        <li><strong>将来性のある映像フォーマットへの対応</strong></li>
+                        <li><strong>プロフェッショナルな映像制作への第一歩</strong></li>
+                    </ul>
+                </div>
+                
+                <div class="blog-image-full">
+                    <img src="../../images/bl01.png" alt="Studio Qの4K映像制作スタジオ設備" loading="lazy">
+                    <p class="image-caption">Studio Qの4K映像制作スタジオ - 最新の撮影機材と照明設備を完備</p>
+                </div>
+                
+                <h2>4K映像制作の基礎知識</h2>
+                <p>4K映像制作を始める前に、基本的な技術仕様と制作フローを理解することが重要です。解像度、フレームレート、コーデック、カラーグレーディングなど、プロフェッショナルな映像制作に必要な要素を詳しく解説します。</p>
+                
+                <div class="equipment-grid">
+                    <div class="equipment-item">
+                        <i class="fas fa-video"></i>
+                        <h4>4Kカメラ</h4>
+                        <p>高解像度撮影のための業務用カメラシステム</p>
+                    </div>
+                    <div class="equipment-item">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>プロ照明機材</h4>
+                        <p>4K映像に最適化されたLED照明システム</p>
+                    </div>
+                </div>
+                
+                <h2>4K映像制作のテクニック</h2>
+                <p>4K映像をより美しく見せるための撮影テクニックや編集方法について紹介します。ライティング、カメラワーク、色彩調整のポイントを押さえることで、プロフェッショナルな映像を制作することができます。</p>
+                
+                <div class="blog-image-gallery">
+                    <img src="../../images/bl02.png" alt="4K撮影のライティングテクニック" loading="lazy">
+                    <img src="../../images/bl03.png" alt="4Kカメラワークの実例" loading="lazy">
+                </div>
+                
+                <div class="highlight-box">
+                    <h3>撮影時のポイント</h3>
+                    <p>4K映像撮影では、従来のHD撮影以上に細かな配慮が必要です。照明の配置、被写体の動き、背景の選択など、すべての要素が最終的な映像品質に大きく影響します。事前の準備と計画が成功の鍵となります。</p>
+                </div>
+                
+                <h2>音響との統合</h2>
+                <p>4K映像に高品質な音響を組み合わせることで、よりリアルで感動的な映像体験を提供できます。サウンドデザイン、録音技術、ミキシングのテクニックについても詳しく紹介します。</p>
+                
+                <div class="blog-image-full">
+                    <img src="../../images/top_VR7-1.jpg" alt="Studio Qの音響設備" loading="lazy">
+                    <p class="image-caption">Studio Q導入のプロ仕様音響機器 - 4K映像に最適化されたサウンドシステム</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h3>音響品質の重要性</h3>
+                    <p>4K映像の美しさを最大限に活かすためには、同等レベルの音響品質が不可欠です。Studio Qでは、映像と音響の両方において妥協のない品質を追求し、視聴者に感動を与える作品作りをサポートします。</p>
+                </div>
+                
+                <h2>実践的な制作フロー</h2>
+                <p>Studio Qでの4K映像制作は、以下のフローで進行します。</p>
+                
+                <ol>
+                    <li><strong>企画・コンセプト設計</strong>：映像の目的と表現方法を明確化</li>
+                    <li><strong>プリプロダクション</strong>：撮影計画、機材選定、ロケーション確認</li>
+                    <li><strong>撮影</strong>：4K機材を使用した高品質撮影</li>
+                    <li><strong>ポストプロダクション</strong>：編集、カラーグレーディング、音響調整</li>
+                    <li><strong>最終確認・納品</strong>：品質チェックと各種フォーマットでの出力</li>
+                </ol>
+                
+                <div class="highlight-box">
+                    <h3>Studio Qの強み</h3>
+                    <p>経験豊富なスタッフが、企画段階から最終納品まで一貫してサポートします。最新の機材と技術を駆使して、お客様のビジョンを最高品質の4K映像として実現いたします。</p>
+                </div>
+                
+                <h2>まとめ: 4K映像制作への挑戦</h2>
+                <p>4K映像制作は技術と芸術が融合した分野です。挑戦するクリエイターにとって、新たな可能性が広がること間違いありません。Studio Qでは、最新の設備と専門知識を活用して、皆様の創造性を最大限に引き出すお手伝いをいたします。</p>
+                
+                <p>大阪で高品質な4K映像制作をお考えのクリエイターの皆様、ぜひ一度、Studio Qでその違いを体感してください。</p>
+            </div>
+            
+            <div class="blog-cta">
+                <h3>Studio Qで4K映像制作を体験しませんか？</h3>
+                <p>プロフェッショナルな設備と経験豊富なスタッフが、あなたの映像制作をサポートします。</p>
+                <a href="../index.html#contact" class="btn">お問い合わせ・見学予約</a>
+            </div>
+            
+            <div class="blog-related">
+                <h3>関連記事</h3>
+                <div class="related-posts">
+                    <div class="related-post">
+                        <img src="../../images/cropped-slide3-2_1920-jpg.webp" alt="バーチャルプロダクションの最新トレンド" loading="lazy">
+                        <div class="related-post-content">
+                            <h4 class="related-post-title">2025年バーチャルプロダクションの最新トレンド</h4>
+                            <p class="related-post-excerpt">進化を続けるバーチャルプロダクション技術の最新トレンドをご紹介</p>
+                            <a href="virtual-production.html" class="related-post-link">続きを読む <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="related-post">
+                        <img src="../../images/slide4-2_1920-jpg (1).webp" alt="4Kカメラの選び方" loading="lazy">
+                        <div class="related-post-content">
+                            <h4 class="related-post-title">プロが教える4Kカメラの選び方</h4>
+                            <p class="related-post-excerpt">映像制作において重要な4Kカメラの選び方について解説</p>
+                            <a href="camera-selection.html" class="related-post-link">続きを読む <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="related-post">
+                        <img src="../../images/top3-1.jpg" alt="グリーンスクリーン撮影のコツ" loading="lazy">
+                        <div class="related-post-content">
+                            <h4 class="related-post-title">グリーンスクリーン撮影の基本とコツ</h4>
+                            <p class="related-post-excerpt">バーチャル撮影に欠かせないグリーンスクリーン撮影の基本</p>
+                            <a href="green-screen.html" class="related-post-link">続きを読む <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+    
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../../images/studioq_logo_white.png" alt="大阪 Studio Q プロフェッショナルバーチャルスタジオ" class="footer-logo-image" loading="lazy">
+                
+                </div>
+                <div class="footer-links">
+                    <h3>リンク</h3>
+                    <ul>
+                        <li><a href="../index.html#home">ホーム</a></li>
+                        <li><a href="../index.html#features">スタジオについて</a></li>
+                        <li><a href="../index.html#gallery">ギャラリー</a></li>
+                        <li><a href="../index.html#contact">お問い合わせ</a></li>
+                        <li><a href="../blog/index.html">ブログ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>お問い合わせ</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 大阪市浪速区恵美須西3-2-4 2F</p>
+                    <p><i class="fas fa-phone"></i> 06-6978-8122</p>
+                    <p><i class="fas fa-envelope"></i> info@studioq.co.jp</p>
+                </div>
+                <div class="footer-social">
+                    <h3>ソーシャルメディア</h3>
+                    <div class="social-icons">
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container">
+                    <p>&copy; 2025 Studio Q All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../script.js"></script>
+    
+    <!-- Header image upload controls -->
+    <div class="header-image-controls" id="headerImageControls">
+        <h4>ヘッダー画像設定</h4>
+        <input type="file" id="headerImageUpload" accept="image/*">
+        <br>
+        <button onclick="applyHeaderImage()">画像を適用</button>
+        <button onclick="resetHeaderImage()">デフォルトに戻す</button>
+        <button onclick="toggleBackgroundMode()">背景モード切替</button>
+    </div>
+    
+    <!-- Edit mode toggle button -->
+    <button class="edit-mode-toggle" onclick="toggleEditMode()" title="編集モード切替">
+        <i class="fas fa-edit"></i>
+    </button>
+    
+    <script>
+        let editMode = false;
+        let isLightBackground = false;
+        
+        function toggleEditMode() {
+            editMode = !editMode;
+            const controls = document.getElementById('headerImageControls');
+            if (editMode) {
+                controls.classList.add('show');
+            } else {
+                controls.classList.remove('show');
+            }
+        }
+        
+        function applyHeaderImage() {
+            const fileInput = document.getElementById('headerImageUpload');
+            const file = fileInput.files[0];
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imageUrl = e.target.result;
+                    document.documentElement.style.setProperty('--header-bg-image', `url(${imageUrl})`);
+                    
+                    // Auto-detect if image is light or dark and adjust text accordingly
+                    detectImageBrightness(imageUrl);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        function resetHeaderImage() {
+            document.documentElement.style.setProperty('--header-bg-image', "url('../../images/bl04.png')");
+            const header = document.getElementById('blogHeader');
+            header.classList.remove('light-bg');
+            isLightBackground = false;
+        }
+        
+        function toggleBackgroundMode() {
+            const header = document.getElementById('blogHeader');
+            isLightBackground = !isLightBackground;
+            
+            if (isLightBackground) {
+                header.classList.add('light-bg');
+                document.documentElement.style.setProperty('--header-overlay', 'linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 100%)');
+            } else {
+                header.classList.remove('light-bg');
+                document.documentElement.style.setProperty('--header-overlay', 'linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%)');
+            }
+        }
+        
+        function detectImageBrightness(imageSrc) {
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = function() {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                
+                ctx.drawImage(img, 0, 0);
+                
+                try {
+                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    const data = imageData.data;
+                    let brightness = 0;
+                    
+                    for (let i = 0; i < data.length; i += 4) {
+                        const r = data[i];
+                        const g = data[i + 1];
+                        const b = data[i + 2];
+                        brightness += (r * 0.299 + g * 0.587 + b * 0.114);
+                    }
+                    
+                    brightness = brightness / (data.length / 4);
+                    
+                    const header = document.getElementById('blogHeader');
+                    if (brightness > 128) {
+                        header.classList.add('light-bg');
+                        isLightBackground = true;
+                    } else {
+                        header.classList.remove('light-bg');
+                        isLightBackground = false;
+                    }
+                } catch (e) {
+                    console.log('Could not analyze image brightness:', e);
+                }
+            };
+            img.src = imageSrc;
+        }
+        
+        // Preset image options from existing library
+        function usePresetImage(imageName) {
+            const imageUrl = `../../images/${imageName}`;
+            document.documentElement.style.setProperty('--header-bg-image', `url(${imageUrl})`);
+            detectImageBrightness(imageUrl);
+        }
+        
+        // Add preset image buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const controls = document.getElementById('headerImageControls');
+            const presetImages = ['bl01.png', 'bl02.png', 'bl03.png', 'bl04.png', 'slide1.jpg', 'slide2.jpg', 'slide3.jpg', 'top_VR7-1.jpg'];
+            
+            const presetContainer = document.createElement('div');
+            presetContainer.innerHTML = '<h5>プリセット画像:</h5>';
+            
+            presetImages.forEach(imageName => {
+                const button = document.createElement('button');
+                button.textContent = imageName.replace(/\.(png|jpg)$/, '');
+                button.onclick = () => usePresetImage(imageName);
+                button.style.fontSize = '0.8rem';
+                button.style.padding = '0.25rem 0.5rem';
+                presetContainer.appendChild(button);
+            });
+            
+            controls.appendChild(presetContainer);
+        });
+    </script>
+</body>
+</html>

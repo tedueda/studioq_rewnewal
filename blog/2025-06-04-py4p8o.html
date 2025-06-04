@@ -66,29 +66,15 @@
             z-index: 2;
         }
         
-        /* Auto text color based on background */
-        .blog-header.light-bg .blog-title,
-        .blog-header.light-bg .blog-meta {
-            color: #333 !important;
-            text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
-        }
-        
-        .blog-header.light-bg .blog-meta > div {
-            background: rgba(0,0,0,0.1);
-            color: #333;
-        }
-        
-        .blog-header.light-bg .blog-header-overlay {
-            background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 100%);
-        }
-        
+        /* Default dark background styling - white text */
         .blog-title {
             position: relative;
             z-index: 3;
             font-size: 2.5rem;
             font-weight: bold;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            color: white !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
         
         .blog-meta {
@@ -98,6 +84,31 @@
             gap: 2rem;
             flex-wrap: wrap;
             justify-content: center;
+            color: white !important;
+        }
+        
+        .blog-meta > div {
+            color: white !important;
+        }
+        
+        /* Light background override - dark text */
+        .blog-header.light-bg .blog-title {
+            color: #333 !important;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8);
+        }
+        
+        .blog-header.light-bg .blog-meta {
+            color: #333 !important;
+        }
+        
+        .blog-header.light-bg .blog-meta > div {
+            background: rgba(0,0,0,0.1);
+            color: #333 !important;
+        }
+        
+        .blog-header.light-bg .blog-header-overlay {
+            background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 100%);
+        }
         }
         
         .blog-meta > div {

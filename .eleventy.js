@@ -17,6 +17,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("images");
   eleventyConfig.addPassthroughCopy("blog-generator/**/*.css");
   eleventyConfig.addPassthroughCopy("blog-generator/**/*.js");
+  eleventyConfig.addPassthroughCopy("blog-generator/api/**/*.js");
 
   // 日付フィルター
   eleventyConfig.addFilter("dateFilter", function(date) {

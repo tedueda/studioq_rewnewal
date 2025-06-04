@@ -12,8 +12,8 @@ class BlogGeneratorUI {
         this.bindEvents();
         this.initializeImageUpload();
         
-        if (window.location.pathname.includes('preview.html')) {
-            this.initializePreviewPage();
+        if (window.location.pathname.includes('preview')) {
+            setTimeout(() => this.initializePreviewPage(), 100);
         }
     }
 
@@ -322,15 +322,41 @@ class BlogGeneratorUI {
 
         this.updateProgress(50, 'コンテンツを生成中...');
 
-        const mockContent = await this.generateMockContent(keyword, options);
-        
-        this.updateProgress(80, '記事を最適化中...');
-        
-        const optimizedContent = this.optimizeContent(mockContent);
-        
-        this.updateProgress(100, '生成完了！');
-        
-        return optimizedContent;
+        try {
+            const response = await fetch('/api/generate-content', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ keyword, options })
+            });
+            
+            if (!response.ok) {
+                throw new Error(`API call failed: ${response.status}`);
+            }
+            
+            const result = await response.json();
+            
+            if (!result.success) {
+                throw new Error(result.error || 'Content generation failed');
+            }
+            
+            this.updateProgress(80, '記事を最適化中...');
+            const optimizedContent = this.optimizeContent(result.content);
+            
+            this.updateProgress(100, '生成完了！');
+            return optimizedContent;
+            
+        } catch (error) {
+            console.error('OpenAI API error:', error);
+            this.updateProgress(60, 'APIエラー - モックコンテンツを生成中...');
+            
+            const mockContent = await this.generateMockContent(keyword, options);
+            
+            this.updateProgress(80, '記事を最適化中...');
+            const optimizedContent = this.optimizeContent(mockContent);
+            
+            this.updateProgress(100, '生成完了！');
+            return optimizedContent;
+        }
     }
 
     async generateMockContent(keyword, options) {
@@ -462,20 +488,42 @@ class BlogGeneratorUI {
     }
 
     populatePreviewForm() {
-        if (!this.generatedContent) return;
+        if (!this.generatedContent) {
+            console.warn('No generated content available for preview');
+            return;
+        }
 
-        document.getElementById('preview-title').value = this.generatedContent.title;
-        document.getElementById('preview-meta-description').value = this.generatedContent.meta_description;
-        document.getElementById('preview-json-ld').value = JSON.stringify(this.generatedContent.structured_data, null, 2);
+        const titleElement = document.getElementById('preview-title');
+        const metaElement = document.getElementById('preview-meta-description');
+        const jsonElement = document.getElementById('preview-json-ld');
 
-        this.updateCharCounter('title-counter', this.generatedContent.title.length);
-        this.updateCharCounter('description-counter', this.generatedContent.meta_description.length);
+        if (titleElement) {
+            titleElement.value = this.generatedContent.title || '';
+            this.updateCharCounter('title-counter', this.generatedContent.title?.length || 0);
+        }
+        
+        if (metaElement) {
+            metaElement.value = this.generatedContent.meta_description || '';
+            this.updateCharCounter('description-counter', this.generatedContent.meta_description?.length || 0);
+        }
+        
+        if (jsonElement) {
+            jsonElement.value = JSON.stringify(this.generatedContent.structured_data || {}, null, 2);
+        }
     }
 
     initializeQuillEditors() {
-        if (!window.quillManager || !this.generatedContent) return;
+        if (!window.quillManager) {
+            console.warn('QuillManager not available');
+            return;
+        }
+        
+        if (!this.generatedContent) {
+            console.warn('No generated content for Quill editors');
+            return;
+        }
 
-        const sections = window.quillManager.parseContentToSections(this.generatedContent.content);
+        const sections = window.quillManager.parseContentToSections(this.generatedContent.content || '');
 
         for (let i = 1; i <= 4; i++) {
             const section = sections[i - 1] || { heading: `セクション ${i}`, content: '' };
@@ -485,7 +533,12 @@ class BlogGeneratorUI {
                 headingElement.textContent = section.heading;
             }
             
-            window.quillManager.initializeEditor(`editor-${i}`, section.content);
+            const editorContainer = document.getElementById(`editor-${i}`);
+            if (editorContainer) {
+                window.quillManager.initializeEditor(`editor-${i}`, section.content);
+            } else {
+                console.warn(`Editor container editor-${i} not found`);
+            }
         }
     }
 

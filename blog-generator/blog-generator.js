@@ -159,12 +159,14 @@ class BlogGeneratorUI {
     processImageFile(file, imageNumber, inputElement) {
         if (file.size > 5 * 1024 * 1024) {
             this.showImageError('圧縮後もファイルサイズが5MBを超えています。別の画像を選択してください。');
-            inputElement.value = '';
+            if (inputElement) {
+                inputElement.value = '';
+            }
             return;
         }
 
         const preview = document.getElementById(`preview-${imageNumber}`);
-        const label = inputElement.nextElementSibling;
+        const label = inputElement ? inputElement.nextElementSibling : null;
 
         const reader = new FileReader();
         reader.onload = (e) => {
@@ -175,7 +177,9 @@ class BlogGeneratorUI {
                 </button>
             `;
             preview.classList.add('active');
-            label.style.display = 'none';
+            if (label) {
+                label.style.display = 'none';
+            }
 
             this.uploadedImages[imageNumber - 1] = {
                 file: file,

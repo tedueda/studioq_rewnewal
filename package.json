@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/tedueda/studioq_rewnewal/issues"
   },
-  "homepage": "https://github.com/tedueda/studioq_rewnewal#readme"
+  "homepage": "https://github.com/tedueda/studioq_rewnewal#readme",
+  "dependencies": {
+    "jsdom": "^26.1.0"
+  }
 }

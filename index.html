@@ -70,13 +70,13 @@
     <link rel="dns-prefetch" href="//www.google.com">
     <link rel="dns-prefetch" href="//www.youtube.com">
     <link rel="dns-prefetch" href="//images.unsplash.com">
-    
+
     <!-- ファビコン設定 -->
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/manifest.webmanifest">
-    
+
     <!-- スクリーンリーダー用スタイル -->
     <style>
         .sr-only {
@@ -111,7 +111,7 @@
         <div class="logo">
             <a href="#home"><img src="images/studioq_logo_white.png" alt="大阪 Studio Q プロフェッショナルバーチャルスタジオ" class="logo-image" loading="eager"></a>
         </div>
-        <nav>
+        <nav aria-label="メインナビゲーション">
             <ul>
                 <li><a href="#home">ホーム</a></li>
                 <li><a href="#features">スタジオについて</a></li>
@@ -133,7 +133,7 @@
 
                     <div class="slide-content">
                         <img src="images/studioq_logo_white.png" alt="大阪・Studio Q｜プロフェッショナルバーチャルスタジオ" class="hero-content-logo" loading="eager">
-                     
+
                         <p class="subtitle">最新の4K映像制作設備と高品質グリーンスクリーン</p>
                         <p class="specs">天井高5M × 広大なスペース × 防音設備</p>
                         <div class="hero-actions">
@@ -148,7 +148,7 @@
 
                     <div class="slide-content">
                         <img src="images/studioq_logo_white.png" alt="大阪・Studio Q｜プロフェッショナルバーチャルスタジオ" class="hero-content-logo" loading="eager">
-                
+
                         <p class="subtitle">4台のSONY業務用4Kカメラによるマルチアングル撮影</p>
                         <p class="specs">SONY FX6 × マルチカメラ撮影 × リアルタイム編集</p>
                         <div class="hero-actions">
@@ -163,7 +163,7 @@
 
                     <div class="slide-content">
                         <img src="images/studioq_logo_white.png" alt="大阪・Studio Q｜プロフェッショナルバーチャルスタジオ" class="hero-content-logo" loading="eager">
-                        
+
                         <p class="subtitle">プロ仕様RGB LED照明による高度な演出</p>
                         <p class="specs">調光機能 × カラーミキシング × DMXコントロール</p>
                         <div class="hero-actions">
@@ -179,7 +179,7 @@
                     <div class="slide-content">
                         <img src="images/studioq_logo_white.png" alt="大阪・Studio Q｜プロフェッショナルバーチャルスタジオ" class="hero-content-logo" loading="eager">
                         <p class="subtitle">プロフェッショナルな音楽配信環境</p>
-                    
+
                         <div class="hero-actions">
                             <a href="#contact" class="btn btn-primary">スタジオ予約</a>
                             <a href="studio_fee.html" class="btn btn-secondary">料金プラン</a>
@@ -188,7 +188,7 @@
                 </div>
             </div>
             <div class="slide video-slide">
-                <video id="heroVideo" class="slide-video" autoplay="" muted="" preload="auto">
+                <video id="heroVideo" class="slide-video" muted="" preload="auto">
                     <source src="movie/greem1-2.mp4" type="video/mp4">
                     <source src="movie/greem1-2.webm" type="video/webm">
                     動画をサポートしていないブラウザです
@@ -207,8 +207,8 @@
                 </div>
             </div>
             <div class="slideshow-controls">
-                <button class="prev-slide" title="前のスライドを表示"><i class="fas fa-chevron-left" aria-hidden="true"></i><span class="sr-only">前のスライド</span></button>
-                <button class="next-slide" title="次のスライドを表示"><i class="fas fa-chevron-right" aria-hidden="true"></i><span class="sr-only">次のスライド</span></button>
+                <button type="button" class="prev-slide" title="前のスライドを表示"><i class="fas fa-chevron-left" aria-hidden="true"></i><span class="sr-only">前のスライド</span></button>
+                <button type="button" class="next-slide" title="次のスライドを表示"><i class="fas fa-chevron-right" aria-hidden="true"></i><span class="sr-only">次のスライド</span></button>
             </div>
         </div>
         <div class="hero-info-bar">
@@ -258,7 +258,7 @@
         <div class="container">
             <div class="studio-intro-container">
                 <div class="video-wrapper">
-                    <div class="video-thumbnail" data-video-url="https://test.studioq.co.jp/wp-content/uploads/2023/10/PR_NA_BGM.mp4" aria-label="スタジオQ紹介動画">
+                    <div class="video-thumbnail" data-video-url="https://test.studioq.co.jp/wp-content/uploads/2023/10/PR_NA_BGM.mp4">
                         <div class="video-text-overlay">
                             <h2 class="section-title intro-title">スタジオQのご紹介</h2>
                             <p class="section-subtitle intro-subtitle">最新の技術と創造性で、あなたのビジョンを現実に</p>
@@ -278,7 +278,7 @@
     <section id="latest-videos" class="latest-videos">
         <div class="container">
             <h2 class="section-title">ー最新映像ー</h2>
-            
+
             <div class="videos-grid">
                 <div class="video-item">
                     <div class="latest-video-thumbnail" data-video-url="https://test.studioq.co.jp/wp-content/uploads/2025/05/Everything-is-You.mp4">
@@ -304,7 +304,7 @@
     <section id="gallery" class="gallery">
         <div class="container">
             <h2 class="section-title">スタジオでの利用事例</h2>
-            
+
             <table class="gallery-table">
                 <tbody><tr>
                     <td class="gallery-cell">
@@ -372,10 +372,10 @@
     <section id="features" class="features">
         <div class="container">
             <h2 class="section-title">Studio Qはこんなスタジオです</h2>
-            
+
             <div class="feature-item">
                 <h3 class="feature-title">特長１ バーチャル撮影と音楽LIVEが可能なハイブリッドスタジオ</h3>
-                
+
                 <div class="feature-content">
                     <div class="feature-image">
                         <img src="images/top3-1.jpg" alt="Studio Q 5m天井高グリーンバックスタジオ設備" loading="lazy">
@@ -392,7 +392,7 @@
 
             <div class="feature-item">
                 <h3 class="feature-title">特長２ 撮影シーンに応じて様々な背景へ変更</h3>
-                
+
                 <div class="feature-content">
                     <div class="feature-image">
                         <img src="images/top-3-2.jpg" alt="Studio Q 撮影用途に合わせた様々な背景セット" loading="lazy">
@@ -406,7 +406,7 @@
 
             <div class="feature-item">
                 <h3 class="feature-title">特長３ 映像・音響・照明の全ての機材を常設完備</h3>
-                
+
                 <div class="feature-content">
                     <div class="feature-image">
                         <img src="images/intro2-2.jpg" alt="Studio Q プロフェッショナル映像・音響・照明機材一式" loading="lazy">
@@ -424,7 +424,7 @@
 
             <div class="feature-item">
                 <h3 class="feature-title">特長４ ステンドグラスの開放感あふれるラウンジとメイク室</h3>
-                
+
                 <div class="feature-content">
                     <div class="feature-image">
                         <img src="images/intro3-2.jpg" alt="Studio Q ステンドグラスの開放感あふれるラウンジとメイク室" loading="lazy">
@@ -445,7 +445,7 @@
     <div class="container">
         <h2 class="section-title">スタジオQブログ</h2>
         <p class="section-subtitle">最新の撮影テクニックやスタジオの活用方法をご紹介</p>
-        
+
         <div class="blog-preview-grid"><article class="blog-card">
     <div class="blog-image">
       <img src="images/cropped-slide3-2_1920-jpg.webp" alt="スタジオQでの最新バーチャルプロダクション技術">
@@ -475,7 +475,7 @@
                     </div>
                 </div>
             </article>
-            
+
             <!-- バーチャルプロダクション記事 -->
             <article class="blog-card">
                 <div class="blog-image">
@@ -491,14 +491,14 @@
                     </div>
                 </div>
             </article>
-            
+
             <!-- ブログ記事1 -->
-            
-            
+
+
             <!-- ブログ記事2 -->
-            
+
         </div>
-        
+
         <div class="blog-more">
             <a href="blog.html" class="btn btn-primary">ブログをもっと見る</a>
         </div>
@@ -528,20 +528,20 @@
                     <p><i class="fas fa-fax"></i> FAX 06-6978-8123</p>
                 </div>
             </div>
-            
+
             <div class="contact-form">
                 <form action="https://formspree.io/t.ueda@studioq.co.jp" method="POST">
                     <div class="form-group">
-                        <input type="text" placeholder="お名前" required="">
+                        <input type="text" placeholder="お名前" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" placeholder="メールアドレス" required="">
+                        <input type="email" placeholder="メールアドレス" required>
                     </div>
                     <div class="form-group">
                         <input type="tel" placeholder="電話番号">
                     </div>
                     <div class="form-group">
-                        <textarea placeholder="お問い合わせ内容" rows="5" required=""></textarea>
+                        <textarea placeholder="お問い合わせ内容" rows="5" required></textarea>
                     </div>
                     <button type="submit" class="btn">送信する</button>
                 </form>
@@ -549,14 +549,14 @@
         </div>
     </section>
 
- 
+
     <!-- フッター -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
                     <img src="images/studioq_logo_white.png" alt="大阪 Studio Q プロフェッショナルバーチャルスタジオ" class="footer-logo-image" loading="lazy">
-                
+
                 </div>
                 <div class="footer-links">
                     <h3>リンク</h3>

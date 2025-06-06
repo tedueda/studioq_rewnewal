@@ -4,8 +4,8 @@ const { JSDOM } = require('jsdom');
 
 // 設定
 const CONFIG = {
-  blogDir: path.join(__dirname, '..', 'blog'),
-  indexPath: path.join(__dirname, '..', 'index.html'),
+  blogDir: path.join(__dirname, '..'),
+  indexPath: path.join(__dirname, '..', '..', 'index.html'),
   templatesDir: path.join(__dirname, 'templates'),
   maxBlogPreviewItems: 3 // トップページに表示する最大ブログ記事数
 };

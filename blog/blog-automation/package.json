@@ -5,7 +5,9 @@
   "main": "blog-generator.js",
   "scripts": {
     "create": "node blog-generator.js create",
-    "create-sample": "node blog-generator.js create blog-data-sample.json"
+    "create-sample": "node blog-generator.js create blog-data-sample.json",
+    "integrate": "node blog-cascade-integration.js process",
+    "test-integration": "node blog-cascade-integration.js process ../../../blog_cascade/test-output.json"
   },
   "dependencies": {
     "jsdom": "^22.1.0"

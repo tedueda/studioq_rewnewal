@@ -1,15 +1,15 @@
 [build]
   publish = "_site"
-  command = "eleventy"
+  command = "npm run build"
 
 [[plugins]]
   package = "@netlify/plugin-netlify-cms"
 
 [template.environment]
-  NODE_VERSION = "16"
+  NODE_VERSION = "18"
 
 [build.environment]
-  NODE_VERSION = "16"
+  NODE_VERSION = "18"
 
 [[redirects]]
   from = "/*"

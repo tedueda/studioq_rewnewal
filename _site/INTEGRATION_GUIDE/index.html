@@ -1,0 +1,162 @@
+<h1>Blog Cascade Integration Guide</h1>
+<h2>Overview</h2>
+<p>This integration connects the AI-powered blog generation system (<code>blog_cascade</code>) with the Studio Q website (<code>studioq_rewnewal</code>), enabling automatic creation and publishing of blog posts to the main website.</p>
+<h2>Architecture</h2>
+<p>The integration consists of three main components:</p>
+<ol>
+<li><strong>Blog Cascade System</strong> (<code>/blog_cascade/</code>) - AI blog generation with OpenAI API</li>
+<li><strong>Studio Q Bridge</strong> (<code>/blog_cascade/studioq-bridge.js</code>) - Data format converter</li>
+<li><strong>Integration Module</strong> (<code>/blog/blog-automation/blog-cascade-integration.js</code>) - Publishing system</li>
+</ol>
+<h2>Workflow</h2>
+<pre><code>Blog Cascade UI → Generate Content → Studio Q Bridge → Integration Module → Published Blog Post
+</code></pre>
+<h3>Step 1: Content Generation</h3>
+<ul>
+<li>User inputs blog parameters in blog_cascade UI</li>
+<li>AI generates structured content using OpenAI API</li>
+<li>Content includes title, meta description, keywords, and sections</li>
+</ul>
+<h3>Step 2: Format Conversion</h3>
+<ul>
+<li><code>studioq-bridge.js</code> converts blog_cascade output to Studio Q format</li>
+<li>Maps target audience to appropriate categories</li>
+<li>Selects featured images based on content type</li>
+<li>Generates SEO-optimized slugs and metadata</li>
+</ul>
+<h3>Step 3: Publishing</h3>
+<ul>
+<li><code>blog-cascade-integration.js</code> processes the converted data</li>
+<li>Creates HTML blog post using Studio Q template</li>
+<li>Updates main website's blog preview section</li>
+<li>Maintains maximum of 3 blog cards on homepage</li>
+</ul>
+<h2>File Structure</h2>
+<pre><code>studioq_rewnewal/
+├── blog/
+│   ├── blog-automation/
+│   │   ├── blog-cascade-integration.js    # Main integration module
+│   │   ├── blog-generator.js              # Existing blog generator
+│   │   ├── generated-posts/               # Generated JSON data
+│   │   └── templates/
+│   │       └── blog-post-template.html    # Blog post template
+│   └── [generated-posts].html             # Published blog posts
+├── index.html                             # Main website (updated with new posts)
+└── INTEGRATION_GUIDE.md                   # This guide
+
+blog_cascade/
+├── studioq-bridge.js                      # Format converter
+├── integration-workflow.js                # Complete workflow manager
+└── output/                                # Generated data files
+</code></pre>
+<h2>Usage</h2>
+<h3>Manual Integration</h3>
+<ol>
+<li>
+<p><strong>Generate blog data in blog_cascade:</strong></p>
+<pre><code class="language-bash">cd blog_cascade
+node studioq-bridge.js test
+</code></pre>
+</li>
+<li>
+<p><strong>Process and publish to Studio Q:</strong></p>
+<pre><code class="language-bash">cd studioq_rewnewal/blog/blog-automation
+node blog-cascade-integration.js process ../../../blog_cascade/output/studioq-[timestamp].json
+</code></pre>
+</li>
+</ol>
+<h3>Automated Workflow</h3>
+<p>Run the complete workflow with test data:</p>
+<pre><code class="language-bash">cd blog_cascade
+node integration-workflow.js test
+</code></pre>
+<p>Run with custom data:</p>
+<pre><code class="language-bash">cd blog_cascade
+node integration-workflow.js run path/to/data.json
+</code></pre>
+<h2>Data Format</h2>
+<h3>Input (Blog Cascade Format)</h3>
+<pre><code class="language-json">{
+  &quot;title&quot;: &quot;Blog post title&quot;,
+  &quot;mainKeyword&quot;: &quot;Primary keyword&quot;,
+  &quot;targetAudience&quot;: &quot;Target audience&quot;,
+  &quot;metaDescription&quot;: &quot;SEO description&quot;,
+  &quot;articleLength&quot;: &quot;Word count&quot;,
+  &quot;referenceUrl&quot;: &quot;Reference URL&quot;
+}
+</code></pre>
+<h3>Output (Studio Q Format)</h3>
+<pre><code class="language-json">{
+  &quot;title&quot;: &quot;Blog post title&quot;,
+  &quot;slug&quot;: &quot;url-friendly-slug&quot;,
+  &quot;date&quot;: &quot;2025.06.06&quot;,
+  &quot;category&quot;: &quot;映像制作&quot;,
+  &quot;image&quot;: &quot;featured-image.jpg&quot;,
+  &quot;excerpt&quot;: &quot;Brief description&quot;,
+  &quot;content&quot;: &quot;&lt;h2&gt;HTML content&lt;/h2&gt;&quot;,
+  &quot;author&quot;: &quot;スタジオQ AIチーム&quot;
+}
+</code></pre>
+<h2>Category Mapping</h2>
+<p>The system automatically maps target audiences to appropriate categories:</p>
+<ul>
+<li><strong>映像制作</strong>: 映像制作者, 動画クリエイター, ビデオグラファー</li>
+<li><strong>音響技術</strong>: 音響エンジニア, サウンドデザイナー</li>
+<li><strong>ライブ配信</strong>: 配信者, ストリーマー</li>
+<li><strong>バーチャルプロダクション</strong>: VRクリエイター, ARデベロッパー</li>
+<li><strong>機材紹介</strong>: カメラマン, フォトグラファー</li>
+<li><strong>撮影テクニック</strong>: 撮影技術関連</li>
+</ul>
+<h2>Image Selection</h2>
+<p>Featured images are automatically selected based on category:</p>
+<ul>
+<li><strong>映像制作</strong>: <code>slide1.jpg</code></li>
+<li><strong>音響技術</strong>: <code>tascam02-1-jpg.webp</code></li>
+<li><strong>ライブ配信</strong>: <code>bl04.png</code></li>
+<li><strong>バーチャルプロダクション</strong>: <code>cropped-slide3-2_1920-jpg.webp</code></li>
+<li><strong>機材紹介</strong>: <code>slide4-2_1920-jpg.webp</code></li>
+<li><strong>撮影テクニック</strong>: <code>top3-1.jpg</code></li>
+</ul>
+<h2>SEO Features</h2>
+<ul>
+<li><strong>Meta Tags</strong>: Automatic title and description generation</li>
+<li><strong>Open Graph</strong>: Social media sharing optimization</li>
+<li><strong>JSON-LD</strong>: Structured data for search engines</li>
+<li><strong>URL Slugs</strong>: SEO-friendly URLs with timestamps</li>
+<li><strong>Image Alt Tags</strong>: Accessibility and SEO optimization</li>
+</ul>
+<h2>Deployment</h2>
+<p>The integration works with Studio Q's existing deployment pipeline:</p>
+<ol>
+<li><strong>GitHub Pages</strong>: Automatic deployment on push to main branch</li>
+<li><strong>Vercel</strong>: Connected to GitHub repository</li>
+<li><strong>Bolt.new</strong>: Manual deployment option</li>
+</ol>
+<h2>Troubleshooting</h2>
+<h3>Common Issues</h3>
+<ol>
+<li><strong>Path Errors</strong>: Ensure correct directory structure</li>
+<li><strong>Missing Dependencies</strong>: Run <code>npm install</code> in blog-automation directory</li>
+<li><strong>Template Errors</strong>: Verify blog-post-template.html exists</li>
+<li><strong>Image Issues</strong>: Check that referenced images exist in <code>/images/</code> directory</li>
+</ol>
+<h3>Debug Mode</h3>
+<p>Enable detailed logging by setting environment variable:</p>
+<pre><code class="language-bash">DEBUG=true node integration-workflow.js test
+</code></pre>
+<h2>Future Enhancements</h2>
+<ul>
+<li><strong>RSS Feed Generation</strong>: Automatic RSS updates</li>
+<li><strong>Sitemap Updates</strong>: SEO sitemap maintenance</li>
+<li><strong>Social Media Integration</strong>: Automatic social posting</li>
+<li><strong>Analytics Integration</strong>: Performance tracking</li>
+<li><strong>Content Scheduling</strong>: Delayed publishing options</li>
+</ul>
+<h2>Support</h2>
+<p>For issues or questions regarding the integration:</p>
+<ol>
+<li>Check the generated JSON files in <code>generated-posts/</code> directory</li>
+<li>Verify blog post HTML output in <code>/blog/</code> directory</li>
+<li>Review console output for error messages</li>
+<li>Test with sample data using <code>integration-workflow.js test</code></li>
+</ol>

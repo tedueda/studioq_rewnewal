@@ -2,9 +2,6 @@
   publish = "_site"
   command = "npm run build"
 
-[[plugins]]
-  package = "@netlify/plugin-netlify-cms"
-
 [template.environment]
   NODE_VERSION = "18"
 

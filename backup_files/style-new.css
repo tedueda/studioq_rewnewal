@@ -18,15 +18,6 @@
     box-sizing: border-box;
 }
 
-/* すべての画面サイズでテキストを中央揃えにするグローバルスタイル */
-.subtitle, .specs {
-    text-align: center !important;
-    width: 80% !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    display: block !important;
-}
-
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
@@ -246,49 +237,6 @@ img {
     opacity: 0.8;
 }
 
-/* レスポンシブタイトル設定 */
-@media screen and (max-width: 768px) {
-    .section-title {
-        font-size: 1.8rem;
-        max-width: 100%;
-    }
-    
-    .intro-title {
-        font-size: 1.6rem;
-        max-width: 100%;
-    }
-    
-    .video-text-overlay .section-title {
-        font-size: 1.4rem;
-    }
-    
-    #intro-video .video-text-overlay .section-title {
-        font-size: 1.2rem;
-    }
-}
-
-@media screen and (max-width: 576px) {
-    .section-title {
-        font-size: 1.3rem;
-        line-height: 1.4;
-    }
-    
-    .intro-title {
-        font-size: 1.2rem;
-        line-height: 1.4;
-    }
-    
-    .video-text-overlay .section-title {
-        font-size: 1rem;
-        line-height: 1.3;
-    }
-    
-    #intro-video .video-text-overlay .section-title {
-        font-size: 0.85rem;
-        line-height: 1.2;
-    }
-}
-
 /* ヘッダーとナビゲーション */
 header {
     position: fixed;
@@ -429,49 +377,49 @@ nav ul li a:hover::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.05); /* 5%の黒色オーバーレイ */
+    /* スライドのぼかし問題に対応するため、背景グラデーションを完全に削除 */
+    /* background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%); */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 120px 20px 100px 20px;
     z-index: 2;
-    box-sizing: border-box; /* 幅の計算にパディングを含める */
 }
 
 .slide-overlay.from-green-900\/50.via-green-600\/30.to-black\/90 {
-    /* 黒を基調としたオーバーレイ */
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05));
-    box-shadow: none;
-    border-bottom: none;
+    /* 背景グラデーションを完全に削除 */
+    /* background: linear-gradient(135deg, rgba(0, 0, 0, 0.45), rgba(20, 184, 166, 0.35), rgba(0, 0, 0, 0.55)); */
+    box-shadow: inset 0 0 120px rgba(20, 184, 166, 0.25);
+    border-bottom: 1px solid rgba(20, 184, 166, 0.15);
 }
 
 .slide-overlay.from-blue-900\/50.via-purple-600\/30.to-black\/90 {
-    /* 黒を基調としたオーバーレイ */
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05));
-    box-shadow: none;
-    border-bottom: none;
+    /* 背景グラデーションを完全に削除 */
+    /* background: linear-gradient(135deg, rgba(0, 0, 0, 0.45), rgba(99, 102, 241, 0.35), rgba(0, 0, 0, 0.55)); */
+    box-shadow: inset 0 0 120px rgba(99, 102, 241, 0.25);
+    border-bottom: 1px solid rgba(99, 102, 241, 0.15);
 }
 
 .slide-overlay.from-purple-900\/50.via-pink-600\/30.to-black\/90 {
-    /* 黒を基調としたオーバーレイ */
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05));
-    box-shadow: none;
-    border-bottom: none;
+    /* 背景グラデーションを完全に削除 */
+    /* background: linear-gradient(135deg, rgba(0, 0, 0, 0.45), rgba(236, 72, 153, 0.35), rgba(0, 0, 0, 0.55)); */
+    box-shadow: inset 0 0 120px rgba(236, 72, 153, 0.25);
+    border-bottom: 1px solid rgba(236, 72, 153, 0.15);
 }
 
 .slide-overlay.from-amber-900\/50.via-yellow-600\/30.to-black\/90 {
-    /* 黒を基調としたオーバーレイ */
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05));
-    box-shadow: none;
-    border-bottom: none;
+    /* 背景グラデーションを完全に削除 */
+    /* background: linear-gradient(135deg, rgba(0, 0, 0, 0.45), rgba(245, 158, 11, 0.35), rgba(0, 0, 0, 0.55)); */
+    box-shadow: inset 0 0 120px rgba(245, 158, 11, 0.25);
+    border-bottom: 1px solid rgba(245, 158, 11, 0.15);
 }
 
 .slide-overlay.from-teal-900\/50.via-teal-600\/30.to-black\/90 {
-    /* 黒を基調としたオーバーレイ */
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05));
-    box-shadow: none;
-    border-bottom: none;
+    /* 背景グラデーションを完全に削除 */
+    /* background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%); */
+    box-shadow: inset 0 0 120px rgba(0, 128, 128, 0.25);
+    border-bottom: 1px solid rgba(0, 128, 128, 0.15);
 }
 
 .hero-content {
@@ -495,24 +443,12 @@ nav ul li a:hover::after {
     color: #39ff14;
     text-shadow: 0 0 15px rgba(57, 255, 20, 0.7);
     letter-spacing: 2px;
-    text-align: center;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
 }
-
-
 
 .hero-content p {
     font-size: 1rem;
     margin-bottom: 30px;
     color: #ffffff;
-    text-align: center;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
 }
 
 .hero-actions {
@@ -658,28 +594,14 @@ nav ul li a:hover::after {
         align-items: center;
         text-align: center;
         width: 100%;
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
+        padding: 0 20px;
         position: static;
-        /* 背景オーバーレイを削除 */
-        border-radius: 10px;
-    }
-    
-    /* すべてのスライドコンテンツ内の要素を中央揃えにする */
-    .slide-content > * {
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
     }
     
     .slide-content .subtitle,
     .slide-content .specs {
         text-align: center;
-        width: 80%;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        display: block;
+        width: 100%;
     }
     
     .slide-content .hero-actions {
@@ -965,40 +887,20 @@ nav ul li a:hover::after {
     padding: 20px;
 }
 
-.video-text-overlay p,
-.video-text-overlay h2,
-.video-text-overlay .section-title,
-.video-text-overlay .section-subtitle {
-    text-align: center !important;
-    width: 80%;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    display: block;
-}
-
 .video-text-overlay .section-title {
     margin-bottom: 15px;
     text-shadow: 0 0 10px rgba(51, 204, 51, 0.8);
 }
 
 .video-text-overlay .section-subtitle {
-    font-size: 1.2rem;
-    color: #ffffff;
-    margin-bottom: 10px;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-    text-align: center;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+    max-width: 80%;
+    margin: 0 auto;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
 }
 
 .intro-title {
     color: #33CC33;
     font-size: 2.2rem;
-    word-wrap: break-word;
-    text-align: center;
-    overflow-wrap: break-word;
 }
 
 .intro-subtitle {
@@ -1348,13 +1250,6 @@ iframe.popup-video {
     margin-right: auto;
 }
 
-/* Mobile view - single column for videos */
-@media screen and (max-width: 768px) {
-    .videos-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
 .video-item {
     position: relative;
     border-radius: 10px;
@@ -1504,158 +1399,6 @@ iframe.popup-video {
 .blog-section {
     padding: 4rem 0;
     background-color: #f9f9f9;
-}
-
-/* ブログプレビューセクション */
-.blog-preview {
-    background-color: #0a1118;
-    padding: 60px 0;
-    position: relative;
-}
-
-.blog-preview .section-title {
-    color: #39ff14;
-    text-align: center;
-    margin-bottom: 10px;
-    font-size: 2.2rem;
-}
-
-.blog-preview .section-subtitle {
-    color: #ffffff;
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 1rem;
-}
-
-.blog-preview-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    margin: 0 auto;
-    max-width: 1200px;
-    padding: 0 20px;
-}
-
-.blog-card {
-    background-color: #1a2130;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.blog-card:hover {
-    transform: translateY(-5px);
-}
-
-.blog-image {
-    position: relative;
-    overflow: hidden;
-    height: 200px;
-}
-
-.blog-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.blog-card:hover .blog-image img {
-    transform: scale(1.05);
-}
-
-.blog-date {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: rgba(57, 255, 20, 0.8);
-    color: #000;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-.blog-content {
-    padding: 20px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.blog-title {
-    font-size: 1.2rem;
-    color: #ffffff;
-    margin-bottom: 10px;
-    line-height: 1.4;
-}
-
-.blog-excerpt {
-    font-size: 0.9rem;
-    color: #cccccc;
-    margin-bottom: 20px;
-    line-height: 1.6;
-    flex-grow: 1;
-}
-
-.blog-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
-}
-
-.blog-category {
-    background-color: #0f1b2a;
-    color: #39ff14;
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-}
-
-.blog-link {
-    color: #39ff14;
-    font-size: 0.9rem;
-    text-decoration: none;
-    transition: color 0.3s ease;
-    display: flex;
-    align-items: center;
-}
-
-.blog-link i {
-    margin-left: 5px;
-    transition: transform 0.3s ease;
-}
-
-.blog-link:hover {
-    color: #ffffff;
-}
-
-.blog-link:hover i {
-    transform: translateX(3px);
-}
-
-.blog-more {
-    text-align: center;
-    margin-top: 40px;
-}
-
-/* レスポンシブデザイン - タブレット */
-@media screen and (max-width: 992px) {
-    .blog-preview-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* レスポンシブデザイン - モバイル */
-@media screen and (max-width: 768px) {
-    .blog-preview-grid {
-        grid-template-columns: 1fr;
-    }
 }
 
 /* Gamma document link styles */

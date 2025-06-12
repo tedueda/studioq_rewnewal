@@ -20,6 +20,11 @@ out/
 .env.test.local
 .env.production.local
 
+# システムファイル
+.DS_Store
+*/.DS_Store
+**/.DS_Store
+
 # エディタ設定
 .idea/
 .vscode/

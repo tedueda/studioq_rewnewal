@@ -433,7 +433,7 @@ nav ul li a:hover::after {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 120px 20px 100px 20px;
     z-index: 2;
     box-sizing: border-box; /* 幅の計算にパディングを含める */
@@ -2098,6 +2098,11 @@ footer {
 }
 
 @media screen and (max-width: 576px) {
+    /* モバイル表示時に次へボタンを非表示 */
+    .next-slide {
+        display: none !important;
+    }
+    
     .hero {
         padding-top: 80px;
         height: 100vh;

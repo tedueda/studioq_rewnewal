@@ -349,6 +349,11 @@ nav ul li a:hover::after {
     width: 100%;
 }
 
+/* Hide hamburger menu toggle on desktop */
+.menu-toggle {
+    display: none;
+}
+
 .menu-toggle {
     display: none;
     font-size: 1.5rem;
@@ -362,12 +367,16 @@ nav ul li a:hover::after {
     min-height: 500px;
     position: relative;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.hero-logo {
-    margin-bottom: 20px;
+.hero-actions {
+    margin-top: 30px;
     position: relative;
     z-index: 3;
+    text-align: center;
 }
 
 .hero-logo-image {
@@ -383,7 +392,7 @@ nav ul li a:hover::after {
     width: auto;
     display: block;
     margin: 0 auto 15px;
-    filter: drop-shadow(0 0 10px rgba(57, 255, 20, 0.8));
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
 }
 
 .slideshow-container {
@@ -433,7 +442,7 @@ nav ul li a:hover::after {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center; /* Changed to center for vertical alignment */
     padding: 120px 20px 100px 20px;
     z-index: 2;
     box-sizing: border-box; /* 幅の計算にパディングを含める */
@@ -469,31 +478,8 @@ nav ul li a:hover::after {
 
 .slide-overlay.from-teal-900\/50.via-teal-600\/30.to-black\/90 {
     /* 黒を基調としたオーバーレイ */
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05));
-    box-shadow: none;
-    border-bottom: none;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 3;
-    text-align: center;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 20px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.hero-content h1 {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-    color: #39ff14;
-    text-shadow: 0 0 15px rgba(57, 255, 20, 0.7);
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
     letter-spacing: 2px;
     text-align: center;
     width: 100%;
@@ -513,6 +499,15 @@ nav ul li a:hover::after {
     margin-left: auto;
     margin-right: auto;
     display: block;
+}
+
+.hero-content .subtitle,
+.hero-content .specs {
+    font-size: 1.5rem; /* h4相当のサイズ */
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .hero-actions {
@@ -548,6 +543,42 @@ nav ul li a:hover::after {
     border-color: #39ff14;
     color: #39ff14;
     transform: translateY(-3px);
+}
+
+/* スライドショーコントロール */
+.slideshow-controls {
+    position: absolute;
+    top: auto;
+    right: auto;
+    bottom: 70px; /* ヒーローフッターの上に配置 */
+    left: 0;
+    width: 100%;
+    transform: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 0;
+    z-index: 10;
+}
+
+.prev-slide, .next-slide {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.prev-slide:hover, .next-slide:hover {
+    background-color: rgba(57, 255, 20, 0.7);
+    color: black;
 }
 
 .hero-info-bar {
@@ -612,6 +643,8 @@ nav ul li a:hover::after {
         max-width: 250px;
         margin: 0 auto;
     }
+    
+    /* モバイル表示時の調整 */
 }
 
 @media screen and (max-width: 576px) {
@@ -662,7 +695,7 @@ nav ul li a:hover::after {
         margin: 0 auto;
         padding: 20px;
         position: static;
-        /* 背景オーバーレイを削除 */
+        background-color: rgba(0, 0, 0, 0.05); /* 黒色オーバーレイ、透明度5% */
         border-radius: 10px;
     }
     
@@ -978,7 +1011,8 @@ nav ul li a:hover::after {
 
 .video-text-overlay .section-title {
     margin-bottom: 15px;
-    text-shadow: 0 0 10px rgba(51, 204, 51, 0.8);
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .video-text-overlay .section-subtitle {
@@ -994,7 +1028,7 @@ nav ul li a:hover::after {
 }
 
 .intro-title {
-    color: #33CC33;
+    color: #ffffff;
     font-size: 2.2rem;
     word-wrap: break-word;
     text-align: center;
@@ -2049,32 +2083,68 @@ footer {
 @media screen and (max-width: 768px) {
     .menu-toggle {
         display: block;
+        color: var(--text-color);
+        font-size: 1.8rem;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 1001; /* Ensure it's above other header elements if needed */
     }
-    
+
     nav {
         position: absolute;
-        top: 80px;
+        top: 80px; /* Match header height */
         left: 0;
         width: 100%;
-        background-color: rgba(10, 17, 24, 0.95);
-        flex-direction: column;
-        align-items: center;
-        padding: 20px 0;
-        border-top: 1px solid rgba(57, 255, 20, 0.2);
-        transform: translateY(-100%);
-        transition: transform 0.3s ease-in-out;
+        background-color: rgba(10, 17, 24, 0.98); /* Darker, less transparent bg */
+        border-top: 1px solid rgba(57, 255, 20, 0.1);
+        overflow: hidden; /* Important for max-height transition */
+        max-height: 0; /* Initially hidden */
+        opacity: 0;
+        visibility: hidden;
+        transition: max-height 0.35s ease-in-out, opacity 0.3s ease-in-out, visibility 0s linear 0.35s;
+        z-index: 1000;
     }
-    
+
     nav.active {
-        transform: translateY(0);
+        max-height: 500px; /* Adjust based on content height, e.g., 5 items * 50px/item = 250px */
+        opacity: 1;
+        visibility: visible;
+        transition: max-height 0.35s ease-in-out, opacity 0.3s ease-in-out, visibility 0s linear 0s;
     }
-    
+
     nav ul {
+        list-style: none;
+        padding: 10px 0; /* Vertical padding for the list */
+        margin: 0;
+        display: flex;
         flex-direction: column;
+        align-items: center; /* Center items horizontally */
     }
-    
+
     nav ul li {
-        margin: 10px 0;
+        margin: 0;
+        width: 100%; /* Full width list items */
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 14px 20px; /* Generous padding for touch targets */
+        text-align: center;
+        color: var(--text-color);
+        text-decoration: none;
+        transition: background-color 0.2s ease, color 0.2s ease;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* Subtle separator */
+        font-size: 1rem; /* Ensure readable font size */
+    }
+
+    nav ul li:last-child a {
+        border-bottom: none;
+    }
+
+    nav ul li a:hover,
+    nav ul li a:focus {
+        background-color: var(--primary-color);
+        color: var(--secondary-color); /* Adjust if primary is light */
     }
     
     .hero {
@@ -2095,6 +2165,11 @@ footer {
     .hero-content-logo {
         height: 60px;
     }
+  h2,
+  .section-title {
+    font-size: 1.4rem !important;
+    line-height: 1.3;
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -2276,11 +2351,6 @@ footer {
         padding: 0 15px;
     }
 
-    .hero-actions {
-    }
-
-    .btn {
-    }
 
     .hero-content-logo {
         height: 50px;

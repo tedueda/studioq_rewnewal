@@ -18,6 +18,15 @@
     box-sizing: border-box;
 }
 
+/* すべての画面サイズでテキストを中央揃えにするグローバルスタイル */
+.subtitle, .specs {
+    text-align: center !important;
+    width: 80% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+}
+
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
@@ -237,6 +246,49 @@ img {
     opacity: 0.8;
 }
 
+/* レスポンシブタイトル設定 */
+@media screen and (max-width: 768px) {
+    .section-title {
+        font-size: 1.8rem;
+        max-width: 100%;
+    }
+    
+    .intro-title {
+        font-size: 1.6rem;
+        max-width: 100%;
+    }
+    
+    .video-text-overlay .section-title {
+        font-size: 1.4rem;
+    }
+    
+    #intro-video .video-text-overlay .section-title {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .section-title {
+        font-size: 1.3rem;
+        line-height: 1.4;
+    }
+    
+    .intro-title {
+        font-size: 1.2rem;
+        line-height: 1.4;
+    }
+    
+    .video-text-overlay .section-title {
+        font-size: 1rem;
+        line-height: 1.3;
+    }
+    
+    #intro-video .video-text-overlay .section-title {
+        font-size: 0.85rem;
+        line-height: 1.2;
+    }
+}
+
 /* ヘッダーとナビゲーション */
 header {
     position: fixed;
@@ -249,8 +301,6 @@ header {
     padding: 20px 5%;
     z-index: 1000;
     background-color: rgba(10, 17, 24, 0.9);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
     transition: var(--transition);
 }
 
@@ -307,14 +357,10 @@ nav ul li a:hover::after {
 
 /* ヒーローセクション */
 .hero {
-    padding-top: 100px; /* ヘッダー高さ分の余白を追加 */
+    padding-top: 80px;
     height: 100vh;
+    min-height: 500px;
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--text-color);
     overflow: hidden;
 }
 
@@ -337,7 +383,7 @@ nav ul li a:hover::after {
     width: auto;
     display: block;
     margin: 0 auto 15px;
-    filter: drop-shadow(0 0 10px rgba(57, 255, 20, 0.8));
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
 }
 
 .slideshow-container {
@@ -357,18 +403,12 @@ nav ul li a:hover::after {
     height: 100%;
     background-size: cover;
     background-position: center;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    z-index: 1;
+    display: none;
 }
 
-.video-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+.slide.active {
+    display: block;
+    z-index: 1;
 }
 
 .slide-video {
@@ -381,7 +421,6 @@ nav ul li a:hover::after {
     height: auto;
     transform: translateX(-50%) translateY(-50%);
     object-fit: cover;
-    z-index: 1;
 }
 
 .slide-overlay {
@@ -390,80 +429,85 @@ nav ul li a:hover::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 100%);
+    background-color: rgba(0, 0, 0, 0.05); /* 5%の黒色オーバーレイ */
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    /* blur効果を削除して画質を維持 */
-    /* -webkit-backdrop-filter: blur(3px); */
-    /* backdrop-filter: blur(3px); */
-}
-
-.slide-overlay.green-gradient {
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.65), rgba(20, 184, 166, 0.55), rgba(0, 0, 0, 0.75));
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    box-shadow: inset 0 0 120px rgba(20, 184, 166, 0.25);
-    border-bottom: 1px solid rgba(20, 184, 166, 0.15);
-}
-
-.slide-overlay.blue-gradient {
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.65), rgba(99, 102, 241, 0.55), rgba(0, 0, 0, 0.75));
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    box-shadow: inset 0 0 120px rgba(99, 102, 241, 0.25);
-    border-bottom: 1px solid rgba(99, 102, 241, 0.15);
-}
-
-.slide-overlay.purple-gradient {
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.65), rgba(236, 72, 153, 0.55), rgba(0, 0, 0, 0.75));
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    box-shadow: inset 0 0 120px rgba(236, 72, 153, 0.25);
-    border-bottom: 1px solid rgba(236, 72, 153, 0.15);
-}
-
-.slide-overlay.amber-gradient {
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.65), rgba(245, 158, 11, 0.55), rgba(0, 0, 0, 0.75));
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    box-shadow: inset 0 0 120px rgba(245, 158, 11, 0.25);
-    border-bottom: 1px solid rgba(245, 158, 11, 0.15);
-}
-
-.slide.active {
-    opacity: 1;
+    justify-content: space-between;
+    padding: 120px 20px 100px 20px;
     z-index: 2;
+    box-sizing: border-box; /* 幅の計算にパディングを含める */
 }
 
-.hero-content {
-    position: relative;
-    z-index: 5;
-    text-align: center;
-    max-width: 800px;
-    padding: 0 20px;
+.slide-overlay.from-green-900\/50.via-green-600\/30.to-black\/90 {
+    /* 黒を基調としたオーバーレイ */
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05));
+    box-shadow: none;
+    border-bottom: none;
 }
 
-.hero-content h1 {
-    font-size: 4rem;
-    margin-bottom: 15px;
-    color: #39ff14;
-    text-shadow: 0 0 15px rgba(57, 255, 20, 0.7);
+.slide-overlay.from-blue-900\/50.via-purple-600\/30.to-black\/90 {
+    /* 黒を基調としたオーバーレイ */
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05));
+    box-shadow: none;
+    border-bottom: none;
+}
+
+.slide-overlay.from-purple-900\/50.via-pink-600\/30.to-black\/90 {
+    /* 黒を基調としたオーバーレイ */
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05));
+    box-shadow: none;
+    border-bottom: none;
+}
+
+.slide-overlay.from-amber-900\/50.via-yellow-600\/30.to-black\/90 {
+    /* 黒を基調としたオーバーレイ */
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05));
+    box-shadow: none;
+    border-bottom: none;
+}
+
+.slide-overlay.from-teal-900\/50.via-teal-600\/30.to-black\/90 {
+    /* 黒を基調としたオーバーレイ */
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
     letter-spacing: 2px;
+    text-align: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
+
+
 
 .hero-content p {
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin-bottom: 30px;
     color: #ffffff;
+    text-align: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.hero-content .subtitle,
+.hero-content .specs {
+    font-size: 1.5rem; /* h4相当のサイズ */
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .hero-actions {
     display: flex;
+    flex-direction: row;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
     margin-top: 30px;
+    width: 100%;
 }
 
 .btn-primary {
@@ -492,25 +536,60 @@ nav ul li a:hover::after {
     transform: translateY(-3px);
 }
 
+/* スライドショーコントロール */
+.slideshow-controls {
+    position: absolute;
+    top: auto;
+    right: auto;
+    bottom: 70px; /* ヒーローフッターの上に配置 */
+    left: 0;
+    width: 100%;
+    transform: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 0;
+    z-index: 10;
+}
+
+.prev-slide, .next-slide {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.prev-slide:hover, .next-slide:hover {
+    background-color: rgba(57, 255, 20, 0.7);
+    color: black;
+}
+
 .hero-info-bar {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    -webkit-backdrop-filter: blur(10px); /* Safari対応 */
-    backdrop-filter: blur(10px);
     display: flex;
+    flex-direction: row;
     justify-content: space-around;
-    padding: 15px 0;
-    z-index: 10;
-    border-top: 1px solid rgba(57, 255, 20, 0.2);
+    align-items: center;
+    padding: 15px 10px;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 4;
 }
 
 .info-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+    flex: 1;
+    text-align: center;
+    padding: 5px;
 }
 
 .info-item i {
@@ -534,6 +613,119 @@ nav ul li a:hover::after {
     font-size: 1rem;
     color: #ffffff;
     font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+    .slide-overlay {
+        padding: 100px 20px 80px 20px;
+    }
+
+    .hero-content-logo {
+        height: 60px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto;
+    }
+    
+    /* モバイル表示時の調整 */
+}
+
+@media screen and (max-width: 576px) {
+    .hero {
+        height: 100vh;
+    }
+    
+    .slideshow-container {
+        height: 100%;
+    }
+    
+    .slide {
+        height: 100%;
+        position: relative;
+    }
+    
+    .slide-overlay {
+        padding: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .hero-content {
+        padding: 0;
+        height: auto;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        transform: translateY(-50%);
+    }
+
+    .hero-content-logo {
+        height: 50px;
+        margin-bottom: 15px;
+    }
+    
+    .slide-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        position: static;
+        background-color: rgba(0, 0, 0, 0.05); /* 黒色オーバーレイ、透明度5% */
+        border-radius: 10px;
+    }
+    
+    /* すべてのスライドコンテンツ内の要素を中央揃えにする */
+    .slide-content > * {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .slide-content .subtitle,
+    .slide-content .specs {
+        text-align: center;
+        width: 80%;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        display: block;
+    }
+    
+    .slide-content .hero-actions {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 20px;
+        max-width: 280px;
+        padding: 0 10px;
+    }
+    
+    .slide-content .btn {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+        min-width: 0;
+        width: 48%;
+        margin: 0;
+        text-align: center;
+        display: inline-block;
+    }
 }
 
 /* スタジオについて */
@@ -647,7 +839,6 @@ nav ul li a:hover::after {
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, auto);
     gap: 30px;
     margin-top: 40px;
     max-width: 900px;
@@ -798,20 +989,41 @@ nav ul li a:hover::after {
     padding: 20px;
 }
 
+.video-text-overlay p,
+.video-text-overlay h2,
+.video-text-overlay .section-title,
+.video-text-overlay .section-subtitle {
+    text-align: center !important;
+    width: 80%;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block;
+}
+
 .video-text-overlay .section-title {
     margin-bottom: 15px;
-    text-shadow: 0 0 10px rgba(51, 204, 51, 0.8);
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .video-text-overlay .section-subtitle {
-    max-width: 80%;
-    margin: 0 auto;
-    text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    text-align: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 .intro-title {
-    color: #33CC33;
+    color: #ffffff;
     font-size: 2.2rem;
+    word-wrap: break-word;
+    text-align: center;
+    overflow-wrap: break-word;
 }
 
 .intro-subtitle {
@@ -1029,10 +1241,10 @@ nav ul li a:hover::after {
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    padding: 10px; /* パディングを小さくして動画の表示領域を広げる */
+    padding: 10px;
     opacity: 0;
     animation: fadeIn 0.3s ease-out forwards;
-    box-sizing: border-box; /* パディングを要素の幅に含める */
+    box-sizing: border-box;
 }
 
 @keyframes fadeIn {
@@ -1045,22 +1257,22 @@ nav ul li a:hover::after {
 }
 
 .popup-video {
-    width: 95vw; /* ビューポート幅の95% */
-    height: 90vh; /* ビューポート高さの90% */
-    max-width: 1600px; /* 最大幅を大きく設定 */
+    width: 95vw;
+    height: 90vh;
+    max-width: 1600px;
     max-height: 90vh;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     border: 2px solid #333333;
-    transform: scale(1); /* 初期スケールを1に設定 */
+    transform: scale(1);
     animation: fadeInScale 0.3s ease-out forwards;
-    object-fit: contain; /* アスペクト比を維持 */
+    object-fit: contain;
 }
 
 /* YouTubeの埋め込み動画用の追加スタイル */
 iframe.popup-video {
     width: 95vw;
     height: 90vh;
-    min-height: 500px; /* 最小高さを設定 */
+    min-height: 500px;
 }
 
 @keyframes zoomIn {
@@ -1159,6 +1371,13 @@ iframe.popup-video {
     max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* Mobile view - single column for videos */
+@media screen and (max-width: 768px) {
+    .videos-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .video-item {
@@ -1312,6 +1531,158 @@ iframe.popup-video {
     background-color: #f9f9f9;
 }
 
+/* ブログプレビューセクション */
+.blog-preview {
+    background-color: #0a1118;
+    padding: 60px 0;
+    position: relative;
+}
+
+.blog-preview .section-title {
+    color: #39ff14;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 2.2rem;
+}
+
+.blog-preview .section-subtitle {
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1rem;
+}
+
+.blog-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+.blog-card {
+    background-color: #1a2130;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+}
+
+.blog-image {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+}
+
+.blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.blog-card:hover .blog-image img {
+    transform: scale(1.05);
+}
+
+.blog-date {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(57, 255, 20, 0.8);
+    color: #000;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.blog-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-title {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.blog-excerpt {
+    font-size: 0.9rem;
+    color: #cccccc;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.blog-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.blog-category {
+    background-color: #0f1b2a;
+    color: #39ff14;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.blog-link {
+    color: #39ff14;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.blog-link i {
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+.blog-link:hover {
+    color: #ffffff;
+}
+
+.blog-link:hover i {
+    transform: translateX(3px);
+}
+
+.blog-more {
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* レスポンシブデザイン - タブレット */
+@media screen and (max-width: 992px) {
+    .blog-preview-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* レスポンシブデザイン - モバイル */
+@media screen and (max-width: 768px) {
+    .blog-preview-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Gamma document link styles */
 .gamma-document-link {
     background-color: #f5f5f5;
@@ -1320,8 +1691,6 @@ iframe.popup-video {
     padding: 20px;
     margin: 30px 0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
     position: relative;
 }
 
@@ -1709,13 +2078,16 @@ footer {
     
     nav {
         position: absolute;
-        top: 70px;
+        top: 80px;
         left: 0;
         width: 100%;
-        background-color: var(--secondary-color);
-        padding: 20px;
-        transform: translateY(-150%);
-        transition: var(--transition);
+        background-color: rgba(10, 17, 24, 0.95);
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        border-top: 1px solid rgba(57, 255, 20, 0.2);
+        transform: translateY(-100%);
+        transition: transform 0.3s ease-in-out;
     }
     
     nav.active {
@@ -1730,243 +2102,106 @@ footer {
         margin: 10px 0;
     }
     
-    .hero-content h1 {
-        font-size: 3rem;
-    }
-    
-    .hero-content p {
-        font-size: 1.2rem;
-    }
-    
-    .section-title {
-        font-size: 2rem;
-    }
-    
-    /* ギャラリーのタブレット対応 */
-    .gallery-video-thumbnail {
+    .hero {
+        padding-top: 80px;
+        height: 100vh;
+        min-height: 500px;
         position: relative;
         overflow: hidden;
-        border-radius: 8px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        margin-bottom: 15px;
-        background-color: #111;
-        min-height: 250px;
-        height: 250px;
     }
     
-    .gallery-video-thumbnail img {
-        height: auto;
-        min-height: 250px;
-        width: 100%;
-        object-fit: cover;
-        display: block;
+    .slideshow-container {
+        z-index: 5;
+        text-align: center;
+        max-width: 800px;
+        padding: 0 20px;
     }
-    
-    /* 背景画像として設定した場合のスタイル */
-    .gallery-video-thumbnail[style*="background-image"] {
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
-    
-    /* テーブルレイアウトのタブレット対応 */
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    
-    td {
-        padding: 5px;
-    }
-    
-    .gallery-item {
-        margin-bottom: 15px;
+
+    .hero-content-logo {
+        height: 60px;
     }
 }
 
-@media screen and (max-width: 480px) {
-    .hero-content h1 {
-        font-size: 2.5rem;
+@media screen and (max-width: 576px) {
+    .hero {
+        padding-top: 80px;
+        height: 100vh;
+        min-height: 500px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+        padding-bottom: 0;
     }
-    
-    .btn {
-        padding: 10px 20px;
+    .slideshow-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-    
+    .slide {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .hero-info-bar {
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        padding: 15px 5px;
+        bottom: 0;
+        position: absolute;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        z-index: 10;
+    }
+    .info-item {
+        flex: 1 0 25%;
+        padding: 3px;
+    }
+
+    .slide-overlay {
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 100px 20px 80px 20px;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 5;
+        text-align: center;
+        max-width: 800px;
+        padding: 0 20px;
+    }
+
+    .hero-content-logo {
+        height: 50px;
+    }
+}
+
+/* ギャラリーセクション */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+}
+
+@media (max-width: 768px) {
     .gallery-grid {
         grid-template-columns: 1fr;
     }
 }
 
-@media (max-width: 768px) {
-    .hero-info-bar {
-        flex-wrap: wrap;
-        padding: 10px 0;
-    }
-    
-    .info-item {
-        width: 50%;
-        padding: 10px;
-        justify-content: center;
-    }
-    
-    .hero-actions {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-    
-    .hero-content p {
-        font-size: 1.2rem;
-    }
-    
-    .slide-content h2 {
-        font-size: 2rem;
-    }
-    
-    .slide-content .subtitle {
-        font-size: 1.2rem;
-    }
-    
-    .slide-content .specs {
-        font-size: 1rem;
-    }
-}
-
-.slide-content {
-    text-align: center;
-    max-width: 800px;
-    padding: 0 20px;
-    position: relative;
-    z-index: 3;
-}
-
-.slide-content h2 {
-    font-size: 3rem;
-    margin-bottom: 15px;
-    color: #39ff14;
-    text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
-    letter-spacing: 2px;
-}
-
-.slide-content .subtitle {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #ffffff;
-}
-
-.slide-content .specs {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.8);
-    letter-spacing: 1px;
-}
-
-.slideshow-controls {
-    position: absolute;
-    bottom: 100px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    z-index: 10;
-}
-
-.prev-slide, .next-slide {
-    background-color: rgba(10, 17, 24, 0.7);
-    color: #39ff14;
-    border: 2px solid #39ff14;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.prev-slide:hover, .next-slide:hover {
-    background-color: #39ff14;
-    color: var(--dark-bg);
-}
-
-.slide-content {
-    text-align: center;
-    max-width: 800px;
-    padding: 0 20px;
-    position: relative;
-    z-index: 3;
-}
-
-.slide-content h2 {
-    font-size: 3rem;
-    margin-bottom: 15px;
-    color: #39ff14;
-    text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
-    letter-spacing: 2px;
-}
-
-.slide-content .subtitle {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #ffffff;
-}
-
-.slide-content .specs {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.8);
-    letter-spacing: 1px;
-}
-
-.slideshow-controls {
-    position: absolute;
-    bottom: 100px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    z-index: 10;
-}
-
-.prev-slide, .next-slide {
-    background-color: rgba(10, 17, 24, 0.7);
-    color: #39ff14;
-    border: 2px solid #39ff14;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.prev-slide:hover, .next-slide:hover {
-    background-color: #39ff14;
-    color: var(--dark-bg);
-}
-
-/* ブログプレビューセクション */
-.blog-preview {
-    background-color: var(--section-bg);
-    padding: 80px 0;
-    background-image: 
-        linear-gradient(to bottom, rgba(13, 13, 13, 0.97), rgba(13, 13, 13, 0.95)),
-        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iIzBkMGQwZCI+PC9yZWN0Pgo8Y2lyY2xlIGN4PSIxMCIgY3k9IjEwIiByPSIyIiBmaWxsPSIjMTIxMjEyIj48L2NpcmNsZT4KPC9zdmc+');
-}
-
-.blog-preview-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.blog-card {
+.gallery-item {
     background-color: var(--card-bg);
     border-radius: var(--border-radius);
     overflow: hidden;
@@ -1974,218 +2209,105 @@ footer {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.blog-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
 }
 
-.blog-image {
-    height: 220px;
-    overflow: hidden;
+.gallery-video-thumbnail {
     position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.blog-image img {
+.gallery-video-thumbnail img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.blog-card:hover .blog-image img {
-    transform: scale(1.1);
-}
-
-.blog-date {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background-color: var(--primary-color);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    font-weight: bold;
-}
-
-.blog-content {
-    padding: 25px;
-}
-
-.blog-title {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    color: white;
-    font-weight: 600;
-}
-
-.blog-excerpt {
-    color: #ccc;
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-
-.blog-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 15px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.blog-category {
-    background-color: rgba(0, 200, 150, 0.2);
-    color: var(--primary-color);
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-}
-
-.blog-link {
-    color: var(--primary-color);
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-}
-
-.blog-link i {
-    margin-left: 5px;
     transition: transform 0.3s ease;
 }
 
-.blog-link:hover i {
-    transform: translateX(5px);
+.gallery-item:hover .gallery-video-thumbnail img {
+    transform: scale(1.05);
 }
 
-.blog-more {
+.gallery-video-thumbnail .play-button {
+    position: absolute;
+    font-size: 3rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    z-index: 2;
+}
+
+.gallery-video-thumbnail:hover .play-button {
+    transform: scale(1.1);
+}
+
+.video-caption {
+    padding: 20px;
     text-align: center;
-    margin-top: 50px;
 }
 
-/* レスポンシブ対応 */
-@media screen and (max-width: 1200px) {
-    .container {
-        width: 95%;
-    }
-    
-    .slide-content h2 {
-        font-size: 2.5rem;
-    }
-    
-    .slide-content h3 {
-        font-size: 1.8rem;
-    }
-    
-    .slide-content .subtitle {
-        font-size: 1.2rem;
-    }
-    
-    .slide-content .specs {
-        font-size: 1rem;
-    }
+.video-caption h3 {
+    font-size: 1.3rem;
+    color: var(--text-color-light);
+    margin-bottom: 10px;
 }
 
-@media screen and (max-width: 992px) {
-    .hero {
-        height: 80vh;
+.video-caption p {
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+    .slide-overlay {
+        padding: 100px 20px 80px 20px;
     }
-    
-    .slide-content h2 {
-        font-size: 2rem;
-    }
-    
-    .slide-content h3 {
-        font-size: 1.5rem;
-    }
-    
-    .slide-content .subtitle {
-        font-size: 1.1rem;
-    }
-    
-    .slide-content .specs {
-        font-size: 0.9rem;
-    }
-    
+
     .hero-actions {
         flex-direction: column;
         gap: 10px;
     }
-    
-    .video-slide .slide-video {
-        height: 100%;
-        width: auto;
-        min-width: 100%;
-    }
-}
 
-@media screen and (max-width: 768px) {
-    .hero {
-        height: 70vh;
-    }
-    
-    .slide-content h2 {
-        font-size: 1.8rem;
-    }
-    
-    .slide-content h3 {
-        font-size: 1.3rem;
-    }
-    
-    .slide-content .subtitle {
-        font-size: 1rem;
-    }
-    
-    .slide-content .specs {
-        font-size: 0.8rem;
-    }
-    
-    .hero-info-bar {
-        flex-wrap: wrap;
-    }
-    
-    .info-item {
-        flex: 1 0 50%;
-        padding: 10px;
-    }
-    
-    .video-slide .slide-video {
-        height: 100%;
-        object-position: center;
+    .btn {
+        width: 100%;
+        max-width: 250px;
     }
 }
 
 @media screen and (max-width: 576px) {
-    .hero {
-        height: 60vh;
+    .slide-overlay {
+        padding: 80px 15px 70px 15px;
     }
-    
-    .slide-content h2 {
-        font-size: 1.5rem;
+
+    .hero-content {
+        padding: 0 15px;
     }
-    
-    .slide-content h3 {
-        font-size: 1.1rem;
+
+    .hero-actions {
     }
-    
-    .slide-content .subtitle {
-        font-size: 0.9rem;
+
+    .btn {
     }
-    
-    .slide-content .specs {
-        font-size: 0.7rem;
-    }
-    
-    .hero-logo .logo-icon {
-        font-size: 1rem;
-    }
-    
-    .info-item {
-        flex: 1 0 100%;
-    }
-    
-    .video-slide .slide-video {
-        height: 100%;
-        min-width: 150%;
-        object-position: center;
+
+    .hero-content-logo {
+        height: 50px;
     }
 }

@@ -614,6 +614,25 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+    </script>
+<script>
+// data-background属性を持つ全ての要素に背景画像を設定
+  document.querySelectorAll('[data-background]').forEach(function(el) {
+    var bg = el.getAttribute('data-background');
+    if (bg) {
+      el.style.backgroundImage = 'url(' + bg + ')';
+      el.style.backgroundSize = 'cover';
+      el.style.backgroundPosition = 'center';
+      el.style.backgroundRepeat = 'no-repeat';
+    }
+  });
+</script>
 </body>
 </html>

@@ -4,7 +4,7 @@ async function imageShortcode(src, alt) {
   let metadata = await Image(src, {
     widths: [300, 600, 900],
     formats: ["webp", "jpeg"],
-    outputDir: "./_site/img/"
+    outputDir: "./img/"
   });
   
   return metadata;
@@ -41,8 +41,13 @@ module.exports = function(eleventyConfig) {
   
   // パススルーコピー
   eleventyConfig.addPassthroughCopy("admin");
-  eleventyConfig.addPassthroughCopy("blog/images");
   
+  // backup_filesフォルダを除外
+  eleventyConfig.ignores = [
+    "backup_files/**",
+    "node_modules/**"
+  ];
+
   return {
     dir: {
       input: ".",

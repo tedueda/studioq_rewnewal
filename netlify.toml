@@ -2,8 +2,7 @@
   publish = "_site"
   command = "eleventy"
 
-[[plugins]]
-  package = "@netlify/plugin-netlify-cms"
+
 
 [template.environment]
   NODE_VERSION = "16"

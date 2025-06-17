@@ -1,15 +1,15 @@
 /* 全体のスタイル */
 :root {
     --primary-color: #00c896;
-    --secondary-color: #0f1b2a;
-    --text-color: #ffffff;
-    --dark-bg: #0a1118;
-    --card-bg: #1a2130;
+    --secondary-color: #f8f9fa;
+    --text-color: #333333;
+    --dark-bg: #ffffff;
+    --card-bg: #f8f9fa;
     --transition: all 0.3s ease;
-    --section-bg: #0d0d0d;
-    --section-alt-bg: #0f0f0f;
+    --section-bg: #ffffff;
+    --section-alt-bg: #f8f9fa;
     --border-radius: 8px;
-    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -24,8 +24,8 @@ body {
     color: var(--text-color);
     background-color: var(--dark-bg);
     background-image: 
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.97), rgba(5, 5, 5, 0.95), rgba(10, 10, 10, 0.93)),
-        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjMDkwOTA5Ij48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiMxMTExMTEiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=');
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.97), rgba(250, 250, 250, 0.95), rgba(245, 245, 245, 0.93)),
+        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmZmZmIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiNmNWY1ZjUiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=');
     background-attachment: fixed;
     overflow-x: hidden;
 }
@@ -59,23 +59,23 @@ section::before {
 section:nth-child(odd) {
     background-color: var(--section-bg);
     background-image: 
-        linear-gradient(to bottom, rgba(13, 13, 13, 0.97), rgba(13, 13, 13, 0.95)),
-        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iIzBkMGQwZCI+PC9yZWN0Pgo8Y2lyY2xlIGN4PSIxMCIgY3k9IjEwIiByPSIyIiBmaWxsPSIjMTIxMjEyIj48L2NpcmNsZT4KPC9zdmc+');
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.97), rgba(255, 255, 255, 0.95)),
+        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2ZmZmZmZiI+PC9yZWN0Pgo8Y2lyY2xlIGN4PSIxMCIgY3k9IjEwIiByPSIyIiBmaWxsPSIjZjVmNWY1Ij48L2NpcmNsZT4KPC9zdmc+');
 }
 
 section:nth-child(even) {
     background-color: var(--section-alt-bg);
     background-image: 
-        linear-gradient(to bottom, rgba(15, 15, 15, 0.97), rgba(15, 15, 15, 0.95)),
-        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iIzBmMGYwZiI+PC9yZWN0Pgo8cGF0aCBkPSJNMCAwTDIwIDIwWk0yMCAwTDAgMjBaIiBzdHJva2U9IiMxMzEzMTMiIHN0cm9rZS13aWR0aD0iMC41Ij48L3BhdGg+Cjwvc3ZnPg==');
+        linear-gradient(to bottom, rgba(248, 249, 250, 0.97), rgba(248, 249, 250, 0.95)),
+        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2Y4ZjlmYSI+PC9yZWN0Pgo8cGF0aCBkPSJNMCAwTDIwIDIwWk0yMCAwTDAgMjBaIiBzdHJva2U9IiNlZGVlZWYiIHN0cm9rZS13aWR0aD0iMC41Ij48L3BhdGg+Cjwvc3ZnPg==');
 }
 
 /* スタジオについて */
 .about {
     background-color: var(--section-bg);
     background-image: 
-        linear-gradient(to bottom, rgba(13, 13, 13, 0.97), rgba(13, 13, 13, 0.95)),
-        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iIzBkMGQwZCI+PC9yZWN0Pgo8Y2lyY2xlIGN4PSIxMCIgY3k9IjEwIiByPSIyIiBmaWxsPSIjMTIxMjEyIj48L2NpcmNsZT4KPC9zdmc+');
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.97), rgba(255, 255, 255, 0.95)),
+        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2ZmZmZmZiI+PC9yZWN0Pgo8Y2lyY2xlIGN4PSIxMCIgY3k9IjEwIiByPSIyIiBmaWxsPSIjZjVmNWY1Ij48L2NpcmNsZT4KPC9zdmc+');
 }
 
 .about .container {
@@ -87,8 +87,8 @@ section:nth-child(even) {
 .services {
     background-color: var(--section-alt-bg);
     background-image: 
-        linear-gradient(to bottom, rgba(15, 15, 15, 0.97), rgba(15, 15, 15, 0.95)),
-        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iIzBmMGYwZiI+PC9yZWN0Pgo8cGF0aCBkPSJNMCAwTDIwIDIwWk0yMCAwTDAgMjBaIiBzdHJva2U9IiMxMzEzMTMiIHN0cm9rZS13aWR0aD0iMC41Ij48L3BhdGg+Cjwvc3ZnPg==');
+        linear-gradient(to bottom, rgba(248, 249, 250, 0.97), rgba(248, 249, 250, 0.95)),
+        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2Y4ZjlmYSI+PC9yZWN0Pgo8cGF0aCBkPSJNMCAwTDIwIDIwWk0yMCAwTDAgMjBaIiBzdHJva2U9IiNlZGVlZWYiIHN0cm9rZS13aWR0aD0iMC41Ij48L3BhdGg+Cjwvc3ZnPg==');
 }
 
 /* ギャラリー */
@@ -96,26 +96,26 @@ section:nth-child(even) {
     background-color: var(--section-bg);
     padding: 40px 0;
     background-image: 
-        linear-gradient(to bottom, rgba(13, 13, 13, 0.97), rgba(13, 13, 13, 0.95)),
-        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iIzBkMGQwZCI+PC9yZWN0Pgo8Y2lyY2xlIGN4PSIxMCIgY3k9IjEwIiByPSIyIiBmaWxsPSIjMTIxMjEyIj48L2NpcmNsZT4KPC9zdmc+');
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.97), rgba(255, 255, 255, 0.95)),
+        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2ZmZmZmZiI+PC9yZWN0Pgo8Y2lyY2xlIGN4PSIxMCIgY3k9IjEwIiByPSIyIiBmaWxsPSIjZjVmNWY1Ij48L2NpcmNsZT4KPC9zdmc+');
 }
 
 /* お問い合わせ */
 .contact {
     background-color: var(--section-alt-bg);
     background-image: 
-        linear-gradient(to bottom, rgba(15, 15, 15, 0.97), rgba(15, 15, 15, 0.95)),
-        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iIzBmMGYwZiI+PC9yZWN0Pgo8cGF0aCBkPSJNMCAwTDIwIDIwWk0yMCAwTDAgMjBaIiBzdHJva2U9IiMxMzEzMTMiIHN0cm9rZS13aWR0aD0iMC41Ij48L3BhdGg+Cjwvc3ZnPg==');
+        linear-gradient(to bottom, rgba(248, 249, 250, 0.97), rgba(248, 249, 250, 0.95)),
+        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2Y4ZjlmYSI+PC9yZWN0Pgo8cGF0aCBkPSJNMCAwTDIwIDIwWk0yMCAwTDAgMjBaIiBzdHJva2U9IiNlZGVlZWYiIHN0cm9rZS13aWR0aD0iMC41Ij48L3BhdGg+Cjwvc3ZnPg==');
 }
 
 /* スタジオQ紹介動画 */
 .intro-video {
-    background-color: #000;
+    background-color: #ffffff;
     padding: 30px 0;
-    color: #fff;
+    color: var(--text-color);
     background-image: 
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.97), rgba(0, 0, 0, 0.95)),
-        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+CjxyZWN0IHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzAwMDAwMCI+PC9yZWN0Pgo8Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBmaWxsPSIjMDgwODA4Ij48L2NpcmNsZT4KPC9zdmc+');
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.97), rgba(255, 255, 255, 0.95)),
+        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+CjxyZWN0IHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgZmlsbD0iI2ZmZmZmZiI+PC9yZWN0Pgo8Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBmaWxsPSIjZjVmNWY1Ij48L2NpcmNsZT4KPC9zdmc+');
 }
 
 .direct-video-container {
@@ -134,25 +134,25 @@ section:nth-child(even) {
 
 /* 最新映像 */
 .latest-videos {
-    background-color: #1a1a1a;
+    background-color: var(--card-bg);
     padding: 30px 0;
     border-radius: 10px;
     margin: 20px auto;
     max-width: 90%;
     background-image: 
-        linear-gradient(to bottom, rgba(26, 26, 26, 0.97), rgba(26, 26, 26, 0.95)),
-        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iIzFhMWExYSI+PC9yZWN0Pgo8cGF0aCBkPSJNMCAwTDUgNUwxMCAwTDE1IDVMMjAgMEwyMCA1TDE1IDEwTDIwIDE1TDIwIDIwTDE1IDE1TDEwIDIwTDUgMTVMMCAyMEwwIDE1TDUgMTBMMCA1WiIgc3Ryb2tlPSIjMjIyMjIyIiBzdHJva2Utd2lkdGg9IjAuNSI+PC9wYXRoPgo8L3N2Zz4=');
+        linear-gradient(to bottom, rgba(248, 249, 250, 0.97), rgba(248, 249, 250, 0.95)),
+        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2Y4ZjlmYSI+PC9yZWN0Pgo8cGF0aCBkPSJNMCAwTDUgNUwxMCAwTDE1IDVMMjAgMEwyMCA1TDE1IDEwTDIwIDE1TDIwIDIwTDE1IDE1TDEwIDIwTDUgMTVMMCAyMEwwIDE1TDUgMTBMMCA1WiIgc3Ryb2tlPSIjZWRlZWVmIiBzdHJva2Utd2lkdGg9IjAuNSI+PC9wYXRoPgo8L3N2Zz4=');
 }
 
 /* Studio Qの特長 */
 .features {
-    background-color: #0a1118;
+    background-color: var(--section-bg);
     padding: 40px 0;
     margin: 0;
     position: relative;
     background-image: 
-        linear-gradient(to bottom, rgba(10, 17, 24, 0.97), rgba(10, 17, 24, 0.95)),
-        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCI+CjxyZWN0IHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgZmlsbD0iIzBhMTExOCI+PC9yZWN0Pgo8cGF0aCBkPSJNMCAwTDMwIDMwWk0zMCAwTDAgMzBaIiBzdHJva2U9IiMxMjFjMjciIHN0cm9rZS13aWR0aD0iMC41Ij48L3BhdGg+Cjwvc3ZnPg==');
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.97), rgba(255, 255, 255, 0.95)),
+        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCI+CjxyZWN0IHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgZmlsbD0iI2ZmZmZmZiI+PC9yZWN0Pgo8cGF0aCBkPSJNMCAwTDMwIDMwWk0zMCAwTDAgMzBaIiBzdHJva2U9IiNmNWY1ZjUiIHN0cm9rZS13aWR0aD0iMC41Ij48L3BhdGg+Cjwvc3ZnPg==');
 }
 
 /* フッター */
@@ -248,7 +248,7 @@ header {
     align-items: center;
     padding: 20px 5%;
     z-index: 1000;
-    background-color: rgba(10, 17, 24, 0.9);
+    background-color: rgba(255, 255, 255, 0.9);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     transition: var(--transition);
@@ -390,7 +390,7 @@ nav ul li a:hover::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 100%);
+    background: linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.7) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -401,7 +401,7 @@ nav ul li a:hover::after {
 }
 
 .slide-overlay.green-gradient {
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.65), rgba(20, 184, 166, 0.55), rgba(0, 0, 0, 0.75));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.65), rgba(20, 184, 166, 0.55), rgba(255, 255, 255, 0.75));
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     box-shadow: inset 0 0 120px rgba(20, 184, 166, 0.25);
@@ -409,7 +409,7 @@ nav ul li a:hover::after {
 }
 
 .slide-overlay.blue-gradient {
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.65), rgba(99, 102, 241, 0.55), rgba(0, 0, 0, 0.75));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.65), rgba(99, 102, 241, 0.55), rgba(255, 255, 255, 0.75));
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     box-shadow: inset 0 0 120px rgba(99, 102, 241, 0.25);
@@ -417,7 +417,7 @@ nav ul li a:hover::after {
 }
 
 .slide-overlay.purple-gradient {
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.65), rgba(236, 72, 153, 0.55), rgba(0, 0, 0, 0.75));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.65), rgba(236, 72, 153, 0.55), rgba(255, 255, 255, 0.75));
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     box-shadow: inset 0 0 120px rgba(236, 72, 153, 0.25);
@@ -425,7 +425,7 @@ nav ul li a:hover::after {
 }
 
 .slide-overlay.amber-gradient {
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.65), rgba(245, 158, 11, 0.55), rgba(0, 0, 0, 0.75));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.65), rgba(245, 158, 11, 0.55), rgba(255, 255, 255, 0.75));
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     box-shadow: inset 0 0 120px rgba(245, 158, 11, 0.25);
@@ -497,7 +497,7 @@ nav ul li a:hover::after {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);
     -webkit-backdrop-filter: blur(10px); /* Safari対応 */
     backdrop-filter: blur(10px);
     display: flex;
@@ -793,7 +793,7 @@ nav ul li a:hover::after {
     justify-content: center;
     align-items: center;
     z-index: 3;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.7));
     text-align: center;
     padding: 20px;
 }
@@ -984,9 +984,9 @@ nav ul li a:hover::after {
 
 /* スタジオQ紹介動画 */
 .intro-video {
-    background-color: #000;
+    background-color: #ffffff;
     padding: 60px 0;
-    color: #fff;
+    color: var(--text-color);
 }
 
 .intro-video .section-title {
@@ -1024,7 +1024,7 @@ nav ul li a:hover::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(255, 255, 255, 0.9);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1125,7 +1125,7 @@ iframe.popup-video {
 
 /* 最新映像 */
 .latest-videos {
-    background-color: #1a1a1a;
+    background-color: var(--card-bg);
     padding: 60px 0;
     border-radius: 10px;
     margin: 40px auto;
@@ -1175,7 +1175,7 @@ iframe.popup-video {
 
 /* Studio Qの特長 */
 .features {
-    background-color: #0a1118;
+    background-color: var(--section-bg);
     padding: 30px 0;
     margin: 0;
     position: relative;
@@ -1523,8 +1523,8 @@ iframe.popup-video {
 
 /* フッター */
 footer {
-    background-color: #111;
-    color: #fff;
+    background-color: var(--section-alt-bg);
+    color: var(--text-color);
     padding: 60px 0 30px;
 }
 
@@ -1875,7 +1875,7 @@ footer {
 }
 
 .prev-slide, .next-slide {
-    background-color: rgba(10, 17, 24, 0.7);
+    background-color: rgba(255, 255, 255, 0.7);
     color: #39ff14;
     border: 2px solid #39ff14;
     border-radius: 50%;
@@ -1932,7 +1932,7 @@ footer {
 }
 
 .prev-slide, .next-slide {
-    background-color: rgba(10, 17, 24, 0.7);
+    background-color: rgba(255, 255, 255, 0.7);
     color: #39ff14;
     border: 2px solid #39ff14;
     border-radius: 50%;

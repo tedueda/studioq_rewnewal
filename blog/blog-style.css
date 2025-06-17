@@ -1,15 +1,15 @@
 /* ブログ用スタイル */
 :root {
     --primary-color: #00c896;
-    --secondary-color: #0f1b2a;
-    --text-color: #ffffff;
-    --dark-bg: #0a1118;
-    --card-bg: #1a2130;
+    --secondary-color: #f8f9fa;
+    --text-color: #333333;
+    --dark-bg: #ffffff;
+    --card-bg: #f8f9fa;
     --transition: all 0.3s ease;
-    --section-bg: #0d0d0d;
-    --section-alt-bg: #0f0f0f;
+    --section-bg: #ffffff;
+    --section-alt-bg: #f8f9fa;
     --border-radius: 8px;
-    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 /* ブログ一覧ページ */
@@ -92,7 +92,7 @@
 
 .blog-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }
 
 .blog-card-image {
@@ -404,7 +404,7 @@
 }
 
 .blog-content pre {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(248, 249, 250, 0.8);
     padding: 15px;
     border-radius: var(--border-radius);
     overflow-x: auto;
@@ -503,7 +503,7 @@
 
 .share-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
 .related-posts {

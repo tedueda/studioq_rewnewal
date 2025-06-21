@@ -1,0 +1,176 @@
+/* 共通の背景スタイル */
+:root {
+  --primary-orange: #FF9800;
+  --light-orange: #FFE082;
+  --soft-orange: #FFD700;
+  --background-gradient: linear-gradient(135deg, rgba(255, 232, 130, 0.8) 0%, rgba(255, 215, 0, 0.8) 100%);
+}
+
+/* ホームページのセクション背景 */
+.hero-section {
+  background: var(--background-gradient);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.services-section, .facilities-section, .news-section, .president-message-section, .cta-section {
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+}
+
+.services-section::before, .facilities-section::before, .news-section::before, .president-message-section::before, .cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 247, 237, 0.8);
+  z-index: 1;
+}
+
+.services-section > *, .facilities-section > *, .news-section > *, .president-message-section > *, .cta-section > * {
+  position: relative;
+  z-index: 2;
+}
+
+.services-section {
+  background-image: url('/images/background/nami.svg'), url('/images/background/bg_001.png');
+}
+
+.facilities-section {
+  background-image: url('/images/background/bg_002.png');
+}
+
+.news-section {
+  background-image: url('/images/background/bg_003.png');
+}
+
+.president-message-section {
+  background-image: url('/images/background/bg_004.png');
+}
+
+.cta-section {
+  background-image: url('/images/background/bg_005.png');
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+  .hero-section,
+  .company-hero,
+  .services-hero,
+  .facilities-hero,
+  .contact-hero,
+  .recruit-hero {
+    background-attachment: fixed;
+    padding: 40px 0;
+  }
+  
+  .services-section,
+  .facilities-section,
+  .company-content,
+  .service-items,
+  .facility-list,
+  .contact-form,
+  .recruit-content {
+    padding: 40px 0;
+  }
+}
+
+/* 会社情報ページのセクション背景 */
+.company-hero {
+  background: var(--background-gradient);
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 120px 0;
+}
+
+.company-content {
+  background: var(--light-orange);
+  padding: 80px 0;
+}
+
+/* 事業紹介ページのセクション背景 */
+.services-hero {
+  background: var(--background-gradient);
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 120px 0;
+}
+
+.service-items {
+  background: var(--soft-orange);
+  padding: 80px 0;
+}
+
+/* 施設案内ページのセクション背景 */
+.facilities-hero {
+  background: var(--background-gradient);
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 120px 0;
+}
+
+.facility-list {
+  background: var(--light-orange);
+  padding: 80px 0;
+}
+
+/* お問い合わせページのセクション背景 */
+.contact-hero {
+  background: var(--background-gradient);
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 120px 0;
+}
+
+.contact-form {
+  background: var(--soft-orange);
+  padding: 80px 0;
+}
+
+/* 採用情報ページのセクション背景 */
+.recruit-hero {
+  background: var(--background-gradient);
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 120px 0;
+}
+
+.recruit-content {
+  background: var(--light-orange);
+  padding: 80px 0;
+}
+
+/* フッターの背景 */
+.footer {
+  background: var(--primary-orange);
+  color: white;
+  padding: 60px 0;
+}
+
+/* レスポンシブデザインの調整 */
+@media (max-width: 768px) {
+  .company-hero,
+  .services-hero,
+  .facilities-hero,
+  .contact-hero,
+  .recruit-hero {
+    background-attachment: scroll;
+    padding: 80px 0;
+  }
+  
+  .company-content,
+  .service-items,
+  .facility-list,
+  .contact-form,
+  .recruit-content {
+    padding: 40px 0;
+  }
+  
+  .footer {
+    padding: 40px 0;
+  }
+}

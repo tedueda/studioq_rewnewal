@@ -135,7 +135,11 @@ const RehabilitationDayService = () => {
                   </li>
                   <li className="flex items-center mb-0">
                     <CheckCircle className="w-6 h-6 text-white mr-3" />
-                    <span className="text-white text-xl font-semibold">最新のリハビリ機器を完備</span>
+                    <span className="text-sm" data-component-name="FacilitySlider">大阪府池田市室町７−３</span>
+                  </li>
+                  <li className="flex items-center mb-0">
+                    <CheckCircle className="w-6 h-6 text-white mr-3" />
+                    <span className="text-sm" data-component-name="FacilitySlider">072-752-8133</span>
                   </li>
                   <li className="flex items-center mb-0">
                     <CheckCircle className="w-6 h-6 text-white mr-3" />
@@ -146,9 +150,10 @@ const RehabilitationDayService = () => {
               {/* 右カラム: 画像 */}
               <div className="flex justify-center">
                 <img
-                  src="/images/service/service05.png"
-                  alt="リハプライドの特徴イメージ"
-                  className="max-w-full h-auto rounded-lg object-cover shadow"
+                  src="/images/store/rihabisu_ikeda.webp"
+                  alt="リハビス呉服"
+                  className="w-full h-full object-cover max-w-full h-auto rounded-lg shadow"
+                  data-component-name="FacilitySlider"
                 />
               </div>
             </div>

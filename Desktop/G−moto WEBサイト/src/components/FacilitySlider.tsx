@@ -6,16 +6,16 @@ const FacilitySlider = () => {
   const facilities = [
     {
       slug: 'miyakojima',
-      name: 'G・MOTO都島本通り',
+      name: 'リハプライド GMOTO都島本通り',
       type: 'リハビリ特化型デイサービス',
       address: '大阪市都島区都島本通5-15-16',
-tel: '06-6922-6030',
+      tel: '06-6922-6030',
       capacity: '午前15名・午後15名',
       image: '/images/store/miyakojima3.jpg'
     },
     {
       slug: 'hirakata',
-      name: 'G・MOTO枚方',
+      name: 'リハプライド 枚方',
       type: 'リハビリ特化型デイサービス',
       address: '大阪府枚方市田口3-4-1',
       tel: '072-805-5888',
@@ -24,7 +24,7 @@ tel: '06-6922-6030',
     },
     {
       slug: 'tondabayashi',
-      name: 'G・MOTO富田林',
+      name: 'リハプライド 富田林',
       type: 'リハビリ特化型デイサービス',
       address: '大阪府富田林市宮町2-9-49',
       tel: '0721-23-8822',
@@ -35,17 +35,17 @@ tel: '06-6922-6030',
       slug: 'gofuku',
       name: 'リハビス呉服',
       type: '介護予防フィットネス',
-      address: '大阪市○○区呉服町7-8-9',
+      address: '大阪府池田市室町７−３',
       capacity: '定員15名',
-      image: 'https://images.pexels.com/photos/6111477/pexels-photo-6111477.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop'
+      image: '/images/store/rihabisu_ikeda.webp'
     },
     {
       slug: 'ikeda',
-      name: 'ケアプラン池田',
+      name: 'じもとケアプランセンター池田',
       type: 'ケアプランセンター',
-      address: '池田市○○町10-11-12',
-      capacity: 'ケアマネ5名',
-      image: 'https://images.pexels.com/photos/8865994/pexels-photo-8865994.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop'
+      address: '大阪府池田市室町7-3 リハビス呉服2階',
+      capacity: 'ケアマネ数：常勤1名',
+      image: '/images/store/keaplan_center.jpg'
     }
   ];
 
@@ -86,11 +86,23 @@ tel: '06-6922-6030',
             <div className="p-6">
               <h3 className="text-xl font-bold text-gray-900 mb-2">{facility.name}</h3>
               <div className="space-y-2 mb-4">
-                <div className="flex items-center text-gray-600">
+                <div className="flex items-center text-gray-600" data-component-name="FacilitySlider">
                   <MapPin className="w-4 h-4 mr-2" />
-                  <span className="text-sm">{facility.address}</span>
+                  <span className="text-sm" data-component-name="FacilitySlider">{facility.address}</span>
                 </div>
-                {facility.tel && (
+                {facility.slug === 'ikeda' && (
+                  <div className="flex items-center text-gray-600" data-component-name="FacilitySlider">
+                    <Phone className="w-4 h-4 mr-2" />
+                    <span className="text-sm" data-component-name="FacilitySlider">072-752-8133</span>
+                  </div>
+                )}
+                {facility.slug === 'gofuku' && (
+                  <div className="flex items-center text-gray-600" data-component-name="FacilitySlider">
+                    <Phone className="w-4 h-4 mr-2" />
+                    <span className="text-sm" data-component-name="FacilitySlider">072-752-8133</span>
+                  </div>
+                )}
+                {facility.tel && facility.slug !== 'ikeda' && facility.slug !== 'gofuku' && (
                   <div className="flex items-center text-gray-600">
                     <Phone className="w-4 h-4 mr-2" />
                     <span className="text-sm">{facility.tel}</span>
@@ -101,12 +113,48 @@ tel: '06-6922-6030',
                   <span className="text-sm">定員：{facility.capacity}</span>
                 </div>
               </div>
-              <Link
-                to={`/facilities/${facility.slug}`}
-                className="inline-block w-full text-center bg-primary text-white py-2 rounded-lg font-medium hover:bg-primary-hover transition-colors"
-              >
-                詳細を見る
-              </Link>
+              {(facility.slug === 'ikeda' || facility.slug === 'gofuku') ? (
+                <button
+                  className="inline-block w-full text-center bg-primary text-white py-2 rounded-lg font-medium opacity-50 cursor-not-allowed"
+                  disabled
+                >
+                  詳細を見る
+                </button>
+              ) : facility.slug === 'miyakojima' ? (
+                <a
+                  href="https://www.rehapride.co.jp/gmmiyako/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block w-full text-center bg-primary text-white py-2 rounded-lg font-medium hover:bg-primary-hover transition-colors"
+                >
+                  詳細を見る
+                </a>
+              ) : facility.slug === 'hirakata' ? (
+                <a
+                  href="https://www.rehapride.co.jp/hirakata/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block w-full text-center bg-primary text-white py-2 rounded-lg font-medium hover:bg-primary-hover transition-colors"
+                >
+                  詳細を見る
+                </a>
+              ) : facility.slug === 'tondabayashi' ? (
+                <a
+                  href="https://www.rehapride.co.jp/tondabayashi/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block w-full text-center bg-primary text-white py-2 rounded-lg font-medium hover:bg-primary-hover transition-colors"
+                >
+                  詳細を見る
+                </a>
+              ) : (
+                <Link
+                  to={`/facilities/${facility.slug}`}
+                  className="inline-block w-full text-center bg-primary text-white py-2 rounded-lg font-medium hover:bg-primary-hover transition-colors"
+                >
+                  詳細を見る
+                </Link>
+              )}
             </div>
           </div>
         ))}

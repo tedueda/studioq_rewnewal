@@ -6,58 +6,64 @@ const Facilities = () => {
   const facilities = [
     {
       slug: 'miyakojima',
-      name: 'G・MOTO都島本通り',
+      name: 'リハプライド GMOTO都島本通り',
       type: 'リハビリ特化型デイサービス',
-      address: '大阪市都島区本通4-15-8',
-      phone: '06-1234-5678',
-      capacity: '定員25名',
-      hours: '9:00〜16:00',
-      image: 'https://images.pexels.com/photos/6111694/pexels-photo-6111694.jpeg?auto=compress&cs=tinysrgb&w=500&h=300&fit=crop',
-      features: ['理学療法士常駐', '個別リハビリ', '送迎サービス']
+      address: '大阪市都島区都島本通5-15-16',
+      phone: '06-6922-6030',
+      capacity: '午前15名・午後15名',
+      hours: `【午前】 9：00～12：15\n【午後】13：30～16：45\n月から金\n12/30～1/3を除く`,
+      image: '/images/store/miyakojima3.jpg',
+      features: [
+  '座ってできるリハビリ専用マシンを使い、車椅子の方も安心して運動可能。見学時にマシン体験ができ、効果の違いを実感できます。見学・送迎無料、スタッフ一同が笑顔でサポートします。'
+]
     },
     {
       slug: 'hirakata',
-      name: 'G・MOTO枚方',
+      name: 'リハプライド 枚方',
       type: 'リハビリ特化型デイサービス',
-      address: '枚方市○○町1-2-3',
-      phone: '072-123-4567',
-      capacity: '定員20名',
-      hours: '9:00〜16:00',
-      image: 'https://images.pexels.com/photos/7551659/pexels-photo-7551659.jpeg?auto=compress&cs=tinysrgb&w=500&h=300&fit=crop',
+      address: '大阪府枚方市田口3-4-1',
+      phone: '072-805-5888',
+      capacity: '午前18名・午後18名',
+      hours: `営業時間\n毎週：月曜日～金曜日　土曜は午前のみ営業\n1単位目：午前：　９：００ ～ １２：１５\n2単位目：午後：１３：３０ ～ １６：４５`,
+      image: '/images/store/hirakata.jpg',
       features: ['作業療法士常駐', '集団リハビリ', '入浴サービス']
     },
     {
       slug: 'tondabayashi',
-      name: 'G・MOTO富田林',
+      name: 'リハプライド 富田林',
       type: 'リハビリ特化型デイサービス',
-      address: '富田林市○○町4-5-6',
-      phone: '0721-123-4567',
-      capacity: '定員18名',
-      hours: '9:00〜16:00',
-      image: 'https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg?auto=compress&cs=tinysrgb&w=500&h=300&fit=crop',
-      features: ['言語聴覚士常駐', '口腔ケア', '栄養指導']
+      address: '大阪府富田林市宮町2-9-49',
+      phone: '0721-23-8822',
+      capacity: '午前18名・午後18名',
+      hours: `営業時間\n月曜日～土曜日（祝日含む）\n12/31～1/3を除く\n\n【半日型】\n9：00～12：15　　\n13：30～16：45\n\n【1日型】\n9：30～16：45`,
+      image: '/images/store/tondabayashi.jpg',
+      features: [
+  '座ってできるリハビリ専用マシンを用意し、車椅子の方も安心して運動可能。見学・送迎無料で、スタッフが笑顔でサポートします。'
+]
     },
     {
       slug: 'gofuku',
       name: 'リハビス呉服',
-      type: '介護予防フィットネス',
-      address: '大阪市○○区呉服町7-8-9',
-      phone: '06-2345-6789',
+      type: 'リハビリ特化型デイサービス',
+      address: '大阪府池田市室町７−３',
+      phone: '072-752-8133',
       capacity: '定員15名',
-      hours: '10:00〜15:00',
-      image: 'https://images.pexels.com/photos/6111477/pexels-photo-6111477.jpeg?auto=compress&cs=tinysrgb&w=500&h=300&fit=crop',
-      features: ['認知症予防', 'グループ運動', '脳トレーニング']
+      hours: '平日：09時00分〜17時00分\n土曜：09時00分〜17時00分\n日曜：定休日\n定休日他：12/29〜1/3',
+      image: '/images/store/rihabisu_ikeda.webp',
+      features: ['歩行練習やマシントレーニング、国家資格者による施術も受けられます']
     },
     {
       slug: 'ikeda',
-      name: 'ケアプラン池田',
+      name: 'じもとケアプランセンター池田',
       type: 'ケアプランセンター',
-      address: '池田市○○町10-11-12',
-      phone: '072-234-5678',
-      capacity: 'ケアマネ5名',
-      hours: '9:00〜18:00',
-      image: 'https://images.pexels.com/photos/8865994/pexels-photo-8865994.jpeg?auto=compress&cs=tinysrgb&w=500&h=300&fit=crop',
-      features: ['個別相談', 'サービス調整', '24時間対応']
+      address: '大阪府池田市室町7-3 リハビス呉服2階',
+      phone: '072-752-8133',
+      capacity: 'ケアマネ数：常勤1名',
+      hours: `営業日：月～金\n営業時間：9:00～17:00 \n定休日：土日祝、お盆、年末年始`,
+      image: '/images/store/keaplan_center.jpg',
+      features: [
+  '利用者の心身状態や環境に合わせたケアプランを作成し、多様な事業者との連携を図ります。'
+]
     }
   ];
 
@@ -113,7 +119,7 @@ const Facilities = () => {
                     </div>
                     <div className="flex items-center text-gray-600">
                       <Clock className="w-4 h-4 mr-2 flex-shrink-0" />
-                      <span className="text-sm">{facility.hours}</span>
+                      <span className="text-sm whitespace-pre-line">{facility.hours}</span>
                     </div>
                   </div>
 
@@ -132,18 +138,84 @@ const Facilities = () => {
                   </div>
 
                   <div className="flex gap-2">
-                    <Link
-                      to={`/facilities/${facility.slug}`}
-                      className="flex-1 text-center bg-primary text-white py-2 rounded-lg font-medium hover:bg-primary-hover transition-colors"
-                    >
-                      詳細を見る
-                    </Link>
-                    <a
-                      href={`tel:${facility.phone}`}
-                      className="flex-1 text-center border border-primary text-primary py-2 rounded-lg font-medium hover:bg-primary hover:text-white transition-colors"
-                    >
-                      電話する
-                    </a>
+                    {facility.slug === 'miyakojima' ? (
+                      <a
+                        href="https://www.rehapride.co.jp/gmmiyako/"
+                        className="flex-1 text-center bg-primary text-white py-2 rounded-lg font-medium hover:bg-primary-hover transition-colors"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        詳細を見る
+                      </a>
+                    ) : facility.slug === 'hirakata' ? (
+                      <a
+                        href="https://www.rehapride.co.jp/hirakata/"
+                        className="flex-1 text-center bg-primary text-white py-2 rounded-lg font-medium hover:bg-primary-hover transition-colors"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        詳細を見る
+                      </a>
+                    ) : facility.slug === 'gofuku' ? (
+                      <button
+                        className="flex-1 text-center bg-primary text-white py-2 rounded-lg font-medium opacity-60 cursor-not-allowed"
+                        disabled
+                      >
+                        詳細を見る
+                      </button>
+                    ) : facility.slug === 'ikeda' ? (
+                      <button
+                        className="flex-1 text-center bg-primary text-white py-2 rounded-lg font-medium opacity-60 cursor-not-allowed"
+                        disabled
+                      >
+                        詳細を見る
+                      </button>
+                    ) : (
+                      <a
+                        href="https://www.rehapride.co.jp/tondabayashi/"
+                        className="flex-1 text-center bg-primary text-white py-2 rounded-lg font-medium hover:bg-primary-hover transition-colors"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        詳細を見る
+                      </a>
+                    )}
+                    {facility.slug === 'miyakojima' ? (
+                      <a
+                        href="tel:06-6922-6030"
+                        className="flex-1 text-center border border-primary text-primary py-2 rounded-lg font-medium hover:bg-primary hover:text-white transition-colors"
+                      >
+                        電話する
+                      </a>
+                    ) : facility.slug === 'hirakata' ? (
+                      <a
+                        href="tel:072-805-5888"
+                        className="flex-1 text-center border border-primary text-primary py-2 rounded-lg font-medium hover:bg-primary hover:text-white transition-colors"
+                      >
+                        電話する
+                      </a>
+                    ) : facility.slug === 'gofuku' ? (
+                      <a
+                        href="tel:072-752-8133"
+                        className="flex-1 text-center border border-primary text-primary py-2 rounded-lg font-medium hover:bg-primary hover:text-white transition-colors"
+                      >
+                        電話する
+                      </a>
+                    ) : facility.slug === 'ikeda' ? (
+                      <a
+                        href="tel:072-752-8133"
+                        className="flex-1 text-center border border-primary text-primary py-2 rounded-lg font-medium hover:bg-primary hover:text-white transition-colors"
+                      >
+                        電話する
+                      </a>
+                    ) : (
+                      <a
+                        href={`tel:${facility.phone}`}
+                        className="flex-1 text-center border border-primary text-primary py-2 rounded-lg font-medium hover:bg-primary hover:text-white transition-colors"
+                      >
+                        電話する
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>

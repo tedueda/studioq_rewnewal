@@ -8,7 +8,7 @@ const FacilityDetail = () => {
 
   const facilityData: { [key: string]: any } = {
     miyakojima: {
-      name: 'G・MOTO都島本通り',
+      name: 'リハプライド GMOTO都島本通り',
       type: 'リハビリ特化型デイサービス',
       address: '〒534-0001 大阪市都島区本通4-15-8',
       phone: '06-1234-5678',
@@ -38,7 +38,7 @@ const FacilityDetail = () => {
       pricing: '要介護1〜5: 1回 700円〜1,200円（1割負担の場合）'
     },
     hirakata: {
-      name: 'G・MOTO枚方',
+      name: 'リハプライド 枚方',
       type: 'リハビリ特化型デイサービス',
       address: '〒573-0000 枚方市○○町1-2-3',
       phone: '072-123-4567',
@@ -67,7 +67,7 @@ const FacilityDetail = () => {
       pricing: '要介護1〜5: 1回 700円〜1,200円（1割負担の場合）'
     },
     tondabayashi: {
-      name: 'G・MOTO富田林',
+      name: 'リハプライド 富田林',
       type: 'リハビリ特化型デイサービス',
       address: '〒584-0000 富田林市○○町4-5-6',
       phone: '0721-123-4567',

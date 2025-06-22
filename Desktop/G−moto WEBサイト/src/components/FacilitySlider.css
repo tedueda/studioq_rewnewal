@@ -1,0 +1,66 @@
+/* FacilitySlider.css */
+.facility-swiper {
+  padding: 40px 0;
+  overflow: visible !important;
+}
+
+.facility-swiper .swiper-slide {
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  opacity: 0.6;
+  transform: scale(0.85);
+  filter: blur(1px);
+}
+
+.facility-swiper .swiper-slide-active {
+  opacity: 1;
+  transform: scale(1.05);
+  z-index: 10;
+  filter: blur(0);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* スライド間のトランジションをスムーズに */
+.swiper-wrapper {
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+}
+
+/* ページネーションのスタイル */
+.facility-swiper .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: rgba(249, 115, 22, 0.5); /* primary色の薄いバージョン */
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.facility-swiper .swiper-pagination-bullet-active {
+  background-color: rgb(249, 115, 22); /* primary色 */
+  opacity: 1;
+  width: 12px;
+  height: 12px;
+}
+
+/* スライドのアニメーション最適化 */
+.facility-swiper img {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* カスタムナビゲーションボタンのホバーエフェクト */
+.swiper-custom-prev,
+.swiper-custom-next {
+  transition: all 0.2s ease-out;
+}
+
+.swiper-custom-prev:hover,
+.swiper-custom-next:hover {
+  transform: scale(1.1);
+}
+
+/* カードのアニメーション最適化 */
+.facility-swiper .swiper-slide > div {
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}

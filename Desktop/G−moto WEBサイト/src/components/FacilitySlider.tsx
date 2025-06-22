@@ -1,8 +1,34 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Users, Phone, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay, EffectCoverflow } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-coverflow';
+
+// スタイルを追加
+import './FacilitySlider.css';
 
 const FacilitySlider = () => {
+  const [slidesPerView, setSlidesPerView] = useState(3);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setSlidesPerView(1);
+      } else if (window.innerWidth < 1024) {
+        setSlidesPerView(3);
+      } else {
+        setSlidesPerView(3);
+      }
+    };
+    
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   const facilities = [
     {
       slug: 'miyakojima',
@@ -17,7 +43,7 @@ const FacilitySlider = () => {
       slug: 'hirakata',
       name: 'リハプライド 枚方',
       type: 'リハビリ特化型デイサービス',
-      address: '大阪府枚方市田口3-4-1',
+      address: '大阪府枚方市田宮3-4-1',
       tel: '072-805-5888',
       capacity: '午前18名・午後18名',
       image: '/images/store/hirakata.jpg'
@@ -49,133 +75,137 @@ const FacilitySlider = () => {
     }
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const itemsPerPage = 3;
-
-  const nextSlide = () => {
-    setCurrentIndex((prev) => 
-      prev + itemsPerPage >= facilities.length ? 0 : prev + itemsPerPage
-    );
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => 
-      prev === 0 ? Math.max(0, facilities.length - itemsPerPage) : prev - itemsPerPage
-    );
-  };
-
-  const visibleFacilities = facilities.slice(currentIndex, currentIndex + itemsPerPage);
-
   return (
-    <div className="relative">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {visibleFacilities.map((facility) => (
-          <div key={facility.slug} className="bg-white rounded-xl shadow-soft overflow-hidden hover:shadow-soft-lg transition-shadow">
-            <div className="relative h-48">
-              <img
-                src={facility.image}
-                alt={facility.name}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute top-4 left-4">
-                <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
-                  {facility.type}
-                </span>
-              </div>
-            </div>
-            <div className="p-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">{facility.name}</h3>
-              <div className="space-y-2 mb-4">
-                <div className="flex items-center text-gray-600" data-component-name="FacilitySlider">
-                  <MapPin className="w-4 h-4 mr-2" />
-                  <span className="text-sm" data-component-name="FacilitySlider">{facility.address}</span>
-                </div>
-                {facility.slug === 'ikeda' && (
-                  <div className="flex items-center text-gray-600" data-component-name="FacilitySlider">
-                    <Phone className="w-4 h-4 mr-2" />
-                    <span className="text-sm" data-component-name="FacilitySlider">072-752-8133</span>
-                  </div>
-                )}
-                {facility.slug === 'gofuku' && (
-                  <div className="flex items-center text-gray-600" data-component-name="FacilitySlider">
-                    <Phone className="w-4 h-4 mr-2" />
-                    <span className="text-sm" data-component-name="FacilitySlider">072-752-8133</span>
-                  </div>
-                )}
-                {facility.tel && facility.slug !== 'ikeda' && facility.slug !== 'gofuku' && (
-                  <div className="flex items-center text-gray-600">
-                    <Phone className="w-4 h-4 mr-2" />
-                    <span className="text-sm">{facility.tel}</span>
-                  </div>
-                )}
-                <div className="flex items-center text-gray-600">
-                  <Users className="w-4 h-4 mr-2" />
-                  <span className="text-sm">定員：{facility.capacity}</span>
-                </div>
-              </div>
-              {(facility.slug === 'ikeda' || facility.slug === 'gofuku') ? (
-                <button
-                  className="inline-block w-full text-center bg-primary text-white py-2 rounded-lg font-medium opacity-50 cursor-not-allowed"
-                  disabled
-                >
-                  詳細を見る
-                </button>
-              ) : facility.slug === 'miyakojima' ? (
-                <a
-                  href="https://www.rehapride.co.jp/gmmiyako/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block w-full text-center bg-primary text-white py-2 rounded-lg font-medium hover:bg-primary-hover transition-colors"
-                >
-                  詳細を見る
-                </a>
-              ) : facility.slug === 'hirakata' ? (
-                <a
-                  href="https://www.rehapride.co.jp/hirakata/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block w-full text-center bg-primary text-white py-2 rounded-lg font-medium hover:bg-primary-hover transition-colors"
-                >
-                  詳細を見る
-                </a>
-              ) : facility.slug === 'tondabayashi' ? (
-                <a
-                  href="https://www.rehapride.co.jp/tondabayashi/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block w-full text-center bg-primary text-white py-2 rounded-lg font-medium hover:bg-primary-hover transition-colors"
-                >
-                  詳細を見る
-                </a>
-              ) : (
-                <Link
-                  to={`/facilities/${facility.slug}`}
-                  className="inline-block w-full text-center bg-primary text-white py-2 rounded-lg font-medium hover:bg-primary-hover transition-colors"
-                >
-                  詳細を見る
-                </Link>
-              )}
-            </div>
-          </div>
-        ))}
+    <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="swiper-custom-navigation flex justify-end space-x-2 mb-6">
+        <button className="swiper-custom-prev bg-white text-primary hover:bg-primary hover:text-white transition-all rounded-full p-2 shadow-md">
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+        <button className="swiper-custom-next bg-white text-primary hover:bg-primary hover:text-white transition-all rounded-full p-2 shadow-md">
+          <ChevronRight className="w-5 h-5" />
+        </button>
       </div>
-
-      {facilities.length > itemsPerPage && (
-        <div className="flex justify-center mt-8 space-x-4">
-          <button
-            onClick={prevSlide}
-            className="p-2 rounded-full bg-white border border-gray-300 hover:bg-gray-50 transition-colors"
-          >
-            <ChevronLeft className="w-6 h-6 text-gray-600" />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="p-2 rounded-full bg-white border border-gray-300 hover:bg-gray-50 transition-colors"
-          >
-            <ChevronRight className="w-6 h-6 text-gray-600" />
-          </button>
-        </div>
-      )}
+      
+      <Swiper
+        modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
+        effect={"coverflow"}
+        grabCursor={true}
+        centeredSlides={true}
+        slidesPerView={slidesPerView}
+        coverflowEffect={{
+          rotate: 10,
+          stretch: 0,
+          depth: 200,
+          modifier: 2.5,
+          slideShadows: true
+        }}
+        slidesPerGroup={1}
+        loop={true}
+        speed={800}
+        autoplay={{ 
+          delay: 4000, 
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true
+        }}
+        navigation={{
+          prevEl: '.swiper-custom-prev',
+          nextEl: '.swiper-custom-next',
+        }}
+        pagination={{ 
+          clickable: true,
+          dynamicBullets: true,
+        }}
+        className="facility-swiper"
+        style={{ paddingBottom: 50, paddingTop: 20 }}
+        watchSlidesProgress={true}
+        observer={true}
+        observeParents={true}
+        updateOnWindowResize={true}
+      >
+        {facilities.map((facility) => (
+          <SwiperSlide key={facility.slug}>
+            {facility.slug === 'ikeda' || facility.slug === 'gofuku' ? (
+              <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" style={{ margin: '0 auto' }}>
+                <div className="relative h-56 overflow-hidden">
+                  <img 
+                    src={facility.image} 
+                    alt={facility.name} 
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110 will-change-transform" 
+                    loading="eager"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent pt-12 pb-4 px-6">
+                    <h3 className="text-xl font-bold text-white mb-1">{facility.name}</h3>
+                  </div>
+                  <div className="absolute top-4 right-4">
+                    <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium shadow-md">{facility.type}</span>
+                  </div>
+                </div>
+                <div className="p-5">
+                  {/* 施設名はイメージ上に移動したため削除 */}
+                  <div className="space-y-3 mb-5">
+                    <div className="flex items-center text-gray-600">
+                      <MapPin className="w-4 h-4 mr-2" />
+                      <span className="text-sm">{facility.address}</span>
+                    </div>
+                    {facility.capacity && (
+                      <div className="flex items-center text-gray-600">
+                        <Users className="w-4 h-4 mr-2" />
+                        <span className="text-sm">{facility.capacity}</span>
+                      </div>
+                    )}
+                  </div>
+                  <button className="w-full bg-gray-200 text-gray-500 font-bold py-2.5 px-4 rounded-lg cursor-not-allowed transition-all" disabled>
+                    詳細を見る
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <Link to={`/facilities/${facility.slug}`} className="block cursor-pointer">
+                <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" style={{ margin: '0 auto' }}>
+                  <div className="relative h-56 overflow-hidden">
+                    <img 
+                      src={facility.image} 
+                      alt={facility.name} 
+                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110 will-change-transform" 
+                      loading="eager"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent pt-12 pb-4 px-6">
+                      <h3 className="text-xl font-bold text-white mb-1">{facility.name}</h3>
+                    </div>
+                    <div className="absolute top-4 right-4">
+                      <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium shadow-md">{facility.type}</span>
+                    </div>
+                  </div>
+                  <div className="p-5">
+                    {/* 施設名はイメージ上に移動したため削除 */}
+                    <div className="space-y-3 mb-5">
+                      <div className="flex items-center text-gray-600">
+                        <MapPin className="w-4 h-4 mr-2" />
+                        <span className="text-sm">{facility.address}</span>
+                      </div>
+                      {facility.capacity && (
+                        <div className="flex items-center text-gray-600">
+                          <Users className="w-4 h-4 mr-2" />
+                          <span className="text-sm">{facility.capacity}</span>
+                        </div>
+                      )}
+                      {facility.tel && (
+                        <div className="flex items-center text-gray-600">
+                          <Phone className="w-4 h-4 mr-2" />
+                          <span className="text-sm">{facility.tel}</span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="block w-full bg-primary text-white text-center font-semibold py-2.5 px-4 rounded-lg hover:bg-primary-hover transition-all duration-300 shadow-sm hover:shadow-md">
+                      詳細を見る
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            )}
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 };

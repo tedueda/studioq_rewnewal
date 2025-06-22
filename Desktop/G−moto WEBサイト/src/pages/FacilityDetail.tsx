@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { MapPin, Phone, Clock, Users, ArrowLeft, X } from 'lucide-react';
+import FacilityMap from '../components/FacilityMap';
 
 const FacilityDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -14,12 +15,12 @@ const FacilityDetail = () => {
       phone: '06-1234-5678',
       capacity: '定員25名',
       hours: '月〜土 9:00〜16:00（日祝休み）',
-      heroImage: 'https://images.pexels.com/photos/6111694/pexels-photo-6111694.jpeg?auto=compress&cs=tinysrgb&w=1600&h=600&fit=crop',
+      heroImage: '/images/store/miyakojima3.jpg',
       gallery: [
-        'https://images.pexels.com/photos/6111694/pexels-photo-6111694.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
-        'https://images.pexels.com/photos/7551659/pexels-photo-7551659.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
-        'https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop',
-        'https://images.pexels.com/photos/6111477/pexels-photo-6111477.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop'
+        '/images/store/miyakojima3.jpg',
+        '/images/store/miyakojima3.jpg',
+        '/images/store/miyakojima3.jpg',
+        '/images/store/miyakojima3.jpg'
       ],
       features: [
         { title: '理学療法士常駐', description: '経験豊富な理学療法士が個別リハビリを提供' },
@@ -150,7 +151,8 @@ const FacilityDetail = () => {
     }
   };
 
-  const facility = facilityData[slug || ''];
+  // URLのslugパラメータに基づいて施設情報を取得
+  const facility = slug && facilityData[slug] ? facilityData[slug] : facilityData['tondabayashi'];
 
   if (!facility) {
     return (
@@ -167,14 +169,17 @@ const FacilityDetail = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-96 md:h-[500px] overflow-hidden">
-        <img
-          src={facility.heroImage}
-          alt={facility.name}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center">
+      {/* Hero Section - With Background */}
+      <section className="relative h-96 md:h-[500px] overflow-hidden bg-primary">
+        <div 
+          className="absolute inset-0 flex items-center" 
+          style={{ 
+            backgroundImage: 'url(/images/background/footerUp.svg)', 
+            backgroundPosition: 'bottom', 
+            backgroundRepeat: 'no-repeat', 
+            backgroundSize: 'contain' 
+          }}
+        >
           <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <Link
               to="/facilities"
@@ -199,106 +204,141 @@ const FacilityDetail = () => {
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
-              {/* Features */}
+              {/* Facility Image */}
               <div className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">サービスの特徴</h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {facility.features.map((feature: any, index: number) => (
-                    <div key={index} className="bg-white rounded-lg p-6 shadow-soft">
-                      <h3 className="font-bold text-gray-900 mb-3">{feature.title}</h3>
-                      <p className="text-gray-600 text-sm">{feature.description}</p>
-                    </div>
-                  ))}
-                </div>
+                <img 
+                  src={`/images/store/${slug}.jpg`} 
+                  alt={`${facility.name} 施設写真`} 
+                  className="w-full h-auto rounded-lg shadow-soft mb-8"
+                  onError={(e) => {
+                    // 画像が存在しない場合はプレースホルダー画像を表示
+                    e.currentTarget.src = facility.heroImage;
+                  }}
+                />
               </div>
-
-              {/* Daily Schedule */}
+              
+              {/* Features section removed */}
+              
+              {/* 施設情報 */}
               <div className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">1日の流れ</h2>
-                <div className="bg-white rounded-xl shadow-soft overflow-hidden">
-                  {facility.schedule.map((item: any, index: number) => (
-                    <div
-                      key={index}
-                      className={`flex flex-col sm:flex-row sm:items-center p-4 ${
-                        index !== facility.schedule.length - 1 ? 'border-b border-gray-200' : ''
-                      }`}
-                    >
-                      <div className="flex items-center space-x-3 mb-2 sm:mb-0 sm:w-1/4">
-                        <Clock className="w-5 h-5 text-primary" />
-                        <time className="font-semibold text-primary">{item.time}</time>
-                      </div>
-                      <div className="sm:w-3/4">
-                        <span className="text-gray-700">{item.activity}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+  {/* 2カラム（営業時間・料金） */}
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+    {/* 営業時間 */}
+    <div className="bg-orange-50 rounded-lg p-6">
+      <h2 className="text-xl font-bold text-orange-500 mb-4">営業時間</h2>
+      <div className="text-gray-800">
+        {facility.hours}
+      </div>
+    </div>
+    {/* 料金 */}
+    <div className="bg-orange-50 rounded-lg p-6">
+      <h2 className="text-xl font-bold text-orange-500 mb-4">料金</h2>
+      <div className="text-gray-800">
+  【半日型】<br />
+  要介護１　420円／回<br />
+  要介護２　482円／回<br />
+  要介護３　545円／回<br />
+  要介護４　605円／回<br />
+  要介護５　669円／回<br />
+  <br />
+  【1日型】<br />
+  要介護１　　759円／回<br />
+  要介護２　　897円／回<br />
+  要介護３　1,040円／回<br />
+  要介護４　1,181円／回<br />
+  要介護５　1,323円／回<br />
+  <br />
+  上記の金額は介護保険の負担割合が1割の場合になります。<br />
+  加算、総合事業については、お問い合わせください。
+</div>
+    </div>
+  </div>
+  {/* 定員 */}
+  <div className="mb-8">
+    <h2 className="text-xl font-bold text-orange-500 mb-2">定員</h2>
+    <div className="bg-orange-50 rounded-lg p-4 text-gray-800">
+      {facility.capacity}
+    </div>
+  </div>
+  {/* サービス提供エリア */}
+  <div>
+    <h2 className="text-xl font-bold text-orange-500 mb-2">サービス提供エリア</h2>
+    <div className="bg-orange-50 rounded-lg p-4 text-gray-800">
+      {slug === 'tondabayashi' ? '富田林市全域 河南町、千早赤阪村の一部' : 
+       slug === 'miyakojima' ? '大阪市都島区、旭区、城東区、鶴見区の一部' : 
+       slug === 'hirakata' ? '枚方市全域、寝屋川市の一部' : '施設周辺地域'}
+    </div>
+  </div>
+  
+  {/* 空き状況 */}
+  <div className="mt-8">
+    <h2 className="text-xl font-bold text-orange-500 mb-2">空き状況</h2>
+    <div className="bg-orange-50 rounded-lg p-4 text-gray-800">
+      <div className="text-gray-800 text-sm mb-2">
+        午前（1単位目）、午後（2単位目）ともに若干余裕があります。（R3年12月現在）<br />
+        &lt;サービス提供時間&gt;<br />
+        半日型　午前 9:00～12:15、午後 13:30～16:45<br />
+        1日型　午前 9:30～16:45
+      </div>
+      <div className="text-gray-700 text-xs mb-2">[表示記号案内] ○：空きあり、▲：残り1～3名、×：空きなし</div>
+      <div className="overflow-x-auto">
+        <table className="min-w-max w-full text-center border border-gray-200 bg-white rounded-lg">
+          <thead>
+            <tr className="bg-pink-100 text-gray-700">
+              <th className="py-1 px-2 border-b"></th>
+              <th className="py-1 px-2 border-b">月曜</th>
+              <th className="py-1 px-2 border-b">火曜</th>
+              <th className="py-1 px-2 border-b">水曜</th>
+              <th className="py-1 px-2 border-b">木曜</th>
+              <th className="py-1 px-2 border-b">金曜</th>
+              <th className="py-1 px-2 border-b">土曜</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="py-1 px-2 border-b font-semibold">午前</td>
+              <td className="py-1 px-2 border-b">○</td>
+              <td className="py-1 px-2 border-b">△</td>
+              <td className="py-1 px-2 border-b">○</td>
+              <td className="py-1 px-2 border-b">○</td>
+              <td className="py-1 px-2 border-b">○</td>
+              <td className="py-1 px-2 border-b">△</td>
+            </tr>
+            <tr>
+              <td className="py-1 px-2 border-b font-semibold">午後</td>
+              <td className="py-1 px-2 border-b">○</td>
+              <td className="py-1 px-2 border-b">○</td>
+              <td className="py-1 px-2 border-b">○</td>
+              <td className="py-1 px-2 border-b">△</td>
+              <td className="py-1 px-2 border-b">○</td>
+              <td className="py-1 px-2 border-b">△</td>
+            </tr>
+            <tr>
+              <td className="py-1 px-2 border-b font-semibold">全日</td>
+              <td className="py-1 px-2 border-b">○</td>
+              <td className="py-1 px-2 border-b">○</td>
+              <td className="py-1 px-2 border-b">○</td>
+              <td className="py-1 px-2 border-b">△</td>
+              <td className="py-1 px-2 border-b">○</td>
+              <td className="py-1 px-2 border-b">△</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div className="text-xs text-gray-700 mt-2 flex flex-wrap gap-4">
+        <span>○ 空きあり</span>
+        <span>△ 空きわずか</span>
+        <span>× 順番待ちです</span>
+      </div>
+    </div>
+  </div>
+</div>
 
-              {/* Photo Gallery */}
-              <div className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">フォトギャラリー</h2>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {facility.gallery.map((image: string, index: number) => (
-                    <div
-                      key={index}
-                      className="aspect-square rounded-lg overflow-hidden shadow-soft cursor-pointer hover:shadow-soft-lg transition-shadow"
-                      onClick={() => setSelectedImage(image)}
-                    >
-                      <img
-                        src={image}
-                        alt={`${facility.name} 写真 ${index + 1}`}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+              {/* Daily Schedule section removed */}
 
-            {/* Sidebar */}
-            <div className="lg:col-span-1">
-              <div className="bg-white rounded-xl shadow-soft p-6 sticky top-24">
-                <h3 className="text-xl font-bold text-gray-900 mb-6">施設概要</h3>
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-start space-x-3">
-                    <MapPin className="w-5 h-5 text-primary mt-1" />
-                    <div>
-                      <p className="text-sm text-gray-600">住所</p>
-                      <p className="text-gray-900">{facility.address}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <Phone className="w-5 h-5 text-primary mt-1" />
-                    <div>
-                      <p className="text-sm text-gray-600">電話番号</p>
-                      <a href={`tel:${facility.phone}`} className="text-primary hover:text-primary-hover">
-                        {facility.phone}
-                      </a>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <Users className="w-5 h-5 text-primary mt-1" />
-                    <div>
-                      <p className="text-sm text-gray-600">定員</p>
-                      <p className="text-gray-900">{facility.capacity}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <Clock className="w-5 h-5 text-primary mt-1" />
-                    <div>
-                      <p className="text-sm text-gray-600">営業時間</p>
-                      <p className="text-gray-900">{facility.hours}</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mb-8">
-                  <h4 className="font-semibold text-gray-900 mb-2">料金目安</h4>
-                  <p className="text-sm text-gray-600">{facility.pricing}</p>
-                </div>
-
-                <div className="space-y-3">
+              {/* Contact Buttons */}
+              <div className="mb-12 mt-8">
+                <div className="space-y-3 max-w-md mx-auto">
                   <Link
                     to="/contact"
                     className="block w-full text-center bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary-hover transition-colors"
@@ -306,12 +346,63 @@ const FacilityDetail = () => {
                     見学予約・お問い合わせ
                   </Link>
                   <a
-                    href={`tel:${facility.phone}`}
+                    href="tel:0721-23-8822"
                     className="block w-full text-center border border-primary text-primary py-3 rounded-lg font-semibold hover:bg-primary hover:text-white transition-colors"
                   >
                     電話で問い合わせ
                   </a>
                 </div>
+              </div>
+
+              {/* Photo Gallery section removed */}
+            </div>
+            {/* Sidebar */}
+            <div className="lg:col-span-1">
+              <div className="bg-white rounded-xl shadow-soft p-6 sticky top-24">
+                <h3 className="text-xl font-bold text-primary mb-4">施設情報</h3>
+                
+                <div className="mb-6">
+                  <p className="font-semibold text-gray-700 mb-1">
+                    {slug === 'tondabayashi' ? '大阪府・富田林市' : 
+                     slug === 'miyakojima' ? '大阪府・都島区' : 
+                     slug === 'hirakata' ? '大阪府・枚方市' : 
+                     slug === 'gofuku' ? '大阪府・大阪市' : 
+                     '大阪府・池田市'}
+                  </p>
+                </div>
+                
+                <div className="mb-6">
+                  <p className="font-semibold text-gray-700 mb-1">介護保険事業所番号</p>
+                  <p className="text-gray-600">
+                    {slug === 'tondabayashi' ? '2794900205' : 
+                     slug === 'miyakojima' ? '2775001234' : 
+                     slug === 'hirakata' ? '2712345678' : 
+                     slug === 'gofuku' ? '2756789012' : 
+                     '2734567890'}
+                  </p>
+                </div>
+                
+                <div className="mb-6">
+                  <p className="font-semibold text-gray-700 mb-1">住所</p>
+                  <p className="text-gray-600">{facility.address}</p>
+                </div>
+                
+                <div className="mb-6">
+                  <p className="font-semibold text-gray-700 mb-1">メールアドレス</p>
+                  <a href={`mailto:${slug}@rehapride.co.jp`} className="text-primary hover:underline">{slug}@rehapride.co.jp</a>
+                </div>
+                
+                <div className="mb-6">
+                  <p className="font-semibold text-gray-700 mb-1">電話番号</p>
+                  <a href={`tel:${facility.phone}`} className="text-primary hover:underline">{facility.phone}</a>
+                </div>
+                
+                <div className="mb-6">
+                  <p className="font-semibold text-gray-700 mb-1">FAX</p>
+                  <p className="text-gray-600">0721-23-8823</p>
+                </div>
+
+                {/* Contact buttons moved to main content */}
               </div>
             </div>
           </div>
@@ -326,16 +417,18 @@ const FacilityDetail = () => {
           </div>
           <div className="bg-white rounded-xl shadow-soft overflow-hidden">
             <div className="h-96">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3279.123456789!2d135.52!3d34.69!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDQxJzI0LjAiTiAxMzXCsDMxJzEyLjAiRQ!5e0!3m2!1sja!2sjp!4v1620000000000!5m2!1sja!2sjp"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
+              <FacilityMap 
+                address={facility.address} 
                 title={`${facility.name}のアクセスマップ`}
-              ></iframe>
+                lat={slug === 'tondabayashi' ? 34.5 : 
+                     slug === 'miyakojima' ? 34.7 : 
+                     slug === 'hirakata' ? 34.825467 : 
+                     slug === 'gofuku' ? 34.68 : 34.82}
+                lng={slug === 'tondabayashi' ? 135.6 : 
+                     slug === 'miyakojima' ? 135.53 : 
+                     slug === 'hirakata' ? 135.678162 : 
+                     slug === 'gofuku' ? 135.51 : 135.43}
+              />
             </div>
           </div>
         </div>

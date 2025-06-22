@@ -102,40 +102,55 @@ const RehabilitationDayService = () => {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">リハビリ特化型デイサービスとは？</h2>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+          <div className="grid grid-cols-1 gap-8 items-center mb-16">
             <div>
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                リハビリ特化型デイサービスは、理学療法士（PT）・作業療法士（OT）・言語聴覚士（ST）などの
-                専門職が常駐し、個別機能訓練を中心としたサービスを提供するデイサービスです。
+                リハビリ型デイサービスとは、シニアフィットネスの要素を取り入れリハビリに特化した新しいスタイルの通所介護（デイサービス）です。
               </p>
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                従来のデイサービスとは異なり、機能の維持だけでなく、積極的な機能改善・向上を目指し、
-                ご利用者様の「できること」を増やすことに重点を置いています。
+                要支援１から要介護５の方が、介護保険を使って運動機能の回復を目指してリハビリ専門の機器とプログラムを利用し、リハビリ運動を実施しています。
               </p>
-              <div className="bg-accent p-6 rounded-lg">
-                <h3 className="font-bold text-primary mb-3">G・MOTOの特徴</h3>
-                <ul className="space-y-2">
-                  <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-primary mr-2" />
-                    <span className="text-gray-700">専門職による個別評価・プログラム作成</span>
+              <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                従来のデイサービスとは異なり、機能の維持だけでなく、積極的な機能改善・向上を目指し、 ご利用者様の「できること」を増やすことに重点を置いています。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* リハプライドの特徴 */}
+      <section className="py-16 bg-accent">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">リハプライドの特徴</h2>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-soft">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              {/* 左カラム: 特徴リスト */}
+              <div className="bg-primary rounded-lg p-6 md:pt-8 md:pb-4">
+                <ul className="space-y-3 mb-0">
+                  <li className="flex items-center mb-0">
+                    <CheckCircle className="w-6 h-6 text-white mr-3" />
+                    <span className="text-white text-xl font-semibold">専門職による個別評価・プログラム作成</span>
                   </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-primary mr-2" />
-                    <span className="text-gray-700">最新のリハビリ機器を完備</span>
+                  <li className="flex items-center mb-0">
+                    <CheckCircle className="w-6 h-6 text-white mr-3" />
+                    <span className="text-white text-xl font-semibold">最新のリハビリ機器を完備</span>
                   </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-primary mr-2" />
-                    <span className="text-gray-700">定期的な効果測定と計画見直し</span>
+                  <li className="flex items-center mb-0">
+                    <CheckCircle className="w-6 h-6 text-white mr-3" />
+                    <span className="text-white text-xl font-semibold">定期的な効果測定と計画見直し</span>
                   </li>
                 </ul>
               </div>
-            </div>
-            <div>
-              <img
-                src="https://images.pexels.com/photos/6111694/pexels-photo-6111694.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
-                alt="リハビリ特化型デイサービスの様子"
-                className="w-full h-96 object-cover rounded-xl shadow-soft-lg"
-              />
+              {/* 右カラム: 画像 */}
+              <div className="flex justify-center">
+                <img
+                  src="/images/service/service05.png"
+                  alt="リハプライドの特徴イメージ"
+                  className="max-w-full h-auto rounded-lg object-cover shadow"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -172,7 +187,7 @@ const RehabilitationDayService = () => {
           </div>
 
           <div className="mt-12 bg-white rounded-xl p-8 shadow-soft">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">G・MOTOが選ばれる理由</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-4">リハプライドが選ばれる理由</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center">
                 <div className="w-16 h-16 bg-primary rounded-lg flex items-center justify-center mx-auto mb-4">
@@ -199,14 +214,17 @@ const RehabilitationDayService = () => {
           </div>
         </div>
       </section>
-
-      {/* Self-Support Care */}
-      <section className="py-16">
+    {/* Self-Support Care */}
+    <section className="py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* --- ここに「リハプライドが選ばれる理由」セクションがある --- */}
+
+          {/* ↓↓↓ ここから移動した2つのセクション ↓↓↓ */}
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">自立支援介護とは</h2>
             <p className="text-lg text-gray-600">
-              G・MOTOが実践する自立支援介護の考え方をご紹介します
+              リハプライドが実践する自立支援介護の考え方をご紹介します。
             </p>
           </div>
 
@@ -220,6 +238,46 @@ const RehabilitationDayService = () => {
               </p>
             </div>
           </div>
+      {/* パワーリハビリ・みんなの体操/座位の太極拳セクション */}
+      <section className="py-8">
+        <div className="max-w-5xl mx-auto space-y-8">
+          {/* ①パワーリハビリテーション */}
+          <div className="bg-orange-50 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center shadow-md">
+            <div className="md:w-2/3 w-full md:pr-8">
+              <h3 className="text-xl md:text-2xl font-bold text-orange-500 mb-2">
+                <span className="mr-2">①</span>パワーリハビリテーション
+              </h3>
+              <p className="text-gray-800 text-base md:text-lg leading-relaxed">
+                ドイツ生まれのメディカル・トレーニングマシン（ドイツ医療機関に適合）6台を使用して、「座る・立つ・歩く」といった生活基本動作に必要な筋肉へ刺激を与えます。<br />
+                マシンを使用＝筋トレ運動で思い浮かべるかもしれませんが、決して筋肉を鍛えるものではありません。正しいポジショニングで、軽い負荷（重り）をかけ、繰り返しの動作を行うことにより、動かなくなった筋肉（不活動筋）を、再び活動が一戻すことを目的としています。これにより、老化（廃用症候群など）を改善・予防することができるのです。<br />
+                ご利用者さまの状態に合わせて「痛くない、疲れない、楽しい」リハビリを行うことができます。
+              </p>
+            </div>
+            <div className="md:w-1/3 w-full flex justify-center mt-4 md:mt-0">
+              <img src="/images/service/service01.jpg" alt="パワーリハビリテーションの様子" className="rounded-xl object-cover max-w-full h-auto shadow" />
+            </div>
+          </div>
+          {/* ②座ってできる体操・座位の太極拳 */}
+          <div className="bg-orange-50 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center shadow-md">
+            <div className="md:w-2/3 w-full md:pr-8">
+              <h3 className="text-xl md:text-2xl font-bold text-orange-500 mb-2">
+                <span className="mr-2">②</span>座ってできる『みんなの体操』と『座位の太極拳』
+              </h3>
+              <p className="text-gray-800 text-base md:text-lg leading-relaxed">
+                準備体操として「みんなの体操」、整理運動として「座位の太極拳」を行います。両方とも、立位が難しい方でも、イスに座ったまま（座位で）体を動かすことができます。<br />
+                準備運動の「みんなの体操」は、全身の筋肉をほぐし、体を温めることを目的としています。<br />
+                整理運動として行う「座位の太極拳」は、運動（パワーリハビリテーション）後の呼吸や血液循環などを常態に戻し、筋肉の疲労を残さないために行います。<br />
+                共に身体の力を抜き、リラックスして楽に行うことで、複数の筋肉を運動して動かすことができ、廃用症候群などの改善・予防にもつながります。
+              </p>
+            </div>
+            <div className="md:w-1/3 w-full flex justify-center mt-4 md:mt-0">
+              <img src="/images/service/service04.png" alt="座位の太極拳の様子" className="rounded-xl object-cover max-w-full h-auto shadow" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+  
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {selfSupportCare.map((item, index) => (
@@ -257,48 +315,16 @@ const RehabilitationDayService = () => {
         </div>
       </section>
 
-      {/* Rehabilitation Programs */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">リハビリプログラム</h2>
-            <p className="text-lg text-gray-600">
-              専門職による多彩なリハビリプログラムをご用意しています
-            </p>
-          </div>
-
-          <div className="space-y-12">
-            {rehabPrograms.map((category, index) => (
-              <div key={index} className="bg-white rounded-xl p-8 shadow-soft">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">{category.category}</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {category.programs.map((program, programIndex) => (
-                    <div key={programIndex} className="border border-gray-200 rounded-lg p-6 hover:border-primary transition-colors">
-                      <h4 className="font-bold text-gray-900 mb-3">{program.name}</h4>
-                      <p className="text-gray-700">{program.description}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-12 bg-primary text-white rounded-xl p-8 text-center">
-            <h3 className="text-2xl font-bold mb-4">個別プログラムの作成</h3>
-            <p className="text-lg mb-6">
-              ご利用者様の状態や目標に合わせて、上記のプログラムを組み合わせた
-              オーダーメイドのリハビリプログラムを作成いたします。
-            </p>
-            <Link
-              to="/contact"
-              className="inline-flex items-center bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-            >
-              プログラムについて相談する
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* リハビリプログラムへの案内ボタン */}
+      <div className="w-full flex justify-center my-12">
+        <Link
+          to="/rehab-programs"
+          className="inline-flex items-center bg-primary text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary-dark transition-colors shadow-lg text-lg"
+        >
+          リハビリプログラムについて
+          <ArrowRight className="ml-2 w-5 h-5" />
+        </Link>
+      </div>
 
       {/* Facilities Section */}
       <section className="py-16">

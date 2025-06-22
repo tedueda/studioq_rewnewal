@@ -10,6 +10,7 @@ import FacilityDetail from './pages/FacilityDetail';
 import Contact from './pages/Contact';
 import Recruit from './pages/Recruit';
 import RehabilitationDayService from './pages/RehabilitationDayService';
+import RehabPrograms from './pages/RehabPrograms';
 import './assets/styles/background.css';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
             <Route path="/services/rehabilitation-dayservice" element={<RehabilitationDayService />} />
             <Route path="/facilities" element={<Facilities />} />
             <Route path="/facilities/:slug" element={<FacilityDetail />} />
+            <Route path="/rehab-programs" element={<RehabPrograms />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/recruit" element={<Recruit />} />
           </Routes>

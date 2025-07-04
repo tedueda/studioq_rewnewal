@@ -30,22 +30,26 @@ function setBackgroundImages() {
 // DOM読み込み後に背景画像を設定
 document.addEventListener('DOMContentLoaded', () => {
     setBackgroundImages();
-    
-    // ヒーロービデオの初期設定
     const heroVideo = document.getElementById('heroVideo');
     if (heroVideo) {
-        // 動画の読み込みエラー処理
         heroVideo.addEventListener('error', function(e) {
             console.error('ヒーロー動画の読み込みエラー:', e);
         });
         
-        // ユーザーインタラクションがあった場合に動画を再生準備
-        document.addEventListener('click', function() {
+        // ユーザーインタラクションを検出して記録する
+        const registerUserInteraction = () => {
+            document.body.dataset.userInteracted = 'true';
             if (heroVideo.paused && !heroVideo.dataset.interactionRegistered) {
                 heroVideo.load();
                 heroVideo.dataset.interactionRegistered = 'true';
+                console.log('ユーザーインタラクションを検出しました。動画の準備を開始します。');
             }
-        }, { once: true });
+        };
+        
+        // クリック、タッチ、スクロールなどのユーザーアクションを検出
+        ['click', 'touchstart', 'scroll', 'keydown'].forEach(eventType => {
+            document.addEventListener(eventType, registerUserInteraction, { once: true });
+        });
     }
 });
 
@@ -136,76 +140,76 @@ document.addEventListener('DOMContentLoaded', () => {
     // 動画スライドがアクティブになったときの処理
     function handleVideoSlideActive() {
         console.log('動画スライドがアクティブになりました');
-        // スライドショーを一時停止
         const wasRunning = isSlideShowRunning;
         stopSlideshow();
-        
-        // 既存のタイマーをクリア
         clearAllTimers();
         
-        // 動画を最初から再生
         if (heroVideo) {
-            console.log('動画再生を開始します');
+            console.log('動画再生を準備します');
+            // 動画の設定をリセット
             heroVideo.currentTime = 0;
             heroVideo.muted = true; // 必ずミュートにする（自動再生のため）
+            heroVideo.setAttribute('playsinline', ''); // iOSでのインライン再生を強制
+            heroVideo.setAttribute('webkit-playsinline', ''); // 古いiOSブラウザ用
             
-            // 動画の読み込みを確認
+            // 低電力モードでの再生問題に対応するため、ユーザーインタラクションを確認
+            const hasInteracted = document.body.dataset.userInteracted === 'true';
+            
+            if (!hasInteracted) {
+                // ユーザーインタラクションがまだない場合は静止画として表示
+                console.log('ユーザーインタラクションがないため、静的スライドとして表示します');
+                // 静的スライド表示の後、次のスライドへ
+                pauseTimer = setTimeout(() => {
+                    goToSlide(0);
+                    if (wasRunning) {
+                        startSlideshow();
+                    }
+                }, 5000); // 5秒間表示してから次へ
+                return;
+            }
+            
+            // 再生を試みる
+            console.log('動画再生を開始します');
             const playPromise = heroVideo.play();
             
             if (playPromise !== undefined) {
                 playPromise.then(() => {
-                    // 再生成功
                     isVideoPlaying = true;
                     console.log('動画再生開始: 8秒後に停止します');
-                    
-                    // 8秒後に動画を一時停止
                     videoTimer = setTimeout(() => {
                         if (isVideoSlideActive()) {
                             console.log('8秒経過: 動画を一時停止します');
                             heroVideo.pause();
                             isVideoPlaying = false;
-                            
-                            // 1秒間待機してからスライドショーの最初に戻る
-                            console.log('1秒後に最初のスライドに戻ります');
                             pauseTimer = setTimeout(() => {
-                                console.log('1秒経過: 最初のスライドに移動します');
-                                // 最初のスライドに移動
+                                console.log('次のスライドに移動します');
                                 goToSlide(0);
-                                
-                                // スライドショーを再開
                                 if (wasRunning) {
-                                    console.log('スライドショーを再開します');
                                     startSlideshow();
                                 }
-                            }, 1000);
+                            }, 2000); // 2秒間の間隔を空ける
                         }
                     }, 8000);
                 }).catch(error => {
-                    // 再生失敗
                     console.error('動画再生エラー:', error.message || '不明なエラー');
-                    // エラー発生時はスライドを静的画像として扱い、次のスライドへ進む準備
                     console.log('動画再生に失敗したため、静的スライドとして表示します');
-                    // エラー時は3秒後に次のスライドへ
+                    // エラー発生時は静的スライドとして表示し、次のスライドへ
                     pauseTimer = setTimeout(() => {
                         goToSlide(0);
                         if (wasRunning) {
                             startSlideshow();
                         }
-                    }, 3000);
+                    }, 5000); // 5秒間表示してから次へ
                 });
             } else {
-                // Promiseをサポートしていないブラウザの場合
+                // 古いブラウザ対応
                 try {
                     heroVideo.play();
                     isVideoPlaying = true;
-                    
-                    // 8秒後に動画を一時停止
                     videoTimer = setTimeout(() => {
                         if (isVideoSlideActive()) {
                             heroVideo.pause();
                             isVideoPlaying = false;
-                            
-                            // 1秒間待機してからスライドショーの最初に戻る
                             pauseTimer = setTimeout(() => {
                                 // 最初のスライドに移動
                                 goToSlide(0);

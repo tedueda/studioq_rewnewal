@@ -549,19 +549,20 @@
             </div>
             
             <div class="contact-form">
-                <form action="https://formspree.io/t.ueda@studioq.co.jp" method="POST">
+                <form action="send_mail.php" method="POST">
                     <div class="form-group">
-                        <input type="text" placeholder="お名前" required>
+                        <input type="text" name="name" placeholder="お名前" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" placeholder="メールアドレス" required>
+                        <input type="email" name="email" placeholder="メールアドレス" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" placeholder="電話番号">
+                        <input type="tel" name="phone" placeholder="電話番号">
                     </div>
                     <div class="form-group">
-                        <textarea placeholder="お問い合わせ内容" rows="5" required></textarea>
+                        <textarea name="message" placeholder="お問い合わせ内容" rows="5" required></textarea>
                     </div>
+                    <input type="hidden" name="subject" value="StudioQウェブサイトからのお問い合わせ">
                     <button type="submit" class="btn">送信する</button>
                 </form>
             </div>

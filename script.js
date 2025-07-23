@@ -469,10 +469,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // 通常の動画ファイルの場合
             videoElement = document.createElement('video');
             
-            // キャッシュバスターを追加（クエリパラメータがすでにある場合は&で追加）
-            const cacheBuster = processedUrl.includes('?') ? `&t=${new Date().getTime()}` : `?t=${new Date().getTime()}`;
-            const videoUrlWithCacheBuster = processedUrl + cacheBuster;
-            console.log('キャッシュバスター付きURL:', videoUrlWithCacheBuster);
+            // キャッシュバスターを削除（ロード時間短縮のため）
+            const videoUrlWithCacheBuster = processedUrl;
+            console.log('処理後のURL:', videoUrlWithCacheBuster);
             
             // エラーハンドリングを追加
             videoElement.onerror = function(e) {
@@ -531,6 +530,7 @@ document.addEventListener('DOMContentLoaded', () => {
             videoElement.setAttribute('controls', 'true');
             videoElement.setAttribute('autoplay', 'true');
             videoElement.setAttribute('playsinline', 'true'); // iOSでの再生をサポート
+            videoElement.setAttribute('preload', 'auto'); // 動画の事前読み込みを有効化
             videoElement.className = 'popup-video';
         }
         

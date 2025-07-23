@@ -21,11 +21,11 @@
     <meta name="twitter:creator" content="@StudioQ080">
     <link rel="canonical" href="https://studioq.co.jp">
     <title>大阪｜Studio Q – プロフェッショナルバーチャルスタジオ 4Kグリーンスクリーン撮影</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="_site/style.css">
     <!-- プリロードとキャッシュ制御 -->
     <link rel="preload" href="images/studioq_logo_white.png" as="image">
-    <link rel="preload" href="style.css" as="style">
-    <link rel="preload" href="script.js" as="script">
+    <link rel="preload" href="_site/style.css" as="style">
+    <link rel="preload" href="_site/script.js" as="script">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- ページの読み込み速度向上のためにFontAwesomeをプリロード -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style">
@@ -154,7 +154,7 @@
                 <li><a href="blog/index.html">ブログ</a></li>
             </ul>
         </nav>
-        <div class="menu-toggle">
+        <div class="menu-toggle" aria-label="メニューを開く">
             <i class="fas fa-bars"></i>
         </div>
     </header>
@@ -240,10 +240,7 @@
                     </div>
                 </div>
             </div>
-            <div class="slideshow-controls">
-                <button class="prev-slide" title="前のスライドを表示"><i class="fas fa-chevron-left" aria-hidden="true"></i><span class="sr-only">前のスライド</span></button>
-                <button class="next-slide" title="次のスライドを表示"><i class="fas fa-chevron-right" aria-hidden="true"></i><span class="sr-only">次のスライド</span></button>
-            </div>
+            <!-- スライドボタンを削除しました -->
         </div>
         <div class="hero-info-bar">
             <div class="info-item">
@@ -293,9 +290,6 @@
             <div class="studio-intro-container">
                 <div class="video-wrapper">
                     <div class="video-thumbnail" data-video-url="https://test.studioq.co.jp/wp-content/uploads/2025/07/kuroki01.mp4" aria-label="スタジオQ紹介動画">
-                        <div class="video-text-overlay">
-                        
-                        </div>
                         <img src="images/kuroki.JPG" alt="Studio Q 4Kグリーンスクリーン撮影風景" loading="lazy">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
@@ -312,18 +306,10 @@
         <div class="container">
             <h2 class="section-title">ー最新映像ー</h2>
             
-            <div class="videos-grid">
+            <div class="video-wrapper">
                 <div class="video-item">
-                    <div class="latest-video-thumbnail" data-video-url="https://test.studioq.co.jp/wp-content/uploads/2025/05/Everything-is-You.mp4">
-                        <img src="images/youtube.jpg" alt="Studio Q 音楽映像作品 Everything is You" loading="lazy">
-                        <div class="play-button">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="video-item">
-                    <div class="latest-video-thumbnail" data-video-url="https://test.studioq.co.jp/wp-content/uploads/2025/05/BECAUSE.mp4">
-                        <img src="images/Because.jpg" alt="Studio Q 音楽映像作品 BECAUSE" loading="lazy">
+                    <div class="latest-video-thumbnail" data-video-url="https://test.studioq.co.jp/wp-content/uploads/2025/07/music.pv-４-1-1.mp4">
+                        <img src="images/band01.JPG" alt="Studio Q 音楽映像作品" loading="lazy">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
                         </div>
@@ -363,12 +349,12 @@
                     </div>
                 </div>
                 <div class="gallery-item video-gallery-item">
-                    <div class="gallery-video-thumbnail" data-video-url="https://test.studioq.co.jp/wp-content/uploads/2025/05/kimono.mp4" data-background="images/kimono.png">
+                    <div class="gallery-video-thumbnail" data-video-url="https://test.studioq.co.jp/wp-content/uploads/2025/07/everything.mp4" data-background="images/youtube.jpg">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
                         </div>
                         <div class="video-caption">
-                            <h3>インバウンド向け着物撮影</h3>
+                            <h3>ミュージックビデオ撮影</h3>
                             <p>詳細はこちら</p>
                         </div>
                     </div>
@@ -548,18 +534,18 @@
             </div>
             
             <div class="contact-form">
-                <form action="https://formspree.io/t.ueda@studioq.co.jp" method="POST">
+                <form action="send_mail.php" method="POST">
                     <div class="form-group">
-                        <input type="text" placeholder="お名前" required>
+                        <input type="text" name="name" placeholder="お名前" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" placeholder="メールアドレス" required>
+                        <input type="email" name="email" placeholder="メールアドレス" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" placeholder="電話番号">
+                        <input type="tel" name="phone" placeholder="電話番号">
                     </div>
                     <div class="form-group">
-                        <textarea placeholder="お問い合わせ内容" rows="5" required></textarea>
+                        <textarea name="message" placeholder="お問い合わせ内容" rows="5" required></textarea>
                     </div>
                     <button type="submit" class="btn">送信する</button>
                 </form>
@@ -613,6 +599,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="_site/script.js"></script>
 </body>
 </html>

@@ -25,6 +25,54 @@ const HomePage: React.FC = () => {
               将来への不安を解消し、あなたらしい人生を送るために。
               専門の行政書士が丁寧にサポートいたします。
             </p>
+            
+            <div className="mt-8">
+              <img 
+                src="/assets/img/kouken101.jpg" 
+                alt="任意後見制度について" 
+                className="mx-auto max-w-full h-auto rounded-lg shadow-lg"
+              />
+            </div>
+          </div>
+
+          <div className="bg-c-accent rounded-lg p-8 mb-12">
+            <div className="space-y-6">
+              <div className="border-l-4 border-c-primary pl-4">
+                <h4 className="text-lg font-bold text-c-primary mb-2">① 見守り契約とは・・・</h4>
+                <p className="text-c-text">電話や訪問で、定期的に心身の状態や生活状況を確認する。緊急時対応の窓口となる。</p>
+              </div>
+              
+              <div className="border-l-4 border-c-primary pl-4">
+                <h4 className="text-lg font-bold text-c-primary mb-2">② 財産管理等委任契約とは・・・</h4>
+                <p className="text-c-text">病気・怪我での入院・在宅療養や高齢で銀行等の手続きができなくなった場合に通帳などを預かり入出金の管理を代わりに行う。</p>
+              </div>
+              
+              <div className="border-l-4 border-c-primary pl-4">
+                <h4 className="text-lg font-bold text-c-primary mb-2">③ 任意後見契約とは・・・</h4>
+                <p className="text-c-text">万が一認知症になった時に財産管理や身上監護をしてくれる後見人をあらかじめ決めておく。</p>
+              </div>
+              
+              <div className="border-l-4 border-c-primary pl-4">
+                <h4 className="text-lg font-bold text-c-primary mb-2">④ 遺言書作成とは・・・</h4>
+                <p className="text-c-text">自分の財産を「誰に・どこに・どのくらい」分けるのかを意思表示。</p>
+              </div>
+              
+              <div className="border-l-4 border-c-primary pl-4">
+                <h4 className="text-lg font-bold text-c-primary mb-2">⑤ 遺言執行とは・・・</h4>
+                <p className="text-c-text">遺言で決めたことを実行する人をあらかじめ決めて、滞りなく進めて遺言内容を達成する。</p>
+              </div>
+              
+              <div className="border-l-4 border-c-primary pl-4">
+                <h4 className="text-lg font-bold text-c-primary mb-2">⑥ 死後事務委任契約とは・・・</h4>
+                <p className="text-c-text">自身が亡くなった後の葬儀・納骨・遺品整理など、やって欲しい事を決めて必要な手続きについてあらかじめ委任しておく。</p>
+              </div>
+            </div>
+            
+            <div className="mt-8 p-4 bg-white rounded-lg">
+              <p className="text-c-text text-center">
+                ①～⑥の事柄について、すべてご説明をお聞きいただいて、ご自身にとって必要なものを選択することができます。
+              </p>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">

@@ -1,0 +1,67 @@
+{
+  "posts": [
+    {
+      "id": "osaka-dourok-studio",
+      "title": "大阪で同録スタジオをお探しなら│完全防音・同時録画収音の「スタジオQ」",
+      "date": "2025-08-17",
+      "excerpt": "大阪市内の完全防音スタジオ『スタジオQ』は、同録（同時録画収音）に最適。外部ノイズを遮断し、4カメ同時スイッチングや大型グリーンバック撮影で映像と音声を高品質に同時収録できます。",
+      "image": "images/slide3.jpg",
+      "category": "同録スタジオガイド",
+      "url": "blog/大阪で同録スタジオをお探しなら完全防音・同時録画収音のスタジオQ.html"
+    },
+    {
+      "id": "live-streaming-studio",
+      "title": "ライブ配信のためのプロフェッショナルな防音スタジオと同時録音スタジオの選び方",
+      "date": "2025-08-01",
+      "excerpt": "ライブ配信は現代のビジネスやエンターテイメントにおいて欠かせない要素になりつつあります。高品質なライブ配信を行うためのプロフェッショナルな防音スタジオや同時録音スタジオの選び方をご紹介します。",
+      "image": "images/intro2-2.jpg",
+      "category": "ライブ配信ガイド",
+      "url": "blog/ライブ配信のためのプロフェッショナルな防音スタジオと同時録音スタジオの選び方.html"
+    },
+    {
+      "id": "ai-virtual-composition",
+      "title": "AIによるバーチャル合成撮影: スタジオQでの取り組みと成功例",
+      "date": "2025-07-29",
+      "excerpt": "映像制作の世界は絶えず進化しています。最新の技術の1つであるAIによるバーチャル合成撮影は、映像制作のプロセスを劇的に変えています。スタジオQでの最先端技術の活用事例をご紹介します。",
+      "image": "images/cosplay02_3.3.2.png",
+      "category": "スタジオ活用術",
+      "url": "blog/aiによるバ-チャル合成撮影-スタジオqでの取り組みと成功例.html"
+    },
+    {
+      "id": "virtual-production-trends",
+      "title": "2025年バーチャルプロダクションの最新トレンド",
+      "date": "2025-03-28",
+      "excerpt": "進化を続けるバーチャルプロダクション技術の最新トレンドと、スタジオQでの活用方法をご紹介します。",
+      "image": "images/cropped-slide3-2_1920-jpg.webp",
+      "category": "バーチャルプロダクション",
+      "url": "blog/virtual-production.html"
+    },
+    {
+      "id": "4k-camera-selection",
+      "title": "プロが教える4Kカメラの選び方",
+      "date": "2025-03-15",
+      "excerpt": "映像制作において重要な4Kカメラの選び方を、プロの視点から詳しく解説します。",
+      "image": "images/slide4-2_1920-jpg (1).webp",
+      "category": "機材ガイド",
+      "url": "blog/4k-camera-guide.html"
+    },
+    {
+      "id": "greenscreen-basics",
+      "title": "グリーンスクリーン撮影の基本とコツ",
+      "date": "2025-03-10",
+      "excerpt": "プロフェッショナルなグリーンスクリーン撮影を行うための基本技術とコツをご紹介します。",
+      "image": "images/greenscreen-sample.jpg",
+      "category": "撮影技術",
+      "url": "blog/greenscreen-basics.html"
+    },
+    {
+      "id": "music-live-setup",
+      "title": "音楽ライブ配信のための完璧なセットアップ",
+      "date": "2025-03-05",
+      "excerpt": "音楽ライブ配信を成功させるための機材選びから配信設定まで、完璧なセットアップ方法を解説します。",
+      "image": "images/music-live-setup.jpg",
+      "category": "ライブ配信",
+      "url": "blog/music-live-setup.html"
+    }
+  ]
+}

@@ -21,11 +21,11 @@
     <meta name="twitter:creator" content="@StudioQ080">
     <link rel="canonical" href="https://studioq.co.jp">
     <title>大阪｜Studio Q – プロフェッショナルバーチャルスタジオ 4Kグリーンスクリーン撮影</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="_site/style.css">
     <!-- プリロードとキャッシュ制御 -->
     <link rel="preload" href="images/studioq_logo_white.png" as="image">
-    <link rel="preload" href="style.css" as="style">
-    <link rel="preload" href="script.js" as="script">
+    <link rel="preload" href="_site/style.css" as="style">
+    <link rel="preload" href="_site/script.js" as="script">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- ページの読み込み速度向上のためにFontAwesomeをプリロード -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style">
@@ -154,7 +154,7 @@
                 <li><a href="blog/index.html">ブログ</a></li>
             </ul>
         </nav>
-        <div class="menu-toggle">
+        <div class="menu-toggle" aria-label="メニューを開く">
             <i class="fas fa-bars"></i>
         </div>
     </header>
@@ -222,7 +222,7 @@
                 </div>
             </div>
             <div class="slide video-slide">
-                <video id="heroVideo" class="slide-video" autoplay muted playsinline preload="auto">
+                <video id="heroVideo" class="slide-video" autoplay muted playsinline preload="metadata" loop disablePictureInPicture>
                     <source src="movie/greem1-2.mp4" type="video/mp4">
                     <source src="movie/greem1-2.webm" type="video/webm">
                     動画をサポートしていないブラウザです
@@ -240,10 +240,7 @@
                     </div>
                 </div>
             </div>
-            <div class="slideshow-controls">
-                <button class="prev-slide" title="前のスライドを表示"><i class="fas fa-chevron-left" aria-hidden="true"></i><span class="sr-only">前のスライド</span></button>
-                <button class="next-slide" title="次のスライドを表示"><i class="fas fa-chevron-right" aria-hidden="true"></i><span class="sr-only">次のスライド</span></button>
-            </div>
+            <!-- スライドボタンを削除しました -->
         </div>
         <div class="hero-info-bar">
             <div class="info-item">
@@ -292,12 +289,8 @@
         <div class="container">
             <div class="studio-intro-container">
                 <div class="video-wrapper">
-                    <div class="video-thumbnail" data-video-url="https://test.studioq.co.jp/wp-content/uploads/2025/05/kuroki_opening2.mp4" aria-label="スタジオQ紹介動画">
-                        <div class="video-text-overlay">
-                            <h2 class="section-title intro-title">最新の技術と創造性で、<br>あなたのビジョンを現実に</h2>
-                        
-                        </div>
-                        <img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6" alt="Studio Q 4Kグリーンスクリーン撮影風景" loading="lazy">
+                    <div class="video-thumbnail" data-video-url="https://test.studioq.co.jp/wp-content/uploads/2025/07/kuroki01.mp4" aria-label="スタジオQ紹介動画">
+                        <img src="images/kuroki.JPG" alt="Studio Q 4Kグリーンスクリーン撮影風景" loading="lazy">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
                         </div>
@@ -313,18 +306,10 @@
         <div class="container">
             <h2 class="section-title">ー最新映像ー</h2>
             
-            <div class="videos-grid">
+            <div class="video-wrapper">
                 <div class="video-item">
-                    <div class="latest-video-thumbnail" data-video-url="https://test.studioq.co.jp/wp-content/uploads/2025/05/Everything-is-You.mp4">
-                        <img src="images/youtube.jpg" alt="Studio Q 音楽映像作品 Everything is You" loading="lazy">
-                        <div class="play-button">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="video-item">
-                    <div class="latest-video-thumbnail" data-video-url="https://test.studioq.co.jp/wp-content/uploads/2025/05/BECAUSE.mp4">
-                        <img src="images/Because.jpg" alt="Studio Q 音楽映像作品 BECAUSE" loading="lazy">
+                    <div class="latest-video-thumbnail" data-video-url="https://test.studioq.co.jp/wp-content/uploads/2025/07/music.pv-４-1-1.mp4">
+                        <img src="images/band01.JPG" alt="Studio Q 音楽映像作品" loading="eager" style="width: 100%; height: auto; display: block;">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
                         </div>
@@ -364,12 +349,12 @@
                     </div>
                 </div>
                 <div class="gallery-item video-gallery-item">
-                    <div class="gallery-video-thumbnail" data-video-url="https://test.studioq.co.jp/wp-content/uploads/2025/05/kimono.mp4" data-background="images/kimono.png">
+                    <div class="gallery-video-thumbnail" data-video-url="https://test.studioq.co.jp/wp-content/uploads/2025/07/everything.mp4" data-background="images/youtube.jpg">
                         <div class="play-button">
                             <i class="fas fa-play"></i>
                         </div>
                         <div class="video-caption">
-                            <h3>インバウンド向け着物撮影</h3>
+                            <h3>ミュージックビデオ撮影</h3>
                             <p>詳細はこちら</p>
                         </div>
                     </div>
@@ -396,7 +381,21 @@
             <h2 class="section-title">Studio Qはこんなスタジオです</h2>
             
             <div class="feature-item">
-                <h3 class="feature-title">特長１ バーチャル撮影と音楽LIVEが可能なハイブリッドスタジオ</h3>
+                <h3 class="feature-title">特長１ 同録対応・完全防音スタジオ</h3>
+                
+                <div class="feature-content">
+                    <div class="feature-image">
+                        <img src="images/slide3.jpg" alt="Studio Q 完全防音スタジオでの同録対応設備" loading="lazy">
+                    </div>
+                    <div class="feature-description">
+                        <p>撮影と同時に高品位な音を収める"同録（同時録画収音）"に対応。スタジオQは完全防音の収録空間を基準に、外部ノイズや空調音を遮断し、声の通りと明瞭さを確保します。</p>
+                        <p>対談・企業メッセージ・セミナー配信・演奏収録までワンテイクで完結。これにより収録時間が短縮され、コスト削減を図ることができます。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <h3 class="feature-title">特長２ バーチャル撮影と音楽LIVEが可能なハイブリッドスタジオ</h3>
                 
                 <div class="feature-content">
                     <div class="feature-image">
@@ -405,29 +404,26 @@
                     <div class="feature-description">
                         <p>大阪市内ではあまり見当たらない約5mの高い天井と22坪の広い空間を活かした照明設備の充実により、グリーンバックの撮影もより鮮やかで美しい映像撮影がおこなえます。</p>
                         <p>防音設備も完備しており、反響音が少なく、音が漏れにくい構造となっております。これにより音楽LIVEの収録・配信も可能となりました。</p>
-                        <div class="feature-link">
-                            <a href="#" class="btn-link">音楽ライブ撮影についてはこちら <i class="fas fa-arrow-right"></i></a>
-                        </div>
+
                     </div>
                 </div>
             </div>
 
             <div class="feature-item">
-                <h3 class="feature-title">特長２ 撮影シーンに応じて様々な背景へ変更</h3>
+                <h3 class="feature-title">特長３ 撮影シーンに応じて様々な背景へ変更</h3>
                 
                 <div class="feature-content">
                     <div class="feature-image">
                         <img src="images/top-3-2.jpg" alt="Studio Q 撮影用途に合わせた様々な背景セット" loading="lazy">
                     </div>
                     <div class="feature-description">
-                        <p>背景を白ホリ風、黒幕、黒幕照明、グーンバックと撮影の用途に合わせて、様々な背景をご利用いただけます。</p>
-                        <p>また、それぞれに応じた照明設備もご用意しております。</p>
+                        <p>撮影用途に応じて、白ホリ風、黒幕、グリーンバックなど多彩な背景をご用意しています。各背景に最適化した照明設備も完備。被写体の質感や雰囲気を丁寧に演出し、ワンカットから本格的な収録まで柔軟に対応します。背景の切替は短時間で可能で、様々な用途に対応いたします。</p>
                     </div>
                 </div>
             </div>
 
             <div class="feature-item">
-                <h3 class="feature-title">特長３ 映像・音響・照明の全ての機材を常設完備</h3>
+                <h3 class="feature-title">特長４ 映像・音響・照明の全ての機材を常設完備</h3>
                 
                 <div class="feature-content">
                     <div class="feature-image">
@@ -437,26 +433,21 @@
                         <p>4台のカメラをリモート操作できるほか、クロマキーヤー4台を各カメラに搭載し、それぞれのカメラでリアルタイム合成が可能です。</p>
                         <p>また、カメラ8台まで接続可能なスイッチャー、収録機、WEB配信設備もそれぞれ各2台常設し、冗長性も兼ね備えております。</p>
                         <p>他、音楽LIVE用の24チャンネル・ミキサー、照明設備のコントロールもオペレーションルームから操作でき、これら全てをご利用頂けます。</p>
-                        <div class="feature-link">
-                            <a href="#" class="btn-link">スタジオ機材設備についてはこちら <i class="fas fa-arrow-right"></i></a>
-                        </div>
+
                     </div>
                 </div>
             </div>
 
             <div class="feature-item">
-                <h3 class="feature-title">特長４ ステンドグラスの開放感あふれるラウンジとメイク室</h3>
+                <h3 class="feature-title">特長５ ステンドグラスの開放感あふれるラウンジとメイク室</h3>
                 
-                <div class="feature-content">
-                    <div class="feature-image">
-                        <img src="images/intro3-2.jpg" alt="Studio Q ステンドグラスの開放感あふれるラウンジとメイク室" loading="lazy">
+                <div class="feature-content" style="display: flex; align-items: flex-start; gap: 20px;">
+                    <div class="feature-image" style="flex: 1;">
+                        <img src="images/lounge02.jpg" alt="Studio Q ステンドグラスの開放感あふれるラウンジとメイク室" loading="lazy" style="width: 100%; height: auto;">
                     </div>
-                    <div class="feature-description">
-                        <p>施設内設備としては、ステンドグラスからの光がとても開放的なラウンジを自由にご利用いただけます。</p>
-                        <p>また、メイク室と和室の控室もご用意しております。</p>
-                        <div class="feature-link">
-                            <a href="#" class="btn-link">スタジオのレイアウトについてはこちら <i class="fas fa-arrow-right"></i></a>
-                        </div>
+                    <div class="feature-description" style="flex: 1; text-align: left;">
+                        <p>ステンドグラスからやわらかな光が差し込むラウンジは、打合せや台本確認、クライアント様の待機場として心地よく過ごせる開放的な制作現場にはうれしい付帯スペースです。</p>
+                        <p>また専用のメイク室はハリウッドミラーと照明を備え、ヘアメイクや衣装チェックを落ち着いて行えます。</p>
                     </div>
                 </div>
             </div>
@@ -469,53 +460,51 @@
         <p class="section-subtitle">最新の撮影テクニックやスタジオの活用方法をご紹介</p>
         
         <div class="blog-preview-grid">
-            <!-- バーチャルプロダクション記事 -->
-            <article class="blog-card">
+            <!-- 静的コンテンツ：高速表示のため直接HTML記述 -->
+            <div class="blog-card">
                 <div class="blog-image">
-                    <img src="images/cropped-slide3-2_1920-jpg.webp" alt="2025年バーチャルプロダクションの最新トレンド - Studio Qブログ記事" loading="lazy">
-                    <div class="blog-date">2025.03.28</div>
+                    <img src="images/blog2.webp" alt="AIによるバーチャル合成撮影" loading="lazy">
                 </div>
                 <div class="blog-content">
-                    <h3 class="blog-title">2025年バーチャルプロダクションの最新トレンド</h3>
-                    <p class="blog-excerpt">進化を続けるバーチャルプロダクション技術の最新トレンドと、スタジオQでの活用方法をご紹介します。</p>
-                    <div class="blog-footer">
-                        <span class="blog-category">バーチャルプロダクション</span>
-                        <a href="blog/virtual-production.html" class="blog-link">続きを読む <i class="fas fa-arrow-right"></i></a>
+                    <div class="blog-meta">
+                        <span class="blog-date">2025年8月17日</span>
+                        <span class="blog-category">撮影技術</span>
                     </div>
+                    <h3 class="blog-title">AIによるバーチャル合成撮影 - スタジオQでの取り組みと成功例</h3>
+                    <p class="blog-excerpt">最新のAI技術を活用したバーチャル背景合成により、従来では不可能だった映像表現を実現。スタジオQの革新的な取り組みをご紹介します。</p>
+                    <a href="blog/aiによるバ-チャル合成撮影-スタジオqでの取り組みと成功例.html" class="blog-link">続きを読む</a>
                 </div>
-            </article>
+            </div>
             
-            <!-- 4Kカメラ記事 -->
-            <article class="blog-card">
+            <div class="blog-card">
                 <div class="blog-image">
-                    <img src="images/slide4-2_1920-jpg (1).webp" alt="プロが教える4Kカメラの選び方 - Studio Qブログ記事" loading="lazy">
-                    <div class="blog-date">2025.03.15</div>
+                    <img src="images/slide3.jpg" alt="完全防音スタジオでの同録" loading="lazy">
                 </div>
                 <div class="blog-content">
-                    <h3 class="blog-title">プロが教える4Kカメラの選び方</h3>
-                    <p class="blog-excerpt">映像制作において重要な4Kカメラの選び方について、プロのカメラマンが詳しく解説します。</p>
-                    <div class="blog-footer">
-                        <span class="blog-category">機材紹介</span>
-                        <a href="blog/camera-selection.html" class="blog-link">続きを読む <i class="fas fa-arrow-right"></i></a>
+                    <div class="blog-meta">
+                        <span class="blog-date">2025年8月17日</span>
+                        <span class="blog-category">同録スタジオ</span>
                     </div>
+                    <h3 class="blog-title">大阪で同録スタジオをお探しなら│完全防音・同時録画収音の「スタジオQ」</h3>
+                    <p class="blog-excerpt">完全防音環境での同時録画収音により、編集時間を大幅短縮。プロ品質の映像制作を効率的に実現する方法をご紹介します。</p>
+                    <a href="blog/大阪で同録スタジオをお探しなら完全防音・同時録画収音のスタジオQ.html" class="blog-link">続きを読む</a>
                 </div>
-            </article>
+            </div>
             
-            <!-- グリーンスクリーン記事 -->
-            <article class="blog-card">
+            <div class="blog-card">
                 <div class="blog-image">
-                    <img src="images/top3-1.jpg" alt="グリーンスクリーン撮影の基本とコツ - Studio Qブログ記事" loading="lazy">
-                    <div class="blog-date">2025.03.10</div>
+                    <img src="images/top3-1.jpg" alt="5m天井高グリーンバックスタジオ" loading="lazy">
                 </div>
                 <div class="blog-content">
-                    <h3 class="blog-title">グリーンスクリーン撮影の基本とコツ</h3>
-                    <p class="blog-excerpt">バーチャル撮影に欠かせないグリーンスクリーン撮影の基本とコツを解説します。</p>
-                    <div class="blog-footer">
-                        <span class="blog-category">撮影テクニック</span>
-                        <a href="blog/green-screen.html" class="blog-link">続きを読む <i class="fas fa-arrow-right"></i></a>
+                    <div class="blog-meta">
+                        <span class="blog-date">2025年8月15日</span>
+                        <span class="blog-category">スタジオ設備</span>
                     </div>
+                    <h3 class="blog-title">5m天井高グリーンバックスタジオの活用術</h3>
+                    <p class="blog-excerpt">大阪市内では珍しい5m天井高の広々としたスタジオ空間を活かした、プロフェッショナルな映像制作のテクニックをご紹介。</p>
+                    <a href="blog.html" class="blog-link">続きを読む</a>
                 </div>
-            </article>
+            </div>
         </div>
         
         <div class="blog-more">
@@ -562,7 +551,6 @@
                     <div class="form-group">
                         <textarea name="message" placeholder="お問い合わせ内容" rows="5" required></textarea>
                     </div>
-                    <input type="hidden" name="subject" value="StudioQウェブサイトからのお問い合わせ">
                     <button type="submit" class="btn">送信する</button>
                 </form>
             </div>
@@ -615,6 +603,7 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="_site/script.js"></script>
+    <script src="js/blog-manager.js"></script>
 </body>
 </html>

@@ -168,38 +168,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             
-            // 再生を試みる
+            // ユーザーインタラクションがある場合のみ再生を試みる
             console.log('動画再生を開始します');
             const playPromise = heroVideo.play();
             
             if (playPromise !== undefined) {
                 playPromise.then(() => {
+                    console.log('動画再生成功');
                     isVideoPlaying = true;
-                    console.log('動画再生開始: 8秒後に停止します');
+                    
+                    // 動画の長さを取得して終了タイマーを設定
+                    const videoDuration = heroVideo.duration || 10; // デフォルト10秒
                     videoTimer = setTimeout(() => {
                         if (isVideoSlideActive()) {
-                            console.log('8秒経過: 動画を一時停止します');
-                            heroVideo.pause();
-                            isVideoPlaying = false;
-                            pauseTimer = setTimeout(() => {
-                                console.log('次のスライドに移動します');
-                                goToSlide(0);
-                                if (wasRunning) {
-                                    startSlideshow();
-                                }
-                            }, 2000); // 2秒間の間隔を空ける
+                            console.log('動画再生終了、次のスライドへ');
+                            goToNextSlide();
                         }
-                    }, 8000);
+                    }, videoDuration * 1000);
+                    
                 }).catch(error => {
-                    console.error('動画再生エラー:', error.message || '不明なエラー');
-                    console.log('動画再生に失敗したため、静的スライドとして表示します');
-                    // エラー発生時は静的スライドとして表示し、次のスライドへ
-                    pauseTimer = setTimeout(() => {
-                        goToSlide(0);
-                        if (wasRunning) {
-                            startSlideshow();
+                    console.log('動画自動再生は制限されています。ユーザーの操作後に再生されます。');
+                    // 再生に失敗した場合は次のスライドに進む
+                    setTimeout(() => {
+                        if (isVideoSlideActive()) {
+                            goToNextSlide();
                         }
-                    }, 5000); // 5秒間表示してから次へ
+                    }, 3000);
                 });
             } else {
                 // 古いブラウザ対応
@@ -208,26 +202,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     isVideoPlaying = true;
                     videoTimer = setTimeout(() => {
                         if (isVideoSlideActive()) {
-                            heroVideo.pause();
-                            isVideoPlaying = false;
-                            pauseTimer = setTimeout(() => {
-                                // 最初のスライドに移動
-                                goToSlide(0);
-                                
-                                // スライドショーを再開
-                                if (wasRunning) {
-                                    startSlideshow();
-                                }
-                            }, 1000);
+                            goToNextSlide();
                         }
-                    }, 8000);
-                } catch (e) {
-                    console.error('古いブラウザでの動画再生エラー:', e);
-                    // 3秒後に次のスライドへ
-                    pauseTimer = setTimeout(() => {
-                        goToSlide(0);
-                        if (wasRunning) {
-                            startSlideshow();
+                    }, 10000);
+                } catch (error) {
+                    console.log('動画自動再生は制限されています。');
+                    setTimeout(() => {
+                        if (isVideoSlideActive()) {
+                            goToNextSlide();
                         }
                     }, 3000);
                 }

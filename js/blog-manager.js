@@ -5,7 +5,9 @@
 
 class BlogManager {
     constructor() {
-        this.blogDataUrl = 'blog-data.json';
+        // キャッシュバスター（デプロイ時刻などに更新）
+        this.version = 'v20250819-1509';
+        this.blogDataUrl = `blog-data.json?${this.version}`;
         this.previewContainer = null;
     }
 
@@ -53,7 +55,7 @@ class BlogManager {
         return `
             <article class="blog-card">
                 <div class="blog-image">
-                    <img src="${post.image}" alt="${post.title}" loading="lazy">
+                    <img src="${post.image}?${this.version}" alt="${post.title}" loading="lazy">
                     <div class="blog-date">${this.formatDate(post.date)}</div>
                 </div>
                 <div class="blog-content">

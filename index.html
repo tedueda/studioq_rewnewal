@@ -460,51 +460,8 @@
         <p class="section-subtitle">最新の撮影テクニックやスタジオの活用方法をご紹介</p>
         
         <div class="blog-preview-grid">
-            <!-- 静的コンテンツ：高速表示のため直接HTML記述 -->
-            <div class="blog-card">
-                <div class="blog-image">
-                    <img src="images/blog2.webp" alt="AIによるバーチャル合成撮影" loading="lazy">
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span class="blog-date">2025年8月17日</span>
-                        <span class="blog-category">撮影技術</span>
-                    </div>
-                    <h3 class="blog-title">AIによるバーチャル合成撮影 - スタジオQでの取り組みと成功例</h3>
-                    <p class="blog-excerpt">最新のAI技術を活用したバーチャル背景合成により、従来では不可能だった映像表現を実現。スタジオQの革新的な取り組みをご紹介します。</p>
-                    <a href="blog/aiによるバ-チャル合成撮影-スタジオqでの取り組みと成功例.html" class="blog-link">続きを読む</a>
-                </div>
-            </div>
-            
-            <div class="blog-card">
-                <div class="blog-image">
-                    <img src="images/slide3.jpg" alt="完全防音スタジオでの同録" loading="lazy">
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span class="blog-date">2025年8月17日</span>
-                        <span class="blog-category">同録スタジオ</span>
-                    </div>
-                    <h3 class="blog-title">大阪で同録スタジオをお探しなら│完全防音・同時録画収音の「スタジオQ」</h3>
-                    <p class="blog-excerpt">完全防音環境での同時録画収音により、編集時間を大幅短縮。プロ品質の映像制作を効率的に実現する方法をご紹介します。</p>
-                    <a href="blog/大阪で同録スタジオをお探しなら完全防音・同時録画収音のスタジオQ.html" class="blog-link">続きを読む</a>
-                </div>
-            </div>
-            
-            <div class="blog-card">
-                <div class="blog-image">
-                    <img src="images/top3-1.jpg" alt="5m天井高グリーンバックスタジオ" loading="lazy">
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span class="blog-date">2025年8月15日</span>
-                        <span class="blog-category">スタジオ設備</span>
-                    </div>
-                    <h3 class="blog-title">5m天井高グリーンバックスタジオの活用術</h3>
-                    <p class="blog-excerpt">大阪市内では珍しい5m天井高の広々としたスタジオ空間を活かした、プロフェッショナルな映像制作のテクニックをご紹介。</p>
-                    <a href="blog.html" class="blog-link">続きを読む</a>
-                </div>
-            </div>
+            <!-- 動的コンテンツ：blog-manager.jsにより自動生成 -->
+            <div class="loading">ブログを読み込み中...</div>
         </div>
         
         <div class="blog-more">
@@ -599,11 +556,76 @@
                     </ol>
                 </nav>
                 <p>&copy; 2025 スタジオQ All Rights Reserved.</p>
+        </div>
+    </div>
+    
+    <div class="contact-form">
+        <form action="send_mail.php" method="POST">
+            <div class="form-group">
+                <input type="text" name="name" placeholder="お名前" required>
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" placeholder="メールアドレス" required>
+            </div>
+            <div class="form-group">
+                <input type="tel" name="phone" placeholder="電話番号">
+            </div>
+            <div class="form-group">
+                <textarea name="message" placeholder="お問い合わせ内容" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn">送信する</button>
+        </form>
+    </div>
+</div>
+</section>
+
+<!-- フッター -->
+<footer>
+<div class="container">
+    <div class="footer-content">
+        <div class="footer-logo">
+            <img src="images/studioq_logo_white.png" alt="大阪 Studio Q プロフェッショナルバーチャルスタジオ" class="footer-logo-image" loading="lazy">
+        
+        </div>
+        <div class="footer-links">
+            <h3>リンク</h3>
+            <ul>
+                <li><a href="#home">ホーム</a></li>
+                <li><a href="#features">スタジオについて</a></li>
+                <li><a href="#gallery">ギャラリー</a></li>
+                <li><a href="#contact">お問い合わせ</a></li>
+            </ul>
+        </div>
+        <div class="footer-contact">
+            <h3>お問い合わせ</h3>
+            <p><i class="fas fa-map-marker-alt"></i> 大阪市浪速区恵美須西3-2-4 2F</p>
+            <p><i class="fas fa-phone"></i> 06-6978-8122</p>
+            <p><i class="fas fa-envelope"></i> info@studioq.jp</p>
+        </div>
+        <div class="footer-social">
+            <h3>ソーシャルメディア</h3>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/0804studioq" target="_blank" rel="noopener" title="Studio Q Facebook公式ページ"><i class="fab fa-facebook" aria-hidden="true"></i><span class="sr-only">Facebook</span></a>
+                <a href="https://twitter.com/StudioQ080" target="_blank" rel="noopener" title="Studio Q Twitter公式アカウント"><i class="fab fa-x-twitter" aria-hidden="true"></i><span class="sr-only">Twitter</span></a>
+                <a href="https://www.instagram.com/studioq0804" target="_blank" rel="noopener" title="Studio Q Instagram公式アカウント"><i class="fab fa-instagram" aria-hidden="true"></i><span class="sr-only">Instagram</span></a>
+                <a href="https://www.youtube.com/channel/UCxnEj084atnqvlbW29DsFKA" target="_blank" rel="noopener" title="Studio Q YouTube公式チャンネル"><i class="fab fa-youtube" aria-hidden="true"></i><span class="sr-only">YouTube</span></a>
             </div>
         </div>
-    </footer>
+    </div>
+    <div class="footer-bottom">
+        <nav aria-label="パンくずリスト" class="breadcrumb">
+            <ol>
+                <li><a href="/">ホーム</a></li>
+                <li>トップページ</li>
+            </ol>
+        </nav>
+        <p>&copy; 2025 スタジオQ All Rights Reserved.</p>
+    </div>
+</div>
+</footer>
 
-    <script src="_site/script.js"></script>
-    <script src="js/blog-manager.js"></script>
+<script src="_site/script.js"></script>
+<!-- キャッシュバスターを付与して最新のブログスクリプトを読み込む -->
+<script src="js/blog-manager.js?v=v20250819-1509"></script>
 </body>
 </html>

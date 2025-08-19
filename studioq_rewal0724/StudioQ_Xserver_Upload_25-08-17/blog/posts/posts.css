@@ -1,0 +1,48 @@
+/* ブログ投稿のスタイル */
+.blog-post {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.blog-post h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.blog-post time {
+  display: block;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.blog-post img {
+  max-width: 100%;
+  height: auto;
+  margin: 2rem 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.blog-post p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: #444;
+}
+
+/* タグのスタイル */
+.tags {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.tag {
+  background: #f0f0f0;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: #666;
+}

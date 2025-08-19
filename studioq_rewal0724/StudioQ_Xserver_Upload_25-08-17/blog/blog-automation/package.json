@@ -1,0 +1,13 @@
+{
+  "name": "studioq-blog-automation",
+  "version": "1.0.0",
+  "description": "スタジオQのブログ記事自動生成・公開システム",
+  "main": "blog-generator.js",
+  "scripts": {
+    "create": "node blog-generator.js create",
+    "create-sample": "node blog-generator.js create blog-data-sample.json"
+  },
+  "dependencies": {
+    "jsdom": "^22.1.0"
+  }
+}

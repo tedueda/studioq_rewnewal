@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>大阪 任意後見・遺言信託サポート｜行政書士ソリスタサービス</title>
+    <meta name="description" content="大阪で任意後見・遺言書・遺言信託のご相談は行政書士ソリスタサービスへ。行政書士がわかりやすくサポートします。無料相談受付中。" />
+    <meta name="keywords" content="任意後見,遺言書,遺言信託,大阪,行政書士" />
+    <link rel="canonical" href="https://solista-service.example.com/" />
+    
+    <!-- OG Tags -->
+    <meta property="og:title" content="大阪 任意後見・遺言信託サポート｜行政書士ソリスタサービス" />
+    <meta property="og:description" content="大阪で任意後見・遺言書・遺言信託のご相談は行政書士ソリスタサービスへ。行政書士がわかりやすくサポートします。無料相談受付中。" />
+    <meta property="og:image" content="/assets/img/og_default.jpg" />
+    <meta property="og:url" content="https://solista-service.example.com/" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <script type="module" crossorigin src="/assets/index-DM28Lxgm.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-zaYl0A7I.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      (function() {
+        // ルート遷移時にページ上部へスクロールする仕組み
+        (function setupScrollToTopOnNav(){
+          const scrollTop = () => {
+            try { window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); } catch(_) {
+              window.scrollTo(0, 0);
+            }
+          };
+          let lastPath = location.pathname + location.search + location.hash;
+          const onRouteChange = () => {
+            const cur = location.pathname + location.search + location.hash;
+            if (cur !== lastPath) {
+              lastPath = cur;
+              // React描画完了を待ってからトップへ（タイミング調整）
+              setTimeout(scrollTop, 0);
+              setTimeout(scrollTop, 60);
+              setTimeout(scrollTop, 200);
+            }
+          };
+          // History API をフック
+          const origPush = history.pushState;
+          const origReplace = history.replaceState;
+          history.pushState = function(){
+            origPush.apply(this, arguments);
+            onRouteChange();
+          };
+          history.replaceState = function(){
+            origReplace.apply(this, arguments);
+            onRouteChange();
+          };
+          window.addEventListener('popstate', onRouteChange, { passive: true });
+          // ヘッダー/フッターのリンククリックも拾って確実にトップへ
+          document.addEventListener('click', (e) => {
+            const a = (e.target && (e.target.closest ? e.target.closest('a') : null)) || null;
+            if (!a) return;
+            const href = a.getAttribute('href') || '';
+            if (!href) return;
+            // 同一ページ内アンカーは除外
+            if (href.startsWith('#')) return;
+            // 外部リンクは除外
+            const isExternal = /^(https?:)?\/\//.test(href) && !href.startsWith(location.origin);
+            if (isExternal) return;
+            // 遷移発生時にトップへ（SPA/MPA両対応）
+            setTimeout(scrollTop, 0);
+            setTimeout(scrollTop, 100);
+          }, true);
+          // 初期ロード時も念のためトップへ
+          setTimeout(scrollTop, 0);
+        })();
+
+        // テキストノード単位で安全に移動する
+        function findRowByLabels(numLabel, titleLabel) {
+          const tds = Array.from(document.querySelectorAll('td, th'));
+          const target = tds.find(el => {
+            const t = (el.textContent || '');
+            return t.includes(numLabel) && t.includes(titleLabel);
+          });
+          return target ? (target.closest('tr') || target) : null;
+        }
+
+        // 特定画像（/assets/img/koukenn01.png）をフルサイズ表示に強制
+        function enlargeKoukenn01() {
+          try {
+            const imgs = Array.from(document.querySelectorAll('img'));
+            const img = imgs.find(i => {
+              const s = (i.getAttribute('src') || '');
+              const abs = (i.src || '');
+              return s.endsWith('/assets/img/koukenn01.png') || abs.endsWith('/assets/img/koukenn01.png');
+            });
+            if (!img) return;
+            // 画像スタイルをフルサイズへ
+            img.style.maxWidth = '100%';
+            img.style.maxHeight = 'none';
+            img.style.width = '100%';
+            img.style.height = 'auto';
+            img.style.objectFit = 'contain';
+            img.style.objectPosition = 'center center';
+            img.style.margin = '0 auto';
+            img.style.display = 'block';
+            // ラッパーの制約を解除
+            const wrapper = img.closest('.uniform-img-wrapper') || img.parentElement;
+            if (wrapper) {
+              wrapper.style.maxWidth = '';
+              wrapper.style.aspectRatio = '';
+              wrapper.style.width = '100%';
+              wrapper.style.overflow = '';
+            }
+          } catch(_) { /* no-op */ }
+        }
+
+// 行（3カラム）ごとにテキストブロックの高さを最大値で揃える
+function equalizeRowTextHeights() {
+  // grid + md:grid-cols-3 を含むグリッドを対象
+  const grids = Array.from(document.querySelectorAll('div.grid'))
+    .filter(g => (g.className || '').includes('md:grid-cols-3'));
+  grids.forEach(grid => {
+    // 子カード（flex-col）を取得
+    const cards = Array.from(grid.children).filter(el => (el.className || '').includes('flex') && (el.className || '').includes('flex-col'));
+    // 3枚ずつの行に分割
+    for (let i = 0; i < cards.length; i += 3) {
+      const row = cards.slice(i, i + 3);
+      if (row.length === 0) continue;
+      // 各カード内のテキストブロック（上段）を取得
+      const textBlocks = row.map(card => card.querySelector('div.w-full.border-l-4'));
+      // 計測前に min-height を一旦リセット
+      textBlocks.forEach(tb => { if (tb) tb.style.minHeight = ''; });
+      // 最大高さを算出
+      const maxH = Math.max(...textBlocks.map(tb => tb ? tb.offsetHeight : 0));
+      if (!isFinite(maxH) || maxH <= 0) continue;
+      // 全テキストブロックに min-height を適用
+      textBlocks.forEach(tb => { if (tb) tb.style.minHeight = maxH + 'px'; });
+    }
+  });
+}
+
+        // ヒーロー導入部の画像（統一対象外）を判定
+        function isHeroIntroImage(img) {
+          if (!img) return false;
+          const alt = (img.getAttribute('alt') || '').trim();
+          const src = img.getAttribute('src') || '';
+          const isKoukenHero = alt.includes('任意後見制度について') || src.endsWith('/assets/img/kouken101.jpg');
+          return isKoukenHero;
+        }
+
+        // 統一処理で付与したインラインスタイルを復元（ヒーロー用）
+        function restoreOriginalImageStyles(img) {
+          if (!img) return;
+          // 画像スタイルをクリア
+          ['maxWidth','maxHeight','width','height','objectFit','objectPosition','margin','display'].forEach(p => { img.style[p] = ''; });
+          // ラッパーのスタイルを緩和（元のクラスによる制御に戻す）
+          const wrapper = img.parentElement;
+          if (wrapper) {
+            ['display','alignItems','justifyContent','width','maxWidth','aspectRatio','margin','overflow','padding'].forEach(p => { wrapper.style[p] = ''; });
+          }
+        }
+
+        // 追加の安全網：alt/ファイル名ベースで6枚すべてに統一処理を強制適用
+        function forceFixSectionImages() {
+          const altKeys = ['見守り契約', '財産管理', '任意後見', '遺言書', '遺言執行', '死後事務'];
+          const srcMap = {
+            'top1-1.png': '/assets/img/top01.jpg',
+            'top1-2.png': '/assets/img/top02.jpg',
+            'top1-3-2.png': '/assets/img/top03.jpg',
+            'top1-4.png': '/assets/img/top04.jpg',
+            'top1-5.png': '/assets/img/top05.jpg',
+            'top1-6.png': '/assets/img/top06.jpg'
+          };
+          const fallbacks = { '/assets/img/top02.jpg': '/assets/img/top2.jpg' };
+          Array.from(document.querySelectorAll('img')).forEach(img => {
+            // ヒーロー導入画像は対象外、かつ復元
+            if (isHeroIntroImage(img)) {
+              restoreOriginalImageStyles(img);
+              return;
+            }
+            const alt = img.getAttribute('alt') || '';
+            const src = img.getAttribute('src') || '';
+            const isTarget = altKeys.some(k => alt.includes(k)) || /\/assets\/img\/top(0\d|1-\d)/.test(src);
+            if (!isTarget) return;
+
+            // srcを新ファイルへ置換
+            const file = src.split('/').pop() || '';
+            if (srcMap[file]) {
+              const target = srcMap[file];
+              const fallback = fallbacks[target];
+              img.onerror = null;
+              if (fallback) {
+                img.onerror = () => {
+                  if (img.getAttribute('data-fallback-applied') === '1') return;
+                  img.setAttribute('data-fallback-applied', '1');
+                  img.src = fallback;
+                };
+              }
+              if (img.getAttribute('data-fallback-applied') !== '1' && !img.src.endsWith(target)) {
+                img.src = target;
+              }
+            }
+
+            // ラッパーとスタイルを統一
+            let rawImageBlock = img.closest('a, div');
+            if (!rawImageBlock) return;
+            try { rawImageBlock.style.padding = '0'; } catch(_){}
+            if (rawImageBlock.classList) rawImageBlock.classList.add('w-full');
+
+            let wrapper = img.parentElement;
+            if (wrapper && wrapper.tagName === 'A') {
+              let created = wrapper.querySelector('.uniform-img-wrapper');
+              if (!created) {
+                created = document.createElement('div');
+                created.className = 'uniform-img-wrapper';
+                created.style.margin = '0 auto';
+                wrapper.insertBefore(created, img);
+                created.appendChild(img);
+              }
+              wrapper = created;
+            } else {
+              wrapper = rawImageBlock;
+            }
+
+            wrapper.style.display = 'flex';
+            wrapper.style.alignItems = 'center';
+            wrapper.style.justifyContent = 'center';
+            wrapper.style.width = '100%';
+            wrapper.style.maxWidth = '400px';
+            wrapper.style.aspectRatio = '400 / 296';
+            wrapper.style.margin = '0 auto';
+            wrapper.style.overflow = 'hidden';
+
+            img.style.maxWidth = '75%';
+            img.style.maxHeight = '75%';
+            img.style.width = 'auto';
+            img.style.height = 'auto';
+            img.style.objectFit = 'contain';
+            img.style.objectPosition = 'center';
+            img.style.margin = '0 auto';
+            img.style.display = 'block';
+
+            if (img.classList) {
+              img.classList.remove('w-1/2');
+              img.classList.remove('w-full');
+              img.classList.remove('h-auto');
+              img.classList.add('mx-auto');
+            }
+            // アンカーの上マージン調整を解除（中央揃えに切り替え）
+            const anchor = wrapper.closest('a');
+            if (anchor) {
+              if (anchor.classList) {
+                anchor.classList.add('w-full');
+              }
+              anchor.style.marginTop = '';
+            }
+          });
+        }
+
+        // セクションごとの画像を指定のファイルへ差し替え（存在しない場合はフォールバック）
+        // タイトル表記ゆれ（例: 「遺言書執行」/「遺言執行」）やh4未検出時はaltテキストで補完
+        function replaceSectionImages(titles, preferredSrcs, fallbackMap) {
+          const altKeywords = ['見守り契約', '財産管理', '任意後見', '遺言書', '遺言執行', '死後事務'];
+          titles.forEach((titleText, idx) => {
+            const h4s = Array.from(document.querySelectorAll('h4'));
+            let h = h4s.find(el => (el.textContent || '').includes(titleText));
+            if (!h && titleText.includes('遺言書執行')) {
+              h = h4s.find(el => (el.textContent || '').includes('遺言執行'));
+            }
+            let img = null;
+            if (h) {
+              const container = h.closest('div');
+              if (container) {
+                const sectionRoot = container.parentElement && container.parentElement.classList.contains('flex')
+                  ? container.parentElement
+                  : container.closest('div');
+                const root = sectionRoot || container.parentElement || container;
+                const rawImageBlock = (Array.from(root.children).find(el => el.querySelector && el.querySelector('img')))
+                  || root.querySelector('img')?.closest('a, div');
+                img = rawImageBlock ? rawImageBlock.querySelector('img') : null;
+              }
+            }
+            // h4経由で見つからない場合は alt で検索
+            if (!img) {
+              const key = altKeywords[idx];
+              img = Array.from(document.querySelectorAll('img')).find(
+                el => (el.getAttribute('alt') || '').includes(key)
+              ) || null;
+            }
+            if (!img) return;
+
+            const primary = preferredSrcs[idx];
+            const fallback = fallbackMap && fallbackMap[primary];
+            if (!primary) return;
+
+            // 既存のonerrorを一旦クリア
+            img.onerror = null;
+            if (fallback) {
+              img.onerror = () => {
+                if (img.getAttribute('data-fallback-applied') === '1') return;
+                img.setAttribute('data-fallback-applied', '1');
+                img.src = fallback;
+              };
+            }
+            // 既にフォールバックを使っている場合や適用済みの場合は上書きしない
+            if (img.getAttribute('data-fallback-applied') === '1') return;
+            if (fallback && (img.src.endsWith(fallback) || img.src === (location.origin + fallback))) return;
+            if (img.src !== location.origin + primary && !img.src.endsWith(primary)) {
+              img.src = primary;
+            }
+          });
+        }
+
+        // ノード内のテキストノードだけを置換（HTML構造は維持）
+        function replaceTextInNode(root, from, to) {
+          const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+          let n;
+          while ((n = walker.nextNode())) {
+            if (!n.nodeValue) continue;
+            if (n.nodeValue.includes(from)) {
+              n.nodeValue = n.nodeValue.replace(from, to);
+            }
+          }
+        }
+
+        // 指定文の直後に <br> を1つだけ挿入
+        function insertBrAfterSentence(p, sentence) {
+          if (!p) return false;
+          // 既に改行が入っていれば何もしない
+          if ((p.innerHTML || '').includes(sentence + '<br')) return true;
+          const walker = document.createTreeWalker(p, NodeFilter.SHOW_TEXT, null);
+          let textNode;
+          while ((textNode = walker.nextNode())) {
+            const txt = textNode.nodeValue || '';
+            const idx = txt.indexOf(sentence);
+            if (idx >= 0) {
+              const before = txt.slice(0, idx + sentence.length);
+              const after = txt.slice(idx + sentence.length);
+              textNode.nodeValue = before;
+              const br = document.createElement('br');
+              const rest = document.createTextNode(after);
+              const parent = textNode.parentNode;
+              if (!parent) return false;
+              if (textNode.nextSibling && textNode.nextSibling.nodeName === 'BR') return true;
+              parent.insertBefore(br, textNode.nextSibling);
+              parent.insertBefore(rest, br.nextSibling);
+              return true;
+            }
+          }
+          return false;
+        }
+
+        // セクションを上下2段（上:テキスト、下:画像）に強制整形
+        function arrangeSectionVerticalByTitle(titleText) {
+          const h4s = Array.from(document.querySelectorAll('h4'));
+          const h = h4s.find(el => (el.textContent || '').includes(titleText));
+          if (!h) return false;
+          const container = h.closest('div');
+          if (!container) return false;
+          const sectionRoot = container.parentElement && container.parentElement.classList.contains('flex')
+            ? container.parentElement
+            : container.closest('div');
+          const root = sectionRoot || container.parentElement || container;
+
+          // ルートに flex-col を適用
+          if (root.classList) {
+            root.classList.add('flex');
+            root.classList.add('flex-col');
+            root.classList.remove('flex-row');
+            root.classList.remove('md:flex-row');
+            root.classList.remove('lg:flex-row');
+          }
+
+          // 子要素のうち、テキストブロック（h4を含む）と画像ブロック（imgを含む）を特定
+          const children = Array.from(root.children);
+          const textBlock = children.find(el => el.querySelector && el.querySelector('h4')) || container;
+          const imageBlock = children.find(el => el.querySelector && el.querySelector('img')) || root.querySelector('img')?.closest('a, div') || null;
+          if (!imageBlock) return false;
+
+          // 並び順をテキスト→画像に修正
+          if (imageBlock.previousElementSibling === textBlock) {
+            // 既に順序OK
+          } else {
+            // まずテキストを先頭へ、その後に画像を移動
+            root.insertBefore(textBlock, root.firstChild);
+            root.appendChild(imageBlock);
+          }
+
+          // 画像の幅を下段で見やすく
+          const img = imageBlock.querySelector('img');
+          if (img && img.classList) {
+            img.classList.add('w-full', 'h-auto', 'mx-auto');
+            // 既存の固定幅があれば緩和
+            img.classList.remove('w-1/2');
+          }
+          if (imageBlock.classList) {
+            imageBlock.classList.add('w-full');
+          }
+          return true;
+        }
+
+        // 画像サイズと配置を統一（レスポンシブ: 幅100%・最大400px、aspect-ratio: 400/296、画像はobject-contain）
+        // 競合クラスやラッパー構造の差を吸収するため、画像直上に統一ラッパーを用意
+        function uniformizeImagesByTitles(titles) {
+          const altKeywords = ['見守り契約', '財産管理', '任意後見', '遺言書', '遺言執行', '死後事務'];
+          titles.forEach((titleText, idx) => {
+            const h4s = Array.from(document.querySelectorAll('h4'));
+            let h = h4s.find(el => (el.textContent || '').includes(titleText));
+            if (!h && titleText.includes('遺言書執行')) {
+              h = h4s.find(el => (el.textContent || '').includes('遺言執行'));
+            }
+            let img = null;
+            let rawImageBlock = null;
+            if (h) {
+              const container = h.closest('div');
+              if (container) {
+                const sectionRoot = container.parentElement && container.parentElement.classList.contains('flex')
+                  ? container.parentElement
+                  : container.closest('div');
+                const root = sectionRoot || container.parentElement || container;
+                rawImageBlock = (Array.from(root.children).find(el => el.querySelector && el.querySelector('img')))
+                  || root.querySelector('img')?.closest('a, div');
+                img = rawImageBlock ? rawImageBlock.querySelector('img') : null;
+              }
+            }
+            if (!img) {
+              const key = altKeywords[idx];
+              img = Array.from(document.querySelectorAll('img')).find(
+                el => (el.getAttribute('alt') || '').includes(key)
+              ) || null;
+              rawImageBlock = img ? (img.closest('a, div')) : null;
+            }
+            if (!img || !rawImageBlock) return;
+            // ヒーロー導入画像は除外して復元
+            if (isHeroIntroImage(img)) {
+              restoreOriginalImageStyles(img);
+              return;
+            }
+
+            // 既存のパディングや幅制約を弱める（見かけ差を無くす）
+            try { rawImageBlock.style.padding = '0'; } catch(_){}
+            if (rawImageBlock.classList) {
+              rawImageBlock.classList.add('w-full');
+            }
+
+            // 画像直上に統一ラッパーを用意（<a>が親なら<a>の直下にdivを作成）
+            let wrapper = img.parentElement;
+            if (wrapper && wrapper.tagName === 'A') {
+              // <a> 直下に専用divを作ってその中にimgを入れる
+              const created = document.createElement('div');
+              created.className = 'uniform-img-wrapper';
+              created.style.margin = '0 auto';
+              // 既に作っていない場合のみ作成
+              if (!wrapper.querySelector('.uniform-img-wrapper')) {
+                wrapper.insertBefore(created, img);
+                created.appendChild(img);
+                wrapper = created;
+              } else {
+                wrapper = wrapper.querySelector('.uniform-img-wrapper');
+              }
+            } else {
+              // <a> 以外が親の場合、現在の親をラッパーとして利用
+              wrapper = rawImageBlock;
+            }
+
+            // ラッパーの中央揃えとレスポンシブ固定比率
+            wrapper.style.display = 'flex';
+            wrapper.style.alignItems = 'center';
+            wrapper.style.justifyContent = 'center';
+            wrapper.style.width = '100%';
+            wrapper.style.maxWidth = '400px';
+            wrapper.style.aspectRatio = '400 / 296';
+            wrapper.style.margin = '0 auto';
+            wrapper.style.overflow = 'hidden';
+
+            // 画像のサイズ調整と中央配置（containで全体表示、トリミングなし）
+            img.style.maxWidth = '75%';
+            img.style.maxHeight = '75%';
+            img.style.width = 'auto';
+            img.style.height = 'auto';
+            img.style.objectFit = 'contain';
+            img.style.objectPosition = 'center';
+            img.style.margin = '0 auto';
+            img.style.display = 'block';
+
+            // クラス調整（任意：w-1/2 を除去して幅制約を解放）
+            if (img.classList) {
+              img.classList.remove('w-1/2');
+              img.classList.remove('w-full');
+              img.classList.remove('h-auto');
+              img.classList.add('mx-auto');
+            }
+            // アンカーの上マージン調整を解除（中央揃えに切り替え）
+            const anchor = wrapper.closest('a');
+            if (anchor) {
+              if (anchor.classList) {
+                anchor.classList.add('w-full');
+              }
+              anchor.style.marginTop = '';
+            }
+          });
+        }
+
+        // 「⑤ 遺言書」を「④ 遺言書」に変更（遺言書執行は対象外）
+        function renumberWillRow() {
+          const cells = Array.from(document.querySelectorAll('td, th'));
+          const target = cells.find(el => {
+            const t = (el.textContent || '').trim();
+            return t.startsWith('⑤') && t.includes('遺言書') && !t.includes('遺言書執行');
+          });
+          if (!target) return false;
+          // 先頭の「⑤」を「④」に置換（テキストノードのみ）
+          replaceTextInNode(target, '⑤', '④');
+          return true;
+        }
+
+        function extractPhraseNodeFromRow(row, regex) {
+          const walker = document.createTreeWalker(row, NodeFilter.SHOW_TEXT, {
+            acceptNode(node) {
+              return regex.test(node.nodeValue || '') ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+            }
+          });
+          let textNode = walker.nextNode();
+          if (!textNode) return null;
+          const text = textNode.nodeValue || '';
+          const match = text.match(regex);
+          if (!match) return null;
+          const phrase = match[0];
+          // 元テキストからフレーズのみ削除（残りは保持）
+          textNode.nodeValue = text.replace(phrase, '').replace(/\s+$/,'');
+          return document.createTextNode(phrase);
+        }
+
+        function appendPhraseToRow(row, phraseNode) {
+          const cell = row.querySelector('td:last-child, th:last-child') || row;
+          // 改行で最終行に追記（既存HTMLは壊さない）
+          const needsBreak = cell.lastChild && !(cell.lastChild.nodeName === 'BR');
+          if (needsBreak) cell.appendChild(document.createElement('br'));
+          cell.appendChild(phraseNode);
+        }
+
+        // 特定画像（/assets/img/kouken10.jpg）をフルサイズ表示に強制
+        function enlargeKouken10() {
+          try {
+            const imgs = Array.from(document.querySelectorAll('img'));
+            const img = imgs.find(i => {
+              const s = (i.getAttribute('src') || '');
+              const abs = (i.src || '');
+              return s.endsWith('/assets/img/kouken10.jpg') || abs.endsWith('/assets/img/kouken10.jpg');
+            });
+            if (!img) return;
+            // 画像スタイルをフルサイズへ
+            img.style.maxWidth = '100%';
+            img.style.maxHeight = 'none';
+            img.style.width = '100%';
+            img.style.height = 'auto';
+            img.style.objectFit = 'contain';
+            img.style.objectPosition = 'center center';
+            img.style.margin = '0 auto';
+            img.style.display = 'block';
+            // ラッパーの制約を解除
+            const wrapper = img.closest('.uniform-img-wrapper') || img.parentElement;
+            if (wrapper) {
+              wrapper.style.maxWidth = '';
+              wrapper.style.aspectRatio = '';
+              wrapper.style.width = '100%';
+              wrapper.style.overflow = '';
+            }
+          } catch(_) { /* no-op */ }
+        }
+
+        function run() {
+          try {
+            const row5 = findRowByLabels('⑤', '遺言書執行');
+            const row6 = findRowByLabels('⑥', '死後事務委任契約');
+            if (!row5 || !row6) return false;
+
+            // ⑤行内の「対象財産のうち相続財産額の3%（最低5万円）※状況により決定」のセルを末尾へ移動
+            (function moveTdInRow5(){
+              const tds = Array.from(row5.querySelectorAll('td'));
+              const targetTd = tds.find(td => {
+                const tx = (td.textContent || '');
+                return tx.includes('相続財産額の3%') || (tx.includes('最低5万円') && tx.includes('状況により決定'));
+              });
+              if (!targetTd) return;
+              const lastTd = tds[tds.length - 1];
+              if (targetTd !== lastTd) {
+                // 位置を末尾へ移動（HTML構造はそのまま）
+                row5.appendChild(targetTd);
+              }
+
+              // 文言置換：「対象財産のうち」→「相続対象財産のうち」
+              replaceTextInNode(targetTd, '対象財産のうち', '相続対象財産のうち');
+            })();
+
+            const regex = /(〜|～)?70万円まで/;
+            const phraseNode = extractPhraseNodeFromRow(row5, regex);
+            if (!phraseNode) return false;
+            appendPhraseToRow(row6, phraseNode);
+            return true;
+          } catch (_) {
+            return false;
+          }
+        }
+
+        // React描画完了を待って1回だけ実行
+        const tryNow = () => {
+          // ラベル変更はできるだけ早く実行
+          renumberWillRow();
+          // ヒーロー導入文に改行を追加
+          (function addBreakToIntro(){
+            const ps = Array.from(document.querySelectorAll('p'));
+            const target = ps.find(p => (p.textContent || '').includes('大阪で任意後見・遺言書・遺言信託のご相談は行政書士ソリスタサービスへ。'));
+            if (target) insertBrAfterSentence(target, '大阪で任意後見・遺言書・遺言信託のご相談は行政書士ソリスタサービスへ。');
+          })();
+          // ①〜⑥ セクションを上下2段に整形
+          const sectionTitles = [
+            '① 見守り契約',
+            '② 財産管理等委任契約',
+            '③ 任意後見契約',
+            '④ 遺言書',
+            '⑤ 遺言書執行',
+            '⑥ 死後事務委任契約'
+          ];
+          // 画像差し替え（②は top02.jpg が無い場合に top2.jpg へフォールバック）
+          // ルート別に第3画像を出し分け：
+          //  - ホーム('/'): top03.jpg
+          //  - 必要になる場面('/scenes'): koukenn01.png
+          function getPreferredByRoute() {
+            const isScenes = (location.pathname || '').startsWith('/scenes');
+            return [
+              '/assets/img/top01.jpg',
+              '/assets/img/top02.jpg',
+              isScenes ? '/assets/img/koukenn01.png' : '/assets/img/top03.jpg',
+              '/assets/img/top04.jpg',
+              '/assets/img/top05.jpg',
+              '/assets/img/top06.jpg'
+            ];
+          }
+          const fallbacks = { '/assets/img/top02.jpg': '/assets/img/top2.jpg' };
+          replaceSectionImages(sectionTitles, getPreferredByRoute(), fallbacks);
+          sectionTitles.forEach(t => arrangeSectionVerticalByTitle(t));
+          uniformizeImagesByTitles(sectionTitles);
+          forceFixSectionImages();
+          // 特定画像を最後にフルサイズへ上書き
+          enlargeKouken10();
+          enlargeKoukenn01();
+          run();
+          const obs = new MutationObserver(() => {
+            renumberWillRow();
+            (function addBreakToIntro(){
+              const ps = Array.from(document.querySelectorAll('p'));
+              const target = ps.find(p => (p.textContent || '').includes('大阪で任意後見・遺言書・遺言信託のご相談は行政書士ソリスタサービスへ。'));
+              if (target) insertBrAfterSentence(target, '大阪で任意後見・遺言書・遺言信託のご相談は行政書士ソリスタサービスへ。');
+            })();
+            replaceSectionImages(sectionTitles, getPreferredByRoute(), fallbacks);
+            sectionTitles.forEach(t => arrangeSectionVerticalByTitle(t));
+            uniformizeImagesByTitles(sectionTitles);
+            forceFixSectionImages();
+            // 動的変更後もフルサイズを維持
+            enlargeKouken10();
+            enlargeKoukenn01();
+            // レイアウト確定後に行ごとのテキスト高さを揃える
+            setTimeout(equalizeRowTextHeights, 0);
+            if (run()) obs.disconnect();
+          });
+          obs.observe(document.body, { childList: true, subtree: true });
+        };
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', tryNow);
+        } else {
+          tryNow();
+        }
+      })();
+    </script>
+  </body>
+</html>

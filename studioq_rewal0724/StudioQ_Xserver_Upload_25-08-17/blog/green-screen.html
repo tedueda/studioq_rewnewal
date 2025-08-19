@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>グリーンスクリーン撮影の基本とコツ - スタジオQ</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ブログ記事ページのスタイル */
+        .blog-post {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .blog-post-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .blog-post-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .blog-post-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        .blog-post-meta span {
+            display: flex;
+            align-items: center;
+        }
+        
+        .blog-post-meta i {
+            margin-right: 5px;
+            color: var(--primary-color);
+        }
+        
+        .blog-post-category {
+            background-color: rgba(0, 200, 150, 0.2);
+            color: var(--primary-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        .blog-post-image {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+        
+        .blog-post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .blog-post-content {
+            color: #eee;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .blog-post-content p {
+            margin-bottom: 20px;
+        }
+        
+        .blog-post-content h2 {
+            font-size: 1.8rem;
+            color: white;
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .blog-post-content h3 {
+            font-size: 1.4rem;
+            color: white;
+            margin: 30px 0 15px;
+        }
+        
+        .blog-post-content ul, .blog-post-content ol {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .blog-post-content li {
+            margin-bottom: 10px;
+        }
+        
+        .blog-post-content img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .blog-post-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 20px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #bbb;
+        }
+        
+        .blog-post-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .blog-post-tag {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ddd;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .blog-post-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .blog-post-nav-link {
+            display: flex;
+            align-items: center;
+            color: #ddd;
+            transition: color 0.3s ease;
+        }
+        
+        .blog-post-nav-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .blog-post-nav-link i {
+            margin: 0 10px;
+        }
+        
+        .related-posts {
+            margin-top: 80px;
+        }
+        
+        .related-posts h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .related-posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダーとナビゲーション -->
+    <header>
+        <div class="logo">
+            <h1>スタジオQ</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html#home">ホーム</a></li>
+                <li><a href="../index.html#about">スタジオについて</a></li>
+                <li><a href="../index.html#gallery">ギャラリー</a></li>
+                <li><a href="../index.html#contact">お問い合わせ</a></li>
+                <li><a href="../blog.html" class="active">ブログ</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- ブログ記事 -->
+    <section class="blog-post">
+        <div class="blog-post-header">
+            <h1 class="blog-post-title">グリーンスクリーン撮影の基本とコツ</h1>
+            <div class="blog-post-meta">
+                <span><i class="far fa-calendar"></i> 2025.03.10</span>
+                <span><i class="far fa-user"></i> 佐藤健太</span>
+                <span class="blog-post-category">撮影テクニック</span>
+            </div>
+        </div>
+        
+        <div class="blog-post-image">
+            <img src="../images/slide2.jpg" alt="グリーンスクリーン撮影">
+        </div>
+        
+        <div class="blog-post-content">
+            <p>バーチャル撮影に欠かせないグリーンスクリーン撮影は、適切な知識と技術があれば、驚くほど高品質な合成映像を作り出すことができます。この記事では、グリーンスクリーン撮影の基本から応用テクニック、そして編集時の注意点まで、実践的なノウハウをご紹介します。</p>
+            
+            <h2>グリーンスクリーン撮影の基本原理</h2>
+            
+            <p>グリーンスクリーン撮影（クロマキー合成）は、特定の色（通常は緑または青）を透明化し、その部分に別の映像や画像を合成する技術です。人間の肌の色と最も対比が大きいことから、緑色が最も一般的に使用されています。</p>
+            
+            <h3>なぜグリーンなのか？</h3>
+            <p>緑色が選ばれる主な理由は以下の通りです：</p>
+            <ul>
+                <li>デジタルカメラのセンサーは緑のピクセルが最も多く、高解像度の抽出が可能</li>
+                <li>人間の肌の色と最も対比が大きく、分離しやすい</li>
+                <li>青色に比べて反射光が少なく、被写体への色かぶりが少ない</li>

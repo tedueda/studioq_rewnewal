@@ -1,0 +1,24 @@
+---
+layout: base.njk
+title: ブログ
+permalink: /blog/
+---
+
+<div class="blog-listing">
+  {% for post in collections.posts | reverse %}
+    <article class="blog-post">
+      {% if post.data.thumbnail %}
+        <img src="{{ post.data.thumbnail }}" alt="{{ post.data.title }}のサムネイル">
+      {% endif %}
+      
+      <h2>{{ post.data.title }}</h2>
+      <time datetime="{{ post.date | dateString }}">{{ post.date | dateFilter }}</time>
+      
+      {% if post.data.description %}
+        <p>{{ post.data.description }}</p>
+      {% endif %}
+      
+      <a href="{{ post.url }}" class="read-more">続きを読む &rarr;</a>
+    </article>
+  {% endfor %}
+</div>

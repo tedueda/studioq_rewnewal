@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}} - スタジオQ</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- ヘッダーとナビゲーション -->
+    <header>
+        <div class="logo">
+            <h1>スタジオQ</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html#home">ホーム</a></li>
+                <li><a href="../index.html#about">スタジオについて</a></li>
+                <li><a href="../index.html#gallery">ギャラリー</a></li>
+                <li><a href="../index.html#contact">お問い合わせ</a></li>
+                <li><a href="../blog.html">ブログ</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- ブログ記事 -->
+    <section class="blog-post">
+        <div class="container">
+            <div class="blog-header">
+                <h1 class="blog-title">{{title}}</h1>
+                <div class="blog-meta">
+                    <span class="blog-date"><i class="far fa-calendar-alt"></i> {{date}}</span>
+                    <span class="blog-category"><i class="fas fa-tag"></i> {{category}}</span>
+                </div>
+            </div>
+            
+            <div class="blog-featured-image">
+                <img src="../images/{{image}}" alt="{{title}}">
+            </div>
+            
+            <div class="blog-content">
+                {{content}}
+                
+                <div class="blog-cta">
+                    <a href="../index.html#contact" class="btn btn-primary">お問い合わせ・スタジオツアー予約</a>
+                </div>
+            </div>
+            
+            <div class="blog-author">
+                <div class="author-image">
+                    <img src="../images/studioq_logo-1.png" alt="スタジオQロゴ">
+                </div>
+                <div class="author-info">
+                    <h3>{{author}}</h3>
+                    <p>最新の映像制作技術を研究・開発し、クリエイターの皆様に最適な撮影環境を提供するスタジオQのチームです。</p>
+                </div>
+            </div>
+            
+            <div class="blog-related">
+                <h3>関連記事</h3>
+                <div class="related-posts">
+                    <a href="camera-selection.html" class="related-post">
+                        <img src="../images/slide1.jpg" alt="4Kカメラの選び方">
+                        <h4>プロが教える4Kカメラの選び方</h4>
+                    </a>
+                    <a href="green-screen.html" class="related-post">
+                        <img src="../images/slide2.jpg" alt="グリーンスクリーン撮影のコツ">
+                        <h4>グリーンスクリーン撮影の基本とコツ</h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>スタジオQ</h2>
+                    <p>写真とクリエイティブのための空間</p>
+                </div>
+                <div class="footer-links">
+                    <h3>リンク</h3>
+                    <ul>
+                        <li><a href="../index.html#home">ホーム</a></li>
+                        <li><a href="../index.html#about">スタジオについて</a></li>
+                        <li><a href="../index.html#gallery">ギャラリー</a></li>
+                        <li><a href="../index.html#contact">お問い合わせ</a></li>
+                        <li><a href="../blog.html">ブログ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>お問い合わせ</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 東京都渋谷区〇〇町1-2-3</p>
+                    <p><i class="fas fa-phone"></i> 03-1234-5678</p>
+                    <p><i class="fas fa-envelope"></i> info@studioq.jp</p>
+                </div>
+                <div class="footer-social">
+                    <h3>SNS</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 スタジオQ All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

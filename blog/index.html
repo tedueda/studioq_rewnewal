@@ -1,25 +1,292 @@
----
-layout: base.njk
-title: ブログ
-permalink: /blog/
----
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Studio Qブログ - 最新の撮影テクニックやスタジオの活用方法をご紹介">
+    <meta name="keywords" content="スタジオQ,ブログ,バーチャルスタジオ,撮影テクニック,ライブ配信,グリーンスクリーン">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="ブログ | Studio Q">
+    <meta property="og:description" content="最新の撮影テクニックやスタジオの活用方法をご紹介">
+    <meta property="og:url" content="https://studioq.co.jp/blog/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@StudioQ080">
+    <title>ブログ | Studio Q</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .blog-index-header {
+            text-align: center;
+            padding: 120px 20px 60px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+        
+        .blog-index-header h1 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-index-header p {
+            color: #ccc;
+            font-size: 1.1rem;
+        }
+        
+        .blog-listing {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .blog-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .blog-card-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .blog-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .blog-card-date {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 200, 150, 0.9);
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .blog-card-content {
+            padding: 20px;
+        }
+        
+        .blog-card-title {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .blog-card-excerpt {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .blog-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .blog-card-category {
+            background: #f0f0f0;
+            color: #555;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        
+        .blog-card-link {
+            color: #00c896;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+        
+        .blog-card-link:hover {
+            color: #009b77;
+        }
+        
+        @media (max-width: 768px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .blog-index-header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <a href="../index.html"><img src="../images/studioq_logo_white.png" alt="Studio Q" class="logo-image" loading="eager"></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">ホーム</a></li>
+                <li><a href="../index.html#features">スタジオについて</a></li>
+                <li><a href="../index.html#gallery">ギャラリー</a></li>
+                <li><a href="../index.html#contact">お問い合わせ</a></li>
+                <li><a href="index.html" class="active">ブログ</a></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
 
-<div class="blog-listing">
-  <div class="blog-date">2025.04.25</div>
-  {% for post in collections.posts | reverse %}
-    <article class="blog-post">
-      {% if post.data.thumbnail %}
-        <img src="{{ post.data.thumbnail }}" alt="{{ post.data.title }}のサムネイル">
-      {% endif %}
-      
-      <h2>{{ post.data.title }}</h2>
-      <time datetime="{{ post.date | dateString }}">{{ post.date | dateFilter }}</time>
-      
-      {% if post.data.description %}
-        <p>{{ post.data.description }}</p>
-      {% endif %}
-      
-      <a href="{{ post.url }}" class="read-more">続きを読む &rarr;</a>
-    </article>
-  {% endfor %}
-</div>
+    <!-- Blog Index Header -->
+    <section class="blog-index-header">
+        <h1>スタジオQブログ</h1>
+        <p>最新の撮影テクニックやスタジオの活用方法をご紹介</p>
+    </section>
+
+    <!-- Blog Listing -->
+    <section class="blog-listing">
+        <div class="blog-grid">
+            <!-- Live Streaming Guide -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <img src="../images/bl04.png" alt="大阪のプロ必見！完全防音×4K×4台カメラで極める高音質ライブ配信術" loading="lazy">
+                    <div class="blog-card-date">2025.04.25</div>
+                </div>
+                <div class="blog-card-content">
+                    <h2 class="blog-card-title">大阪のプロ必見！完全防音×4K×4台カメラで極める高音質ライブ配信術</h2>
+                    <p class="blog-card-excerpt">音楽プロモーターやミュージシャン向け。Studio Qの設備とノウハウで実現する高品質ライブ配信の秘訣を解説します。</p>
+                    <div class="blog-card-footer">
+                        <span class="blog-card-category">ライブ配信</span>
+                        <a href="live-streaming-guide.html" class="blog-card-link">続きを読む <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Virtual Production -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <img src="../images/cropped-slide3-2_1920-jpg.webp" alt="2025年バーチャルプロダクションの最新トレンド" loading="lazy">
+                    <div class="blog-card-date">2025.03.28</div>
+                </div>
+                <div class="blog-card-content">
+                    <h2 class="blog-card-title">2025年バーチャルプロダクションの最新トレンド</h2>
+                    <p class="blog-card-excerpt">進化を続けるバーチャルプロダクション技術の最新トレンドと、スタジオQでの活用方法をご紹介します。</p>
+                    <div class="blog-card-footer">
+                        <span class="blog-card-category">バーチャルプロダクション</span>
+                        <a href="virtual-production.html" class="blog-card-link">続きを読む <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Camera Selection -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <img src="../images/slide4-2_1920-jpg (1).webp" alt="プロが教える4Kカメラの選び方" loading="lazy">
+                    <div class="blog-card-date">2025.03.15</div>
+                </div>
+                <div class="blog-card-content">
+                    <h2 class="blog-card-title">プロが教える4Kカメラの選び方</h2>
+                    <p class="blog-card-excerpt">映像制作において重要な4Kカメラの選び方について、プロのカメラマンが詳しく解説します。</p>
+                    <div class="blog-card-footer">
+                        <span class="blog-card-category">機材紹介</span>
+                        <a href="camera-selection.html" class="blog-card-link">続きを読む <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Green Screen -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <img src="../images/top3-1.jpg" alt="グリーンスクリーン撮影の基本とコツ" loading="lazy">
+                    <div class="blog-card-date">2025.03.10</div>
+                </div>
+                <div class="blog-card-content">
+                    <h2 class="blog-card-title">グリーンスクリーン撮影の基本とコツ</h2>
+                    <p class="blog-card-excerpt">バーチャル撮影に欠かせないグリーンスクリーン撮影の基本とコツを解説します。</p>
+                    <div class="blog-card-footer">
+                        <span class="blog-card-category">撮影テクニック</span>
+                        <a href="green-screen.html" class="blog-card-link">続きを読む <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- AI Virtual Composition -->
+            <article class="blog-card">
+                <div class="blog-card-image">
+                    <img src="../images/ai1-1.png" alt="AIによるバーチャル合成撮影" loading="lazy">
+                    <div class="blog-card-date">2025.02.20</div>
+                </div>
+                <div class="blog-card-content">
+                    <h2 class="blog-card-title">AIによるバーチャル合成撮影: スタジオQでの取り組みと成功例</h2>
+                    <p class="blog-card-excerpt">AI技術を活用したバーチャル合成撮影の最新事例と、スタジオQでの実践方法をご紹介します。</p>
+                    <div class="blog-card-footer">
+                        <span class="blog-card-category">AI技術</span>
+                        <a href="aiによるバ-チャル合成撮影-スタジオqでの取り組みと成功例.html" class="blog-card-link">続きを読む <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../images/studioq_logo_white.png" alt="Studio Q" class="footer-logo-image" loading="lazy">
+                </div>
+                <div class="footer-links">
+                    <h3>リンク</h3>
+                    <ul>
+                        <li><a href="../index.html">ホーム</a></li>
+                        <li><a href="../index.html#features">スタジオについて</a></li>
+                        <li><a href="../index.html#gallery">ギャラリー</a></li>
+                        <li><a href="../index.html#contact">お問い合わせ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>お問い合わせ</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 大阪市浪速区恵美須西3-2-4 2F</p>
+                    <p><i class="fas fa-phone"></i> 06-6978-8122</p>
+                    <p><i class="fas fa-envelope"></i> info@studioq.jp</p>
+                </div>
+                <div class="footer-social">
+                    <h3>ソーシャルメディア</h3>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/0804studioq" target="_blank" rel="noopener"><i class="fab fa-facebook"></i></a>
+                        <a href="https://twitter.com/StudioQ080" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://www.instagram.com/studioq0804" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/channel/UCxnEj084atnqvlbW29DsFKA" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 スタジオQ All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

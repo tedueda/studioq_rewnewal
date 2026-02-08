@@ -1,0 +1,100 @@
+name: Blog Auto Generator
+
+on:
+  schedule:
+    - cron: '0 9 */2 * *'
+  workflow_dispatch:
+    inputs:
+      theme:
+        description: 'ブログ記事のテーマ'
+        required: true
+        type: string
+      target:
+        description: 'ターゲット読者'
+        required: true
+        type: string
+      word_count:
+        description: '文字数'
+        required: true
+        default: '3000'
+        type: string
+      image1:
+        description: '画像1ファイル名（blog/images/内）'
+        required: false
+        type: string
+      image2:
+        description: '画像2ファイル名（blog/images/内）'
+        required: false
+        type: string
+      image3:
+        description: '画像3ファイル名（blog/images/内）'
+        required: false
+        type: string
+      image4:
+        description: '画像4ファイル名（blog/images/内）'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  generate-blog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        working-directory: blog/blog-automation
+        run: npm install
+
+      - name: Prepare blog data (manual dispatch)
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          IMAGES='[]'
+          IMG_ARRAY=()
+          if [ -n "${{ inputs.image1 }}" ]; then IMG_ARRAY+=("\"${{ inputs.image1 }}\""); fi
+          if [ -n "${{ inputs.image2 }}" ]; then IMG_ARRAY+=("\"${{ inputs.image2 }}\""); fi
+          if [ -n "${{ inputs.image3 }}" ]; then IMG_ARRAY+=("\"${{ inputs.image3 }}\""); fi
+          if [ -n "${{ inputs.image4 }}" ]; then IMG_ARRAY+=("\"${{ inputs.image4 }}\""); fi
+          if [ ${#IMG_ARRAY[@]} -gt 0 ]; then
+            IMAGES="[$(IFS=,; echo "${IMG_ARRAY[*]}")]"
+          fi
+
+          cat > blog/blog-automation/manual-request.json << EOF
+          {
+            "theme": "${{ inputs.theme }}",
+            "target": "${{ inputs.target }}",
+            "wordCount": ${{ inputs.word_count }},
+            "images": ${IMAGES},
+            "author": "スタジオQ"
+          }
+          EOF
+
+          node blog/blog-automation/blog-auto-generator.js add-to-queue blog/blog-automation/manual-request.json
+
+      - name: Process blog queue
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: node blog/blog-automation/blog-auto-generator.js process-queue
+
+      - name: Commit and push generated blog post
+        run: |
+          git config user.name "StudioQ Blog Bot"
+          git config user.email "blog-bot@studioq.co.jp"
+          git add blog/ index.html
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            DATE=$(date +%Y-%m-%d)
+            git commit -m "blog: auto-generated blog post (${DATE})"
+            git push
+          fi

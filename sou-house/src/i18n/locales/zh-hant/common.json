@@ -1,0 +1,95 @@
+{
+  "site": {
+    "title": "颯 House",
+    "subtitle": "大阪民宿",
+    "description": "位於大阪市中心的舒適民宿。非常適合家庭、團體以及尋求地道當地體驗的旅行者。",
+    "heroTagline": "在大阪的您的家",
+    "viewAll": "查看所有房源",
+    "bookNow": "立即預訂",
+    "backToHome": "返回首頁",
+    "guests": "最多客人",
+    "bedrooms": "臥室",
+    "location": "位置",
+    "amenities": "設施",
+    "about": "關於",
+    "properties": "房源列表",
+    "contact": "聯繫我們",
+    "footer": "版權所有。",
+    "language": "語言"
+  },
+  "properties": {
+    "souHouse5": {
+      "name": "颯 House 5",
+      "description": "位於大阪便利地段的寬敞3臥室住宅，可輕鬆前往各大景點。"
+    },
+    "souHouse34": {
+      "name": "颯 House 3-4",
+      "description": "位於大阪中心的溫馨2臥室住宿，非常適合家庭或小型團體。"
+    },
+    "souHouseMomodani": {
+      "name": "颯 House 桃谷",
+      "description": "靠近桃谷站的迷人2臥室房源，方便前往大阪的熱鬧街區。"
+    },
+    "souHouseTsuruhashi": {
+      "name": "颯 House 鶴橋",
+      "description": "位於以豐富美食文化和便利交通著稱的鶴橋地區的舒適2臥室住宿。"
+    }
+  },
+  "reviews": {
+    "title": "住客評價",
+    "write": "寫評價",
+    "noReviews": "暫無評價。成為第一個分享體驗的人吧！",
+    "averageRating": "平均評分",
+    "totalReviews": "{{count}}條評價",
+    "pendingThanks": "謝謝！您的評價將在審核通過後顯示。",
+    "filters": {
+      "language": "語言",
+      "rating": "評分",
+      "all": "全部"
+    },
+    "form": {
+      "title": "寫評價",
+      "nickname": "暱稱",
+      "nicknamePlaceholder": "您的名字",
+      "rating": "評分",
+      "comment": "評價內容",
+      "commentPlaceholder": "分享您的體驗（至少20個字）...",
+      "language": "評價語言",
+      "submit": "提交評價",
+      "cancel": "取消",
+      "submitting": "提交中..."
+    },
+    "validation": {
+      "nicknameRequired": "暱稱為必填項",
+      "nicknameTooShort": "暱稱至少2個字元",
+      "nicknameTooLong": "暱稱不超過30個字元",
+      "commentRequired": "評價內容為必填項",
+      "commentTooShort": "評價至少20個字元",
+      "commentTooLong": "評價不超過1000個字元",
+      "ratingRequired": "請選擇評分",
+      "noUrls": "不允許包含URL",
+      "rateLimited": "您最近已提交過該房源的評價，請稍後再試。",
+      "submitError": "評價提交失敗，請稍後再試。"
+    }
+  },
+  "admin": {
+    "title": "評價管理",
+    "login": "管理員登入",
+    "email": "電子郵件",
+    "password": "密碼",
+    "loginButton": "登入",
+    "logout": "登出",
+    "loginError": "電子郵件或密碼不正確",
+    "pending": "待審核",
+    "approved": "已通過",
+    "rejected": "已拒絕",
+    "all": "全部",
+    "approve": "通過",
+    "reject": "拒絕",
+    "noReviews": "未找到評價",
+    "property": "房源",
+    "status": "狀態",
+    "actions": "操作",
+    "filterByStatus": "按狀態篩選"
+  }
+}

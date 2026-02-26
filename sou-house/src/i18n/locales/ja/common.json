@@ -1,0 +1,95 @@
+{
+  "site": {
+    "title": "颯 House",
+    "subtitle": "大阪の民泊",
+    "description": "大阪の中心部にある快適な民泊施設。ご家族、グループ、本格的な地元体験をお求めの旅行者に最適です。",
+    "heroTagline": "大阪でのあなたの第二の家",
+    "viewAll": "すべての物件を見る",
+    "bookNow": "予約する",
+    "backToHome": "ホームに戻る",
+    "guests": "定員",
+    "bedrooms": "寝室",
+    "location": "所在地",
+    "amenities": "設備",
+    "about": "概要",
+    "properties": "物件一覧",
+    "contact": "お問い合わせ",
+    "footer": "All rights reserved.",
+    "language": "言語"
+  },
+  "properties": {
+    "souHouse5": {
+      "name": "颯 House 5",
+      "description": "大阪の便利なエリアに位置する広々とした3ベッドルームの一軒家。主要観光スポットへのアクセスも良好です。"
+    },
+    "souHouse34": {
+      "name": "颯 House 3-4",
+      "description": "大阪中心部にある居心地の良い2ベッドルームの宿泊施設。ご家族や少人数グループに最適です。"
+    },
+    "souHouseMomodani": {
+      "name": "颯 House 桃谷",
+      "description": "桃谷駅近くの魅力的な2ベッドルーム物件。大阪の活気あるエリアへのアクセスに便利です。"
+    },
+    "souHouseTsuruhashi": {
+      "name": "颯 House 鶴橋",
+      "description": "豊かな食文化と優れた交通アクセスで知られる鶴橋エリアの快適な2ベッドルーム物件。"
+    }
+  },
+  "reviews": {
+    "title": "ゲストレビュー",
+    "write": "レビューを書く",
+    "noReviews": "まだレビューがありません。最初のレビューを投稿してください！",
+    "averageRating": "平均評価",
+    "totalReviews": "{{count}}件のレビュー",
+    "pendingThanks": "ありがとうございます！レビューは承認後に表示されます。",
+    "filters": {
+      "language": "言語",
+      "rating": "評価",
+      "all": "すべて"
+    },
+    "form": {
+      "title": "レビューを書く",
+      "nickname": "ニックネーム",
+      "nicknamePlaceholder": "お名前",
+      "rating": "評価",
+      "comment": "レビュー内容",
+      "commentPlaceholder": "ご体験をお聞かせください（20文字以上）...",
+      "language": "レビュー言語",
+      "submit": "レビューを投稿",
+      "cancel": "キャンセル",
+      "submitting": "送信中..."
+    },
+    "validation": {
+      "nicknameRequired": "ニックネームは必須です",
+      "nicknameTooShort": "ニックネームは2文字以上で入力してください",
+      "nicknameTooLong": "ニックネームは30文字以内で入力してください",
+      "commentRequired": "レビュー内容は必須です",
+      "commentTooShort": "レビューは20文字以上で入力してください",
+      "commentTooLong": "レビューは1000文字以内で入力してください",
+      "ratingRequired": "評価を選択してください",
+      "noUrls": "URLは使用できません",
+      "rateLimited": "最近この物件のレビューを投稿されています。しばらくお待ちください。",
+      "submitError": "レビューの送信に失敗しました。後でもう一度お試しください。"
+    }
+  },
+  "admin": {
+    "title": "レビュー管理",
+    "login": "管理者ログイン",
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "loginButton": "ログイン",
+    "logout": "ログアウト",
+    "loginError": "メールアドレスまたはパスワードが正しくありません",
+    "pending": "承認待ち",
+    "approved": "承認済み",
+    "rejected": "却下",
+    "all": "すべて",
+    "approve": "承認",
+    "reject": "却下",
+    "noReviews": "レビューが見つかりません",
+    "property": "物件",
+    "status": "ステータス",
+    "actions": "操作",
+    "filterByStatus": "ステータスで絞り込み"
+  }
+}

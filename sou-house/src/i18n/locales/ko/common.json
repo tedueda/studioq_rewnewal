@@ -1,0 +1,95 @@
+{
+  "site": {
+    "title": "소우 하우스",
+    "subtitle": "오사카 숙소",
+    "description": "오사카 중심부에 위치한 편안한 숙소. 가족, 그룹, 현지 체험을 원하는 여행자에게 완벽한 곳입니다.",
+    "heroTagline": "오사카에서의 당신의 집",
+    "viewAll": "모든 숙소 보기",
+    "bookNow": "예약하기",
+    "backToHome": "홈으로 돌아가기",
+    "guests": "최대 인원",
+    "bedrooms": "침실",
+    "location": "위치",
+    "amenities": "시설",
+    "about": "소개",
+    "properties": "숙소 목록",
+    "contact": "문의",
+    "footer": "All rights reserved.",
+    "language": "언어"
+  },
+  "properties": {
+    "souHouse5": {
+      "name": "소우 하우스 5",
+      "description": "오사카의 편리한 위치에 자리한 넓은 3베드룸 하우스. 주요 관광지까지 쉽게 접근할 수 있습니다."
+    },
+    "souHouse34": {
+      "name": "소우 하우스 3-4",
+      "description": "오사카 중심부의 아늑한 2베드룸 숙소. 가족이나 소규모 그룹에 이상적입니다."
+    },
+    "souHouseMomodani": {
+      "name": "소우 하우스 모모다니",
+      "description": "모모다니역 근처의 매력적인 2베드룸 숙소. 오사카의 활기찬 동네로의 접근이 편리합니다."
+    },
+    "souHouseTsuruhashi": {
+      "name": "소우 하우스 쓰루하시",
+      "description": "풍부한 음식 문화와 우수한 교통으로 유명한 쓰루하시 지역의 편안한 2베드룸 숙소."
+    }
+  },
+  "reviews": {
+    "title": "게스트 리뷰",
+    "write": "리뷰 작성",
+    "noReviews": "아직 리뷰가 없습니다. 첫 번째 리뷰를 남겨주세요!",
+    "averageRating": "평균 평점",
+    "totalReviews": "리뷰 {{count}}개",
+    "pendingThanks": "감사합니다! 리뷰는 승인 후 표시됩니다.",
+    "filters": {
+      "language": "언어",
+      "rating": "평점",
+      "all": "전체"
+    },
+    "form": {
+      "title": "리뷰 작성",
+      "nickname": "닉네임",
+      "nicknamePlaceholder": "이름",
+      "rating": "평점",
+      "comment": "리뷰 내용",
+      "commentPlaceholder": "경험을 공유해주세요 (최소 20자)...",
+      "language": "리뷰 언어",
+      "submit": "리뷰 제출",
+      "cancel": "취소",
+      "submitting": "제출 중..."
+    },
+    "validation": {
+      "nicknameRequired": "닉네임은 필수입니다",
+      "nicknameTooShort": "닉네임은 2자 이상이어야 합니다",
+      "nicknameTooLong": "닉네임은 30자 이하여야 합니다",
+      "commentRequired": "리뷰 내용은 필수입니다",
+      "commentTooShort": "리뷰는 20자 이상이어야 합니다",
+      "commentTooLong": "리뷰는 1000자 이하여야 합니다",
+      "ratingRequired": "평점을 선택해주세요",
+      "noUrls": "URL은 사용할 수 없습니다",
+      "rateLimited": "최근에 이 숙소의 리뷰를 제출하셨습니다. 잠시 후 다시 시도해주세요.",
+      "submitError": "리뷰 제출에 실패했습니다. 나중에 다시 시도해주세요."
+    }
+  },
+  "admin": {
+    "title": "리뷰 관리",
+    "login": "관리자 로그인",
+    "email": "이메일",
+    "password": "비밀번호",
+    "loginButton": "로그인",
+    "logout": "로그아웃",
+    "loginError": "이메일 또는 비밀번호가 올바르지 않습니다",
+    "pending": "대기 중",
+    "approved": "승인됨",
+    "rejected": "거부됨",
+    "all": "전체",
+    "approve": "승인",
+    "reject": "거부",
+    "noReviews": "리뷰를 찾을 수 없습니다",
+    "property": "숙소",
+    "status": "상태",
+    "actions": "작업",
+    "filterByStatus": "상태별 필터"
+  }
+}

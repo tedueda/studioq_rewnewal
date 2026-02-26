@@ -1,0 +1,95 @@
+{
+  "site": {
+    "title": "Sou House",
+    "subtitle": "Vacation Rentals in Osaka",
+    "description": "Comfortable vacation rental homes in the heart of Osaka. Perfect for families, groups, and travelers seeking an authentic local experience.",
+    "heroTagline": "Your Home Away From Home in Osaka",
+    "viewAll": "View All Properties",
+    "bookNow": "Book Now",
+    "backToHome": "Back to Home",
+    "guests": "Guests",
+    "bedrooms": "Bedrooms",
+    "location": "Location",
+    "amenities": "Amenities",
+    "about": "About",
+    "properties": "Properties",
+    "contact": "Contact",
+    "footer": "All rights reserved.",
+    "language": "Language"
+  },
+  "properties": {
+    "souHouse5": {
+      "name": "Sou House 5",
+      "description": "A spacious 3-bedroom home perfect for large groups, located in a convenient area of Osaka with easy access to major attractions."
+    },
+    "souHouse34": {
+      "name": "Sou House 3-4",
+      "description": "A cozy 2-bedroom retreat ideal for families or small groups, offering a warm and welcoming atmosphere in central Osaka."
+    },
+    "souHouseMomodani": {
+      "name": "Sou House Momodani",
+      "description": "A charming 2-bedroom property near Momodani station, providing convenient access to Osaka's vibrant neighborhoods."
+    },
+    "souHouseTsuruhashi": {
+      "name": "Sou House Tsuruhashi",
+      "description": "A comfortable 2-bedroom home in the Tsuruhashi area, known for its rich food culture and excellent transportation links."
+    }
+  },
+  "reviews": {
+    "title": "Guest Reviews",
+    "write": "Write a Review",
+    "noReviews": "No reviews yet. Be the first to share your experience!",
+    "averageRating": "Average Rating",
+    "totalReviews": "{{count}} reviews",
+    "pendingThanks": "Thank you! Your review will appear after approval.",
+    "filters": {
+      "language": "Language",
+      "rating": "Rating",
+      "all": "All"
+    },
+    "form": {
+      "title": "Write a Review",
+      "nickname": "Nickname",
+      "nicknamePlaceholder": "Your name",
+      "rating": "Rating",
+      "comment": "Your Review",
+      "commentPlaceholder": "Share your experience (min 20 characters)...",
+      "language": "Review Language",
+      "submit": "Submit Review",
+      "cancel": "Cancel",
+      "submitting": "Submitting..."
+    },
+    "validation": {
+      "nicknameRequired": "Nickname is required",
+      "nicknameTooShort": "Nickname must be at least 2 characters",
+      "nicknameTooLong": "Nickname must be 30 characters or less",
+      "commentRequired": "Review comment is required",
+      "commentTooShort": "Comment must be at least 20 characters",
+      "commentTooLong": "Comment must be 1000 characters or less",
+      "ratingRequired": "Please select a rating",
+      "noUrls": "URLs are not allowed",
+      "rateLimited": "You recently submitted a review for this property. Please wait before submitting another.",
+      "submitError": "Failed to submit review. Please try again later."
+    }
+  },
+  "admin": {
+    "title": "Review Management",
+    "login": "Admin Login",
+    "email": "Email",
+    "password": "Password",
+    "loginButton": "Log In",
+    "logout": "Log Out",
+    "loginError": "Invalid email or password",
+    "pending": "Pending",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "all": "All",
+    "approve": "Approve",
+    "reject": "Reject",
+    "noReviews": "No reviews found",
+    "property": "Property",
+    "status": "Status",
+    "actions": "Actions",
+    "filterByStatus": "Filter by Status"
+  }
+}
